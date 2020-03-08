@@ -20,3 +20,7 @@
 ` $ python manage.py createsuperuser --username name`
 password
 ` $ python manage.py runserver`
+
+
+##Naming conventions: 
+`Camel case i.e. mentorApp`
