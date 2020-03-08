@@ -1,28 +1,22 @@
+
 # Mentor App ReadMe
-In order to start working on me, try out the following directions:
-#### Clone me
+
+  
+
+## Clone me
+
 `$ git clone https://github.com/TheWITProject/MentorApp.git`
-#### Start by going into our freshly cloned repository:
+
+
+## Setup
+
 `$ cd MentorApp/`
-#### What files are in this repository?
-`$ ls`
-`LICENSE README.md`
-
-#### Looks like i'm missing my `hello.py` file. What other branches could it be on?
-`$ git branch -r`
-`origin/HEAD -> origin/master`
-`origin/develop`
-`origin/master`
-
-#### Let's check out *develop* and see if it's there.
-`$ git checkout develop`
-`Branch develop set up to track remote branch develop from origin.
-Switched to a new branch 'develop'`
-`$ ls`
-`LICENSE  README.md  hello.py`
-
-#### We've got it! And now for our first "Hello, World!"
-`$ python hello.py`
-`Hello World!`
-
-#### You did it!
+`$ python3 -m venv myvenv`
+`$ source myvenv/bin/activate`
+` $ pip install -r requirements.txt`
+` $ CREATE USER name;`
+` $ CREATE DATABASE mentorapp OWNER name;`
+` $ python manage.py migrate`
+` $ python manage.py createsuperuser --username name`
+password
+` $ python manage.py runserver`
