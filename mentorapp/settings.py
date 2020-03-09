@@ -80,18 +80,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mentorapp',
-<<<<<<< HEAD
-        'USER': 'name',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
-=======
         'USER': 'postgres',
         'PASSWORD': 'NEW_PASSWORD',
         'HOST': 'localhost',
         'PORT': '5433',
 
->>>>>>> 576350ef41bf6017950d52301652eea9861c1dd1
     }
 }
 
