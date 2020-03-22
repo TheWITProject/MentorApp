@@ -41,5 +41,9 @@ def default_city():
 def update_profile_signal(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+<<<<<<< HEAD
     instance.profile.save()
 
+=======
+        instance.profile.save()
+>>>>>>> 82e9a713d15e40f52aaf18c5e31f209ab89e90b7

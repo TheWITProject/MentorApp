@@ -26,7 +26,6 @@ def signup(request):
         user.profile.first_name = form.cleaned_data.get('first_name')
         user.profile.last_name = form.cleaned_data.get('last_name')
         user.profile.email = form.cleaned_data.get('email')
-        user.profile.user_choice = form.cleaned_data.get('user_choice')
         current_site = get_current_site(request)
         subject = 'Activate Your MySite Account'
         message = render_to_string('yearUpApp/account_activation_email.html', {
