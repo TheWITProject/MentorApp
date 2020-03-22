@@ -9,34 +9,31 @@ from django.template.loader import render_to_string
 
 from yearUpApp.forms import SignUpForm
 from yearUpApp.tokens import account_activation_token
-from django.http import HttpResponse
-from django.core.mail import EmailMessage
-
 
 @login_required
 def home(request):
     return render(request, 'yearUpApp/home.html')
 
 def signup(request):
-    form = SignUpForm(request.POST)
-    if form.is_valid():
-        user = form.save(commit=False)
-        user.is_active = False
-        user.refresh_from_db()
-        user.profile.first_name = form.cleaned_data.get('first_name')
-        user.profile.last_name = form.cleaned_data.get('last_name')
-        user.profile.email = form.cleaned_data.get('email')
-        current_site = get_current_site(request)
-        subject = 'Activate Your MySite Account'
-        message = render_to_string('yearUpApp/account_activation_email.html', {
-            'user': user,
-            'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-            'token': account_activation_token.make_token(user),
-        })
-        user.email_user(subject, message)
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
 
-        return redirect('account_activation_sent')
+
+            current_site = get_current_site(request)
+            subject = 'Activate Your MySite Account'
+            message = render_to_string('yearUpApp/account_activation_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            user.email_user(subject, message)
+
+            return redirect('account_activation_sent')
     else:
         form = SignUpForm()
     return render(request, 'yearUpApp/signup.html', {'form': form})
@@ -60,5 +57,3 @@ def activate(request, uidb64, token):
         return redirect('home')
     else:
         return render(request, 'yearUpApp/account_activation_invalid.html')
-
-
