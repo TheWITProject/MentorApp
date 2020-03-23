@@ -1,0 +1,28 @@
+.page-header {
+    background-color: white;
+    margin-top: 0;
+}
+
+boxed{
+    background-color: white;
+}
+
+body{
+    background-color: rgb(27, 27, 158);
+}
+
+h2 {
+    color:white;
+    padding-left: 15px;
+}
+
+p {
+    color: white;
+    padding: 2px;
+    
+}
+
+button{
+    color:black;
+}
+
