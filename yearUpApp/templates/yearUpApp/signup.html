@@ -1,22 +1,28 @@
 {% extends 'yearUpApp/basesignup.html' %}
 
 {% block content %}
+  <style>
+    h2{
+      text-align:center 
+    }
+  </style>  
+
   <h2>Sign up</h2>
 
-  <div class="boxed"></div>
+  <div class="boxed">
     <form method="post">
       {% csrf_token %}
       {% for field in form %}
-        <p>
+        <p2>
           {{ field.label_tag }}<br>
           {{ field }}
           {% if field.help_text %}
-            <small style="color: grey">{{ field.help_text }}</small>
+            <small style="color: black">{{ field.help_text }}</small>
           {% endif %}
           {% for error in field.errors %}
             <p style="color: red">{{ error }}</p>
           {% endfor %}
-        </p>
+        </p2>
       {% endfor %}
       <button type="submit">Sign up</button>
     </form>
