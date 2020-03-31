@@ -8,28 +8,43 @@ body{
 }
 
 p {
-    color: white;
-    padding: 2px;
+    color: black;
+    padding: 10px;
 }
 
 .p2 {
     color: black;
-    padding: 2px;
+    padding: 1px;
 }
+
 
 button{
     color:black;
 }
 
-label{
+label {
     display: block;
+    font-weight: bold;
+    margin-bottom: 0.5em;
 }
 
+.loginbox{
+    background-color: white;
+    width: 300px;
+    height: 300px;
 
-.boxed{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.signupbox{
     background-color: white;
     width: 600px;
-    height: 380px;
+    height: 500px;
 
 
     display: flex;

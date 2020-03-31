@@ -1,4 +1,4 @@
-{% extends 'yearUpApp/basesignup.html' %}
+{% extends 'yearUpApp/baseheader.html' %}
 
 {% block content %}
   <style>
@@ -9,22 +9,26 @@
 
   <h2>Sign up</h2>
 
-  <div class="boxed">
+  <div class="signupbox">
     <form method="post">
       {% csrf_token %}
       {% for field in form %}
         <p2>
-          {{ field.label_tag }}<br>
-          {{ field }}
+          {{ field.label_tag }}
+          {{ field }}<br>
           {% if field.help_text %}
-            <small style="color: black">{{ field.help_text }}</small>
+            
+            <label style="color: black">{{ field.help_text }}</label>
           {% endif %}
           {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
+
+            <br><small style="color: red">{{ error }}</small>
           {% endfor %}
         </p2>
       {% endfor %}
-      <button type="submit">Sign up</button>
+      <div style="text-align:center;">
+        <br><button type="submit">Sign up</button>
+      </div>
     </form>
   </div>
 {% endblock %}
