@@ -26,4 +26,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='yearUpApp/logout.html'), name='logout' ),
     path('account_activation_sent/', views.account_activation_sent, name='account_activation_sent'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('edit_profile/', views.edit_profile, name='edit_profile'),
 ]

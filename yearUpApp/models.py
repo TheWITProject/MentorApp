@@ -6,9 +6,17 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email_confirmed = models.BooleanField(default=False)
+    username = models.CharField(max_length=30, unique=True)
+    location = models.CharField(max_length = 50, default='YUBA')
+    phone = models.CharField(max_length = 15, blank=True, help_text='(000) 000-000')
+    email = models.EmailField(max_length = 200, blank=True)
+    is_mentor = models.BooleanField(default = False)
+    is_mentee = models.BooleanField(default = False)
+
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):

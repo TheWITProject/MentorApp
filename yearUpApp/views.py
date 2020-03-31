@@ -6,6 +6,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
+from django.contrib.auth.forms import UserChangeForm
 
 from yearUpApp.forms import SignUpForm
 from yearUpApp.tokens import account_activation_token
@@ -57,3 +58,18 @@ def activate(request, uidb64, token):
         return redirect('home')
     else:
         return render(request, 'yearUpApp/account_activation_invalid.html')
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserChangeForm(request.Post, instance = request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect('yearUpApp/home.html')
+        
+    else:
+        form = UserChangeForm(instance=request.user) 
+        args = {'form':form}
+        return render(request, 'yearUpApp/edit_profile.html', args)
+            
