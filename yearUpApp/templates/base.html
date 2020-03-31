@@ -1,22 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang=en>
+
+<head>
+	<!-- Required meta tags -->
     <meta charset="utf-8">
-    <title>{% block title %}Simple is Better Than Complex{% endblock %}</title>
-  </head>
-  <body>
-    <header>
-      <h1>My Site</h1>
-      {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">logout</a>
-      {% else %}
-        <a href="{% url 'login' %}">login</a> / <a href="{% url 'signup' %}">signup</a>
-      {% endif %}
-      <hr>
-    </header>
-    <main>
-      {% block content %}
-      {% endblock %}
-    </main>
-  </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+{% include 'genericTemplate/base_css.html' %}
+{% include 'genericTemplate/header.html' %}
+
+<!-- Body -->
+<style type="text/css">
+	.main{
+		min-height: 100vh;
+		height: 100%;
+	}
+</style>
+<div class="main">
+	{% block content %}
+
+	{% endblock content %}
+</div>
+<!-- End Body -->
+
+{% include 'genericTemplate/footer.html' %}
+
+</body>
+
+
 </html>

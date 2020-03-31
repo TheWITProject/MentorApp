@@ -27,10 +27,10 @@ urlpatterns = [
     path('account_activation_sent/', views.account_activation_sent, name='account_activation_sent'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
 
-    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='passwordReset/password_change_done.html'), 
+    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='passwordReset/password_change_done.html'),
         name='password_change_done'),
 
-    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='passwordReset/password_change.html'), 
+    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='passwordReset/password_change.html'),
         name='password_change'),
 
     path('password_reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='passwordReset/password_reset_done.html'),
