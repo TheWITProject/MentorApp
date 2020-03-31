@@ -1,4 +1,4 @@
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -13,7 +13,11 @@ from yearUpApp.tokens import account_activation_token
 
 @login_required
 def home(request):
-    return render(request, 'yearUpApp/home.html')
+    return render(request, 'pages/home.html')
+
+def logout_view(request):
+	logout(request)
+	return redirect('/')
 
 def signup(request):
     if request.method == 'POST':
@@ -26,7 +30,7 @@ def signup(request):
 
             current_site = get_current_site(request)
             subject = 'Activate Your MySite Account'
-            message = render_to_string('yearUpApp/account_activation_email.html', {
+            message = render_to_string('registration/account_activation_email.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -37,10 +41,10 @@ def signup(request):
             return redirect('account_activation_sent')
     else:
         form = SignUpForm()
-    return render(request, 'yearUpApp/signup.html', {'form': form})
+    return render(request, 'registration/signup.html', {'form': form})
 
 def account_activation_sent(request):
-    return render(request, 'yearUpApp/account_activation_sent.html')
+    return render(request, 'registration/account_activation_sent.html')
 
 
 def activate(request, uidb64, token):
