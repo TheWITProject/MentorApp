@@ -1,4 +1,4 @@
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -13,6 +13,10 @@ from yearUpApp.tokens import account_activation_token
 @login_required
 def home(request):
     return render(request, 'yearUpApp/home.html')
+
+def logout_view(request):
+	logout(request)
+	return redirect('/')
 
 def signup(request):
     if request.method == 'POST':
