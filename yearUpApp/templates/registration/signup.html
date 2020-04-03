@@ -1,22 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-    {% endfor %}
-    <button type="submit">Sign up</button>
-  </form>
-{% endblock %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+
+  <form class="form-signin" method="post">{% csrf_token %}
+      {% csrf_token %}
+      {% for field in form %}
+          {% if field.name == 'username' %}
+          <input class="form-control" type="text" name="{{ field.name }}" class="form-control" placeholder="{{ field.label }}" >
+          {% elif field.name == 'password1' or  field.name == 'password2' %}
+          <input class="form-control" type="password" name="{{ field.name }}" class="form-control" placeholder="{{ field.label }}" >
+          {% else %}
+          <input class="form-control" type="{{field.name}}" name="{{ field.name }}" class="form-control" placeholder="{{ field.label }}" >
+          {% endif %}
+          <p>
+          {% for error in field.errors %}
+            <br><small style="color: red">{{ error }}</small>
+            {% if field.help_text %}
+            <label style="color: black">{{ field.help_text }}</label>
+          {% endif %}
+          {% endfor %}
+        </p>
+      {% endfor %}
+      <div style="text-align:center;">
+
+  <button id="enter" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+      </div>
+    </form>
+
+{% endblock content %}
 
