@@ -24,3 +24,13 @@ body{
   form{
       width: 100%;
   }
+
+  .btn-outline-primary {
+    color:  #213b74;
+    border-color: #213b74;
+  }
+
+  .btn-outline-primary:hover {
+    background-color:  #213b74;
+    border-color: #213b74;
+  }
