@@ -1,9 +1,12 @@
 
   .form-signin {
     width: 100%;
-    max-width: 330px;
+    max-width: 360px;
     padding: 15px;
     margin: auto;
+    border-radius: 3px;
+    background: #cf9212;
+    box-shadow: 3px 3px 10px 3px cornflowerblue;
     }
 
   .form-signin .form-control {
@@ -12,6 +15,7 @@
     height: auto;
     padding: 10px;
     font-size: 16px;
+    background: beige;
   }
   .form-signin .form-control:focus {
     z-index: 2;
