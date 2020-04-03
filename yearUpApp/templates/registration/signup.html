@@ -1,35 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-  <style>
-    h2{
-      text-align:center 
-    }
-  </style>  
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
 
-  <h2>Sign up</h2>
-
-  <div class="signupbox">
-    <form method="post">
+  <form class="form-signin" method="post">{% csrf_token %}
       {% csrf_token %}
       {% for field in form %}
-        <p2>
-          {{ field.label_tag }}
-          {{ field }}<br>
-          {% if field.help_text %}
-            
+          {% if field.name == 'username' %}
+          <input class="form-control" type="text" name="{{ field.name }}" class="form-control" placeholder="{{ field.label }}" >
+          {% elif field.name == 'password1' or  field.name == 'password2' %}
+          <input class="form-control" type="password" name="{{ field.name }}" class="form-control" placeholder="{{ field.label }}" >
+          {% else %}
+          <input class="form-control" type="{{field.name}}" name="{{ field.name }}" class="form-control" placeholder="{{ field.label }}" >
+          {% endif %}
+          <p>
+          {% for error in field.errors %}
+            <br><small style="color: red">{{ error }}</small>
+            {% if field.help_text %}
             <label style="color: black">{{ field.help_text }}</label>
           {% endif %}
-          {% for error in field.errors %}
-
-            <br><small style="color: red">{{ error }}</small>
           {% endfor %}
-        </p2>
+        </p>
       {% endfor %}
       <div style="text-align:center;">
-        <br><button type="submit">Sign up</button>
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
       </div>
     </form>
-  </div>
-{% endblock %}
+
+{% endblock content %}
 

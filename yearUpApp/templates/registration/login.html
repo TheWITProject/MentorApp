@@ -1,37 +1,39 @@
-{% extends 'registration/baseheader.html' %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-  <style>
-    h2, p, button, a{
-      text-align:center 
-    }
-  </style>
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<form class="form-signin" method="post">{% csrf_token %}
 
-  <h2>Log in</h2>
-  {% if form.errors %}
-    <p style="color: red">Your username and password didn't match. Please try again.</p>
+  
+  <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+
+  <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+  
+  <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+  {% for field in login_form %}
+      <p>
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+  {% endfor %}
+  {% if login_form.non_field_errors %}
+    <div style="color: red">
+      <p>{{login_form.non_field_errors}}</p>
+    </div>
+
   {% endif %}
 
-  <div class="loginbox">
-    <form method="post">
-      {% csrf_token %}
-      <input type="hidden" name="next" value="{{ next }}" />
-      {% for field in form %}
-        <p>
-          {{ field.label_tag }}<br>
-          {{ field }}<br>
-          {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-          {% endfor %}
-          {% if field.help_text %}
-            <p><small style="color: grey">{{ field.help_text }}</small></p>
-          {% endif %}
-        </p>
-      {% endfor %}
-      <div style="text-align:center;">
-        <button type="submit">Log in</button><br><br>
-        <a href="{% url 'signup' %}">Sign up</a>
-      </div>
-    </form>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+  <div class="d-flex flex-column">
+    <a class="m-auto" href="{% url 'password_reset' %}">Reset password</a>
   </div>
-{% endblock %}
+</form>
+
+
+
+
+
+{% endblock content %}
