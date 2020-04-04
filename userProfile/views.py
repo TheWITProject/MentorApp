@@ -10,7 +10,7 @@ from django.contrib.auth.forms import UserChangeForm
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 
-from userProfile.forms import SignUpForm
+from userProfile.forms import *
 from userProfile.tokens import account_activation_token
 
 @login_required
@@ -63,7 +63,7 @@ def activate(request, uidb64, token):
         login(request, user)
         return redirect('home')
     else:
-        return render(request, 'yearUpApp/account_activation_invalid.html')
+        return render(request, 'registration/account_activation_invalid.html')
 
 
 

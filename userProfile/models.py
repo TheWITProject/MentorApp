@@ -23,8 +23,8 @@ class Profile(models.Model):
     education = models.CharField(max_length = 20, choices=EducationChoice.choices(), default = '')
     industry = models.CharField(max_length = 20, choices=IndustryChoice.choices(), default = '')
     learningtrack = models.CharField(max_length = 20, choices=TrackChoice.choices(), default = '')
-    linkedin = models.URLField(max_length = 20, default = '')
-    funfact = models.CharField(max_length=30, default='')
+    linkedin = models.URLField(max_length = 60, default = '')
+    funfact = models.CharField(max_length=100, default='')
 
     def __str__(self):
         return self.user.username
