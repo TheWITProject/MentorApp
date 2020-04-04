@@ -135,6 +135,6 @@ LOGIN_REDIRECT_URL = 'home'
 
 
 
-AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
