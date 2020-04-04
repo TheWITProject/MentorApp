@@ -7,8 +7,8 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 
-from yearUpApp.forms import SignUpForm
-from yearUpApp.tokens import account_activation_token
+from userProfile.forms import SignUpForm
+from userProfile.tokens import account_activation_token
 
 @login_required
 def home(request):
