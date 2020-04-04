@@ -19,9 +19,15 @@ class Profile(models.Model):
     company = models.CharField(max_length=30, default='')
     county = models.CharField(max_length = 20, choices=CountyChoice.choices(), default = '')
     gender  = models.CharField(max_length = 20, choices=GenderChoice.choices(), default = '')
+    ethnicity  = models.CharField(max_length = 20, choices=EthnicityChoice.choices(), default = '')
     education = models.CharField(max_length = 20, choices=EducationChoice.choices(), default = '')
     industry = models.CharField(max_length = 20, choices=IndustryChoice.choices(), default = '')
-    
+    learningtrack = models.CharField(max_length = 20, choices=TrackChoice.choices(), default = '')
+    linkedin = models.URLField(max_length = 20, default = '')
+    funfact = models.CharField(max_length=30, default='')
+
+    def __str__(self):
+        return self.user.username
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):

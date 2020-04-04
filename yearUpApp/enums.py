@@ -93,3 +93,40 @@ class IndustryChoice(Enum):
     def choices(cls):
         print(tuple((i.name, i.value) for i in cls))
         return tuple((i.name, i.value) for i in cls)
+
+
+
+
+class TrackChoice(Enum):
+    PROFDEV= "Professional Development"
+    INTERVIEWSKILL = "Interviewing Skills" 
+    NETWORKING = "Networking" 
+    LEADERSHIP = "Leadership"
+    PUBLICSPEAK = "Public Speaking" 
+    TECHSKILL = "Technical Skills" 
+    TIMEMANAGE = "Time Management" 
+    RESEARCH = "Research" 
+    TECHNOLOGY ="Technology" 
+    COMMUNICATION = "Communication"
+    PM = "Project Management"
+    UPDATES = "Industry Updates" 
+
+    @classmethod
+    def choices(cls):
+        print(tuple((i.name, i.value) for i in cls))
+        return tuple((i.name, i.value) for i in cls)
+
+
+
+
+class EthnicityChoice(Enum):
+    CAUCASIAN = "Caucasian"
+    LATINO = "Hispanic or Latino"
+    BLACK = "Black or African American" 
+    NATIVE = "Native American or American Indian"
+    OTHER = "Other"
+
+    @classmethod
+    def choices(cls):
+        print(tuple((i.name, i.value) for i in cls))
+        return tuple((i.name, i.value) for i in cls)
