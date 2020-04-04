@@ -26,6 +26,8 @@ urlpatterns = [
     path('logout/', views.logout_view , name="logout"),
     path('account_activation_sent/', views.account_activation_sent, name='account_activation_sent'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('edit_profile/', views.edit_profile, name='edit_profile'),
+    path('profile/', views.profile, name='profile'),
 
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='passwordReset/password_change_done.html'),
         name='password_change_done'),
@@ -42,4 +44,5 @@ urlpatterns = [
 
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='passwordReset/password_reset_complete.html'),
      name='password_reset_complete'),
+
 ]
