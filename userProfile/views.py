@@ -10,8 +10,8 @@ from django.contrib.auth.forms import UserChangeForm
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 
-from yearUpApp.forms import *
-from yearUpApp.tokens import account_activation_token
+from userProfile.forms import SignUpForm
+from userProfile.tokens import account_activation_token
 
 @login_required
 def home(request):
