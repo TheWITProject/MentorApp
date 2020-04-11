@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'yearUpApp.apps.YearUpAppConfig'
+    'userProfile.apps.UserProfileConfig',
+    'survey.apps.SurveyConfig',
+    'api.apps.ApiConfig'
 ]
 
 MIDDLEWARE = [
@@ -80,10 +82,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mentorapp',
-        'USER': 'postgres',
-        'PASSWORD': 'NEW_PASSWORD',
+        'USER': 'name',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
-        'PORT': '5433',
+        'PORT': '5432',
 
     }
 }
@@ -132,6 +134,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
+
+
+
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
