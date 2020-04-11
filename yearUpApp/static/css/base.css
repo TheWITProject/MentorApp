@@ -34,3 +34,43 @@ body{
     background-color:  #213b74;
     border-color: #213b74;
   }
+
+
+
+
+.viewbox {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+  
+    max-width: 800px;
+    height: 500px;
+    padding: 15px;
+    margin: auto;
+    background-color: gray;
+}
+
+.column {
+
+  flex: 5;
+  background-color: white;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.profile{
+  padding: 100px 10px;
+  max-height: 50%;
+  background-color: pink;
+}
+
+.tabs{
+  flex: 1;
+  padding: 10px 10px;
+}
+
+.profileinfo{
+  flex: 5;
+  padding: 10px;
+  background-color:rgba(0, 0, 255, 0.671);
+}
