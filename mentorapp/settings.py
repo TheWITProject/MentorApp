@@ -38,8 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'userProfile.apps.UserProfileConfig',
-    'survey.apps.SurveyConfig',
-    'api.apps.ApiConfig'
+   # 'survey.apps.SurveyConfig',
+    'api.apps.ApiConfig',
+    "survey",
+    "bootstrapform",
+    
+    
 ]
 
 MIDDLEWARE = [
