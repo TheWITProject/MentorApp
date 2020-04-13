@@ -6,9 +6,12 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib import messages
+from django.utils.translation import ugettext_lazy as _
 
-from yearUpApp.forms import SignUpForm
-from yearUpApp.tokens import account_activation_token
+from userProfile.forms import *
+from userProfile.tokens import account_activation_token
 
 @login_required
 def home(request):
@@ -62,5 +65,34 @@ def activate(request, uidb64, token):
     else:
         return render(request, 'registration/account_activation_invalid.html')
 
+
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        #user_form = SignUpForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if profile_form.is_valid():
+            #user_form.save()
+            profile_form.save()
+            messages.success(request, _('Your profile was successfully updated!'))
+            return render(request,'pages/profile.html',{'profile_form': profile_form})
+        else:
+            messages.error(request, _('Please correct the error below.'))
+    else:
+        #user_form = SignUpForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'pages/edit_profile.html', {
+        #'user_form': user_form,
+        'profile_form': profile_form
+    })
+
+
+
+@login_required
 def profile(request):
-    pass
+    form = ProfileForm(request.POST)
+    args = {'form':form}
+    if form.is_valid():
+        user = ProfileForm(instance = request.user)
+    return render(request, 'pages/profile.html', args)
