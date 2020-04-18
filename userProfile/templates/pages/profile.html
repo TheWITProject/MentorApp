@@ -19,10 +19,13 @@
   <li>LinkedIn:<a href={{ user.profile.linkedin }} target="_blank">{{ user.profile.linkedin }}</a></li>
   <li>Fun Fact: {{ user.profile.funfact }}</li>
 </ul>
-<div style="text-align:center;">
-<button type = "button" onclick="parent.location= '/edit_profile/'" id="enter" class="btn btn-lg btn-primary btn-block" >Edit Profile</button>
+<div>
+<button type = "button" onclick="parent.location= '/edit_profile/'" id="enter" class="btn btn-sm btn-primary" >Edit Profile</button>
 </div>
 </form>
+<nav>
+<a class="p-2 text-dark" href="{% url 'password_change' %}">Change your password here</a>
+</nav>
 
 
 {% endblock content %}
