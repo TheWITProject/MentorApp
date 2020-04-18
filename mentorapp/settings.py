@@ -42,8 +42,6 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     "survey",
     "bootstrapform",
-    
-    
 ]
 
 MIDDLEWARE = [
