@@ -34,3 +34,55 @@ body{
     background-color:  #213b74;
     border-color: #213b74;
   }
+
+
+  /* profile */
+
+.viewbox {
+  
+    display: flex;
+    
+    align-items: stretch;
+    text-align: center;
+
+  
+    max-width: 800px;
+    height: 600px;
+    padding: 15px;
+    margin: auto;
+    background-color: gray;
+    box-shadow: 10px 10px 100px 10px rgba(0, 0, 0, 0.562);
+
+}
+
+.upperbox{
+  flex-direction: column;
+}
+
+.column {
+
+  flex: 3;
+  background-color: white;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.profile{
+  padding: 80px 10px;
+  background-color: pink;
+}
+
+.tabs{
+  padding: 10px 10px;
+}
+
+.profileinfo{
+  flex: 10;
+  background-color:#375faa;
+}
+
+.editbutton{
+
+  flex:10;
+  
+}
