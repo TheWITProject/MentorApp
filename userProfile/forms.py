@@ -16,4 +16,4 @@ class ProfileForm(forms.ModelForm):
      class Meta:
          model = Profile
          phone = model.phone
-         fields = ('first_name', 'last_name', 'phone', 'user_type','title','company','county','county','gender','ethnicity','education','industry','learningtrack','linkedin','funfact' ) 
+         fields = ('first_name', 'last_name','profile_pic', 'phone', 'user_type','title','company','county','county','gender','ethnicity','education','industry','learningtrack','linkedin','funfact' ) 

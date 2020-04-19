@@ -8,9 +8,11 @@
 <ul>
   <li>Username: {{ user.username }}</li>
   <li>Email: {{ user.email }}</li>
-  <li>Location: {{ user.profile.location }}</li>
+  <!-- <li>Location: {{ user.profile.location }}</li> -->
   <li>First Name: {{ user.profile.first_name }}</li>
   <li>Last Name: {{ user.profile.last_name }}</li>
+  <li><img src='{{request.user.profile.profile_pic.url}}'></li>
+  <li>Location: {{ user.profile.location_q }}</li>
   <li>Phone: {{ user.profile.phone }}</li>
   <li>Title: {{ user.profile.title }}</li>
   <li>Company: {{ user.profile.company }}</li>
