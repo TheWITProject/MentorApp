@@ -71,7 +71,7 @@ def activate(request, uidb64, token):
 def edit_profile(request):
     if request.method == 'POST':
         #user_form = SignUpForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
         if profile_form.is_valid():
             #user_form.save()
             profile_form.save()
