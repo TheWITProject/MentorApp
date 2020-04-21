@@ -36,7 +36,7 @@ class LocationAnswer(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(default='profileimage.png', null = True, blank=True)
-    location_q = models.ForeignKey(LocationAnswer, on_delete=models.CASCADE)
+    location_q = models.ForeignKey(LocationAnswer, on_delete=models.CASCADE, null = True)
     email_confirmed = models.BooleanField(default=False)
     first_name = models.CharField(max_length=30, default='')
     last_name = models.CharField(max_length=30, default='')
