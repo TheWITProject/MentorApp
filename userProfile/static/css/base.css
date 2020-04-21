@@ -44,7 +44,7 @@ body{
     
   align-items: stretch;
   text-align: center;
-  flex-direction: column;
+  flex-direction: row;
   
   max-width: 800px;
   height: 600px;
@@ -52,14 +52,6 @@ body{
   margin: auto;
   background-color: gray;
   box-shadow: 10px 10px 100px 10px rgba(0, 0, 0, 0.562);
-
-}
-
-.upperbox{
-  display: flex;
-  flex: 100%;
-  flex-direction: row;
-  padding: 5px;
 
 }
 
@@ -81,11 +73,13 @@ body{
 }
 
 .profileinfo{
+  color: white;
   flex: 6;
-  background-color:#375faa;
+  background-color:#667ea8ec;
   padding: 5px;
 }
 
 .editbutton{
   padding: 3px;
+
 }
