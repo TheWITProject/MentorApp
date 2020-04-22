@@ -1,0 +1,67 @@
+#survey_box{
+    width: 100%;
+    max-width: 700px;
+    padding: 15px;
+    margin: auto;
+    border-radius: 3px;
+    background:#F5F5F5;
+    box-shadow: 3px 3px 10px 3px cornflowerblue;  
+}
+
+#survey_title{
+    font-size: 60px;
+    color:#cf9212;
+    box-sizing: border-box;  
+}
+
+#entry{
+    background-color:#213b74;
+    border-color: #213b74;
+}
+
+#questions{ 
+    background-color:white;
+    position: relative;
+    
+}
+
+#links{
+    color:#cf9212;
+}
+
+.dropdown-menu{
+    height: auto;
+    width: 250px;
+    border-radius: 7px; 
+    
+}
+
+#dropdownMenuLink{
+    background-color: #213b74;
+    margin-left: 15px;
+
+}
+.survey-submit{
+    width: 100%;
+    max-width: 700px;
+    padding: 15px;
+    margin: auto;
+    border-radius: 3px;
+    background:#F5F5F5;
+    box-shadow: 3px 3px 10px 3px cornflowerblue;
+}
+
+.survey-header{
+    color:#cf9212;
+    text-align:center;
+}
+
+.box{
+    width: 100%;
+    /* max-width: 700px; */
+    padding: 15px;
+    margin: auto;
+    border-radius: 10px;
+    background:#213b74;
+    color:white;
+}

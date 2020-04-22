@@ -1,4 +1,4 @@
-{% extends 'survey/base.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% load survey_extras %}
 {% load static %}
@@ -21,8 +21,10 @@
 
 
 
-{% block body %}
-	<h1> {{survey.name}} </h1>
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'survey/css/custom.css' %}" />
+<div id = "survey_box">
+	<h1 id = "survey_title"> {{survey.name}} </h1>
 	<div class="survey-description"> {{survey.description|safe}} </div>
 	<div>
       {% if step and step != 0 %}
@@ -53,7 +55,8 @@
 		                </div>
                 </div>
             </div>
-        {% empty %}
+				{% empty %}
+				<br>
             <h3> {% trans "Questions" %} </h3>
             {% include "survey/question.html" %}
         {% endfor %}
@@ -61,10 +64,11 @@
         <br>
 		{% if survey.editable_answers or response_form.response is None %}
 	    <input
-            class="btn btn-default btn-lg"
+            id = "entry" class="btn btn-lg btn-primary btn-block"
 	        type="submit"
-	        value="{% trans "I'm done!" %}"
+	        value="{% trans "Submit" %}"
         >
 		{% endif %}
 	</form></div>
+</div>
 {% endblock %}
