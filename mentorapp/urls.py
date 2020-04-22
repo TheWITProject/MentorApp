@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from userProfile import views
+from django.conf.urls import include, url
+
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -45,4 +47,7 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='passwordReset/password_reset_complete.html'),
      name='password_reset_complete'),
 
+    path("survey/", include("survey.urls")),
+
 ]
+
