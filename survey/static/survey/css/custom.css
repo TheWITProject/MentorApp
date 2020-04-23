@@ -1,11 +1,12 @@
 #survey_box{
     width: 100%;
-    max-width: 700px;
+    max-width: 650px;
     padding: 15px;
     margin: auto;
     border-radius: 3px;
     background:#F5F5F5;
-    box-shadow: 3px 3px 10px 3px cornflowerblue;  
+    box-shadow: 3px 3px 10px 3px cornflowerblue;
+
 }
 
 #survey_title{
@@ -20,9 +21,13 @@
 }
 
 #questions{ 
-    background-color:white;
     position: relative;
-    
+    font-size: 16px;   
+    font-weight: 500px;
+    letter-spacing: .1px;
+    padding: 15px;
+    font-family: Arial, Helvetica, sans-serif;	
+
 }
 
 #links{
@@ -33,7 +38,6 @@
     height: auto;
     width: 250px;
     border-radius: 7px; 
-    
 }
 
 #dropdownMenuLink{
@@ -53,15 +57,39 @@
 
 .survey-header{
     color:#cf9212;
-    text-align:center;
 }
 
-.box{
-    width: 100%;
-    /* max-width: 700px; */
-    padding: 15px;
-    margin: auto;
+.text-box{
+    padding: 5px;
     border-radius: 10px;
-    background:#213b74;
+    background:#DCDCDC;
+    width: 80%;
+    font-size:16px;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    height: 120px;
+    border: 1px solid black;
+}
+.short-box, .int-box{
+    padding: 5px;
+    border-radius: 10px;
+    background:#DCDCDC;
+    width: 80%;
+    font-size:16px;
+    border: 1px solid black;
+}
+
+.survey-description{
+    font-size:15px;
+}
+#date-box{
+    padding: 5px;
+    border-radius: 10px;
+    background:#DCDCDC;
     color:white;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+    font-size:16px;
+    border: 1px solid black;
+
 }

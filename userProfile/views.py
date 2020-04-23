@@ -12,10 +12,24 @@ from django.utils.translation import ugettext_lazy as _
 
 from userProfile.forms import *
 from userProfile.tokens import account_activation_token
+from survey.models import Response, Survey
 
 @login_required
 def home(request):
-    return render(request, 'pages/home.html')
+    user_id = User.objects.get(username=request.user).pk #getting user where username = the user and the id through pk
+    #getting the number of active surveys completed by the user 
+    completed = len(Survey.objects.filter(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
+    #compare number of active completed surveys == active surveys (surveys are completed)
+    if completed == len(Survey.objects.filter(is_published = True)): 
+        #redirect to profile page 
+        return redirect('profile')
+    #if not then get the surveys that were not completed by the user
+    not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
+   #allow us to pass this to template 
+    args = {'surveys': not_completed}
+    #render home
+    return render(request, 'pages/home.html',args)
+
 
 def logout_view(request):
 	logout(request)
@@ -61,7 +75,7 @@ def activate(request, uidb64, token):
         user.profile.email_confirmed = True
         user.save()
         login(request, user)
-        return redirect('profile')
+        return redirect('home')
     else:
         return render(request, 'registration/account_activation_invalid.html')
 

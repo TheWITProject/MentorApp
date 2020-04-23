@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
 
 {% block content %}
-  <h2>Welcome, {{ user.get_full_name }} <small>{{ user.username }}</small>!</h2>
+  <h2>Welcome, {{ user.get_full_name }} <small>{{ user.username }}</small>!</h2> <br>
+
+  {% for survey in surveys %}
+  <div class = "alert alert-danger" role="alert">
+    Please take the following survey: <a href="/survey/{{survey.id}}"> {{survey.name}} </a>
+  </div>
+  
+  {% endfor %}
 {% endblock %}
