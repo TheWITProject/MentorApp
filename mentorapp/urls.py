@@ -53,6 +53,8 @@ urlpatterns = [
 
     path("survey/", include("survey.urls")),
 
+    path('nested_admin/', include('nested_admin.urls')), #NEWWWW!!,
+
 ]
 
 
