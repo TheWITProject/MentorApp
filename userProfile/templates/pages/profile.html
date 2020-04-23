@@ -36,11 +36,17 @@
             
           <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
             <h3>User Info</h3>
-            <p>
-              <dl>Username: {{ user.username }}</dl>
-              <dl>Email: {{ user.email }}</dl>
-              <dl>Location: {{ user.profile.location }}</dl>
-            </p>
+            <div class="row">
+              {% for field in form%}
+                  <div class="col-sm-6">
+                    {{ field.label }}
+                    : 
+                    {{ field }}
+                  </div>
+      
+              {% endfor %}
+            </div>
+
             <div class= "editbutton">
               <button type = "button" onclick="parent.location= '/edit_profile/'" id="enter" >Edit Profile</button>
             </div> 
