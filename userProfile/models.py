@@ -5,22 +5,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .enums import *
-<<<<<<< HEAD
- 
-
-class Quiz(models.Model):
-    name = models.CharField(max_length=1000,default='')
-    # questions_count = models.IntegerField(default=0)
-    description = models.CharField(max_length=70)
-    created = models.DateTimeField(auto_now_add=True,null=True,blank=True)
-    # slug = models.SlugField()
-    roll_out = models.BooleanField(default=False)
-    class Meta:
-        ordering = ['created',]
-        verbose_name_plural ="Quizzes"
-    def __str__(self):
-        return self.name
-=======
 
 class Quiz(models.Model):
    name = models.CharField(max_length=1000,default='')
@@ -29,7 +13,6 @@ class Quiz(models.Model):
    roll_out = models.BooleanField(default=False)
    def __str__(self):
        return self.name
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
  
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
