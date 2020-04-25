@@ -76,7 +76,7 @@ def edit_profile(request):
             #user_form.save()
             profile_form.save()
             messages.success(request, _('Your profile was successfully updated!'))
-            return render(request,'pages/profile.html',{'profile_form': profile_form})
+            return redirect("profile")
         else:
             messages.error(request, _('Please correct the error below.'))
     else:
