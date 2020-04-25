@@ -1,31 +1,95 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/form.css' %}">
-<form class="profile_display" method="post">{% csrf_token %}
-{% csrf_token %}
-<h2>{{ user.get_full_name }}</h2>
-<ul>
-  <li>Username: {{ user.username }}</li>
-  <li>Email: {{ user.email }}</li>
-  <li>Location: {{ user.profile.location }}</li>
-  <li>First Name: {{ user.profile.first_name }}</li>
-  <li>Last Name: {{ user.profile.last_name }}</li>
-  <li>Phone: {{ user.profile.phone }}</li>
-  <li>Title: {{ user.profile.title }}</li>
-  <li>Company: {{ user.profile.company }}</li>
-  <li>Preferred Pronouns: {{ user.profile.gender }}</li>
-  <li>Industry: {{ user.profile.industry}}</li>
-  <li>LinkedIn:<a href={{ user.profile.linkedin }} target="_blank">{{ user.profile.linkedin }}</a></li>
-  <li>Fun Fact: {{ user.profile.funfact }}</li>
-</ul>
-<div>
-<button type = "button" onclick="parent.location= '/edit_profile/'" id="enter" class="btn btn-sm btn-primary" >Edit Profile</button>
-</div>
-</form>
-<nav>
-<a class="p-2 text-dark" href="{% url 'password_change' %}">Change your password here</a>
-</nav>
+  <div class="viewbox">
+
+    <div class = "column">
+
+      <div class = "profile">
+        picture
+      </div>
+            
+      <div class="tabs">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">User Info</a>
+          <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Settings</a>
+
+          {% if user.profile.user_type == "IS_MENTOR" %}
+            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Mentor Details</a>
+          {% elif user.profile.user_type == "IS_MENTEE"%}
+            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Mentee Details</a>
+          {% endif %}
+          
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Matches</a>
+        </div>
+      </div>
+
+    </div>
+
+    
+    <form class="profileinfo" method="get">
+
+
+      <form class="profile_display" method="post">{% csrf_token %}
+      {% csrf_token %}
+        <div class="tab-content" id="v-pills-tabContent">
+            
+          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <h3>User Info</h3>
+            <div class="row">
+              {% for field in form%}
+                  <div class="col-sm-6">
+                    {{ field.label }}
+                    : 
+                    {{ field.value }}
+                  </div>
+      
+              {% endfor %}
+            </div>
+
+            <button type = "button" class= "editbutton" onclick="parent.location= '/edit_profile/'" id="enter" >Edit Profile</button>
+            
+          </div>
+
+          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <h3>Settings</h3>
+            <p>
+              <dl>First Name: {{ user.profile.first_name }}</dl>
+              <dl>Last Name: {{ user.profile.last_name }}</dl>
+              <dl>Phone: {{ user.profile.phone }}</dl>
+            </p> 
+          </div>
+
+          <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+            {% if user.profile.user_type == "IS_MENTOR" %}
+              <h3>Mentor Details</h3>
+            {% elif user.profile.user_type == "IS_MENTEE"%}
+              <h3>Mentee Details</h3>
+            {% endif %}
+
+            <p>
+              <dl>Title: {{ user.profile.user_title }}</dl>
+              <dl>Company: {{ user.profile.company }}</dl>
+              <dl>Preferred Pronouns: {{ user.profile.gender }}</dl>
+            </p> 
+          </div>
+
+          <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+            <h3>Matches</h3>
+            <p>
+              <dl>Industry: {{ user.profile.industry}}</dl>
+              <dl>LinkedIn:<a href={{ user.profile.linkedin }} target="_blank">{{ user.profile.linkedin }}</a></dl>
+              <dl>Fun Fact: {{ user.profile.funfact }}</dl>
+            </p> 
+          </div>
+        </div>
+        
+
+      </form>
+
+    </form>
+
+  </div>
 
 
 {% endblock content %}

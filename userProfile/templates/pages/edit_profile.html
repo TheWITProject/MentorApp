@@ -1,9 +1,55 @@
 {% extends 'base.html' %}
+
+
 {% block content %}
-<form method="post">
-  {% csrf_token %}
-  {{ profile_form.as_p }}
-  <button type="submit">Save changes</button>
-</form>
+
+<div class="viewbox">
+
+  <div class = "column">
+
+    <div class = "profile">
+      picture
+    </div>
+          
+    <div class="tabs">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">User Info</a>
+        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Settings</a>
+
+        {% if user.profile.user_type == "IS_MENTOR" %}
+          <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Mentor Details</a>
+        {% elif user.profile.user_type == "IS_MENTEE"%}
+          <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Mentee Details</a>
+        {% endif %}
+        
+        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Matches</a>
+      </div>
+    </div>
+
+  </div>
+
+  
+  <form class="profileinfo" method="post">
+    {% csrf_token %}
+
+    <div class="container">
+      <h3>User Info</h3>
+      <div class="row">
+        {% for field in profile_form%}
+            <div class="col-sm-6">
+              {{ field.label }}
+              :
+              {{ field }}
+            </div>
+  
+
+        {% endfor %}
+      </div>
+    </div>
+
+    <button type="submit" class= "savebutton" >Save changes</button>
+  </form>
+
+</div>
 {% endblock %}
 

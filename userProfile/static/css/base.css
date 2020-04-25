@@ -34,3 +34,64 @@ body{
     background-color:  #213b74;
     border-color: #213b74;
   }
+
+
+  /* profile */
+
+.viewbox {
+  
+  display: flex;
+    
+  align-items: stretch;
+  text-align: center;
+  flex-direction: row;
+  
+  max-width: 900px;
+  height: 700px;
+  padding: 10px;
+  margin: auto;
+  background-color: gray;
+
+}
+
+.column {
+
+  flex: 2.5;
+  background-color: white;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.profile{
+  padding: 80px 10px;
+  background-color: pink;
+}
+
+.tabs{
+  padding: 10px 10px;
+}
+
+.profileinfo{
+  color: white;
+  flex: 7;
+  background-color:#667ea8ec;
+  padding: 25px;
+}
+
+.editbutton, .savebutton{
+  
+  background-color: #cf9212;
+  border-color: #667ea8ec;
+
+  padding: .5rem 1rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  border-radius: .3rem;
+
+}
+
+.col-sm-6 {
+  padding: 15px;
+  text-align: right;
+
+}
