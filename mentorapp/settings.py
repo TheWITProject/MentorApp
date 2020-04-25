@@ -84,10 +84,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mentorapp',
-        'USER': 'name',
-        'PASSWORD': 'password',
+        'USER': 'postgres',
+        'PASSWORD': 'NEW_PASSWORD',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '5433',
 
     }
 }
@@ -138,7 +138,7 @@ LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
 
 MEDIA_URL = '/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
