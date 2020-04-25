@@ -11,10 +11,10 @@ from .enums import *
 class AdditionalQuestions(models.Model):
     name = models.CharField(max_length=1000,default='')
     # questions_count = models.IntegerField(default=0)
-    description = models.CharField(max_length=70)
+    #description = models.CharField(max_length=70)
     created = models.DateTimeField(auto_now_add=True,null=True,blank=True)
     # slug = models.SlugField()
-    roll_out = models.BooleanField(default=False)
+    #roll_out = models.BooleanField(default=False)
     class Meta:
         ordering = ['created',]
         verbose_name_plural ="Additional Questions"
@@ -23,7 +23,7 @@ class AdditionalQuestions(models.Model):
  
  
 class Question(models.Model):
-    form = models.ForeignKey(AdditionalQuestions, on_delete=models.CASCADE)
+    question_form = models.ForeignKey(AdditionalQuestions, on_delete=models.CASCADE)
     label = models.CharField(max_length=1000)
     order = models.IntegerField(default=0)
     def __str__(self):
@@ -44,7 +44,7 @@ class Answer(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(default='profileimage.png', null = True, blank=True)
-    form = models.ForeignKey(AdditionalQuestions, on_delete=models.CASCADE, null = True)
+    question_form = models.ForeignKey(AdditionalQuestions, on_delete=models.CASCADE, null = True)
     email_confirmed = models.BooleanField(default=False)
     first_name = models.CharField(max_length=30, default='')
     last_name = models.CharField(max_length=30, default='')
@@ -69,9 +69,10 @@ class Profile(models.Model):
 
 
 class Response(models.Model):
-    user_responder = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    answer = models.ForeignKey(Answer,on_delete=models.CASCADE,null=True,blank=True)
+    question_form = models.ForeignKey(AdditionalQuestions, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, null = True)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
+    answer = models.ForeignKey(Answer,on_delete=models.CASCADE,null=True)
     def __str__(self):
         return self.question.label
  

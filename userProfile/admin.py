@@ -15,16 +15,20 @@ class QuestionInline(nested_admin.NestedTabularInline):
    extra = 0
  
 class AdditionalQuestionsAdmin(nested_admin.NestedModelAdmin):
+   list_display = ("name","created")
    inlines = [QuestionInline,]
  
 class ResponseInline(admin.TabularInline):
    model = Response
  
+class ResponseAdmin(nested_admin.NestedModelAdmin):
+   list_display = ("question", "user", "question_form")
+
 class UserResponderAdmin(admin.ModelAdmin):
    inlines = [ResponseInline,]
  
  
 admin.site.register(AdditionalQuestions, AdditionalQuestionsAdmin) 
-admin.site.register(Response)
+admin.site.register(Response, ResponseAdmin)
 admin.site.register(Profile, UserResponderAdmin)
 
