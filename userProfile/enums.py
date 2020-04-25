@@ -25,10 +25,6 @@ class CountyChoice(Enum):
 
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
 
 
@@ -51,10 +47,6 @@ class AlamedaChoice(Enum):
 
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
 
 class ContraCostaChoice(Enum):
@@ -80,10 +72,6 @@ class ContraCostaChoice(Enum):
 
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
 
 class MarinChoice(Enum):
@@ -101,10 +89,6 @@ class MarinChoice(Enum):
 
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
 
 class NapaChoice(Enum):
@@ -116,10 +100,6 @@ class NapaChoice(Enum):
 
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
 
 class SanMateoChoice(Enum):
@@ -146,10 +126,6 @@ class SanMateoChoice(Enum):
 
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
 
 class SantaClaraChoice(Enum):
@@ -171,10 +147,6 @@ class SantaClaraChoice(Enum):
     
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
 
 class SolanoChoice(Enum):
@@ -188,10 +160,6 @@ class SolanoChoice(Enum):
 
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
 
 class SonomaChoice(Enum):
@@ -207,10 +175,6 @@ class SonomaChoice(Enum):
 
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
 
 
@@ -224,10 +188,6 @@ class GenderChoice(Enum):
 
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
 
 class EducationChoice(Enum):
@@ -241,10 +201,6 @@ class EducationChoice(Enum):
 
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
 
 
@@ -282,10 +238,6 @@ class IndustryChoice(Enum):
 
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
 
 
@@ -307,10 +259,6 @@ class TrackChoice(Enum):
 
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
 
 
@@ -325,8 +273,4 @@ class EthnicityChoice(Enum):
 
     @classmethod
     def choices(cls):
-<<<<<<< HEAD
-=======
-        # print(tuple((i.name, i.value) for i in cls))
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
         return tuple((i.name, i.value) for i in cls)
