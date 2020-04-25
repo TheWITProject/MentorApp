@@ -1,19 +1,7 @@
 from django.contrib import admin
 from .models import *
 import nested_admin
-# Register your models here.
- 
-# class AnswerTabularInline(admin.TabularInline):
-#   model = LocationAnswer
- 
- 
-# class QuestionAdmin(admin.ModelAdmin):
-#   inlines = [AnswerTabularInline]
-#   class Meta:
-#       model = LocationQuestion
- 
- 
- 
+
 class AnswerInline(nested_admin.NestedTabularInline):
    model = Answer
    extra = 4
@@ -33,10 +21,6 @@ class ResponseInline(admin.TabularInline):
 class QuizTakersAdmin(admin.ModelAdmin):
    inlines = [ResponseInline,]
  
- 
 admin.site.register(Quiz, QuizAdmin)
- 
 admin.site.register(Response)
 admin.site.register(Profile, QuizTakersAdmin)
-# admin.site.register(LocationQuestion, QuestionAdmin)
-# admin.site.register(LocationAnswer)
