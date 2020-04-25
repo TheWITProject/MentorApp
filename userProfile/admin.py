@@ -2,10 +2,6 @@ from django.contrib import admin
 from .models import *
 import nested_admin
 
-<<<<<<< HEAD
- 
-=======
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c
 class AnswerInline(nested_admin.NestedTabularInline):
    model = Answer
    extra = 4
