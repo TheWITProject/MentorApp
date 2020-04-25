@@ -8,7 +8,7 @@ from .enums import *
  
 
 
-class Quiz(models.Model):
+class AdditionalQuestions(models.Model):
     name = models.CharField(max_length=1000,default='')
     # questions_count = models.IntegerField(default=0)
     description = models.CharField(max_length=70)
@@ -17,13 +17,13 @@ class Quiz(models.Model):
     roll_out = models.BooleanField(default=False)
     class Meta:
         ordering = ['created',]
-        verbose_name_plural ="Quizzes"
+        verbose_name_plural ="Additional Questions"
     def __str__(self):
         return self.name
  
  
 class Question(models.Model):
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    form = models.ForeignKey(AdditionalQuestions, on_delete=models.CASCADE)
     label = models.CharField(max_length=1000)
     order = models.IntegerField(default=0)
     def __str__(self):
@@ -44,7 +44,7 @@ class Answer(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(default='profileimage.png', null = True, blank=True)
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null = True)
+    form = models.ForeignKey(AdditionalQuestions, on_delete=models.CASCADE, null = True)
     email_confirmed = models.BooleanField(default=False)
     first_name = models.CharField(max_length=30, default='')
     last_name = models.CharField(max_length=30, default='')
@@ -69,7 +69,7 @@ class Profile(models.Model):
 
 
 class Response(models.Model):
-    quiztaker = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user_responder = models.ForeignKey(Profile, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer = models.ForeignKey(Answer,on_delete=models.CASCADE,null=True,blank=True)
     def __str__(self):
