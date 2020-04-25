@@ -20,9 +20,9 @@ DEFAULT_SURVEY_PUBLISHING_DURATION = 7
 
 
 MEDIA_URL = "/media/"
-STATIC_URL = "/images/"
+STATIC_URL = "/static/"
 
-MEDIA_ROOT = Path(ROOT, "yearUpApp/media")
+MEDIA_ROOT = Path(ROOT, "media")
 STATIC_ROOT = Path(ROOT, "static")
 
 
