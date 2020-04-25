@@ -79,20 +79,20 @@ body{
   padding: 25px;
 }
 
-.editbutton{
-  padding: 3px;
+.editbutton, .savebutton{
+  
+  background-color: #cf9212;
+  border-color: #667ea8ec;
 
-}
-
-.container{
-  border-collapse: collapse;
-  background-color: white;
-  color: black;
+  padding: .5rem 1rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  border-radius: .3rem;
 
 }
 
 .col-sm-6 {
   padding: 15px;
-  text-align: left;
+  text-align: right;
 
 }
