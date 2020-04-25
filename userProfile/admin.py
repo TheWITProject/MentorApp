@@ -3,7 +3,6 @@ from .models import *
 import nested_admin
 
 
- 
 class AnswerInline(nested_admin.NestedTabularInline):
    model = Answer
    extra = 4

@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .enums import *
- 
 
 
 class AdditionalQuestions(models.Model):
@@ -21,7 +20,6 @@ class AdditionalQuestions(models.Model):
     def __str__(self):
         return self.name
  
- 
 class Question(models.Model):
     question_form = models.ForeignKey(AdditionalQuestions, on_delete=models.CASCADE)
     label = models.CharField(max_length=1000)
@@ -35,10 +33,6 @@ class Answer(models.Model):
     # is_correct = models.BooleanField(default=False)
     def __str__(self):
         return self.text
-
-
-
-
 
  
 class Profile(models.Model):
@@ -65,9 +59,6 @@ class Profile(models.Model):
         return self.user.username
  
 
-
-
-
 class Response(models.Model):
     question_form = models.ForeignKey(AdditionalQuestions, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, null = True)
@@ -76,10 +67,7 @@ class Response(models.Model):
     def __str__(self):
         return self.question.label
  
-
-
- 
-   
+  
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
     if created:
