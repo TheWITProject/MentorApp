@@ -7,9 +7,9 @@
 
   <div class = "column">
 
-    <div class = "profile">
-      picture
-    </div>
+     <div id = "profileimg"><img src='{{request.user.profile.profile_pic.url}}' width="240"></div>
+      
+    {% comment %} </div> {% endcomment %}
           
     <div class="tabs">
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -29,7 +29,7 @@
   </div>
 
   
-  <form class="profileinfo" method="post">
+  <form class="profileinfo" method="post" action ="" enctype = "multipart/form-data">
     {% csrf_token %}
 
     <div class="container">
