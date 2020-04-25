@@ -92,7 +92,5 @@ def edit_profile(request):
 
 @login_required
 def profile(request):
-    form = ProfileForm(request.POST)
-    if form.is_valid():
-        user = ProfileForm(instance = request.user)
+    form = ProfileForm(instance=request.user.profile)
     return render(request, 'pages/profile.html', {'form':form})
