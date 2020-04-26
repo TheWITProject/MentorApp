@@ -61,7 +61,7 @@ def activate(request, uidb64, token):
         user.profile.email_confirmed = True
         user.save()
         login(request, user)
-        return redirect('home')
+        return redirect('profile')
     else:
         return render(request, 'registration/account_activation_invalid.html')
 
@@ -71,12 +71,13 @@ def activate(request, uidb64, token):
 def edit_profile(request):
     if request.method == 'POST':
         #user_form = SignUpForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        print(request.FILES)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if profile_form.is_valid():
             #user_form.save()
             profile_form.save()
             messages.success(request, _('Your profile was successfully updated!'))
-            return render(request,'pages/profile.html',{'profile_form': profile_form})
+            return redirect("profile")
         else:
             messages.error(request, _('Please correct the error below.'))
     else:
@@ -84,6 +85,7 @@ def edit_profile(request):
         profile_form = ProfileForm(instance=request.user.profile)
     return render(request, 'pages/edit_profile.html', {
         #'user_form': user_form,
+
         'profile_form': profile_form
     })
 
@@ -91,8 +93,5 @@ def edit_profile(request):
 
 @login_required
 def profile(request):
-    form = ProfileForm(request.POST)
-    args = {'form':form}
-    if form.is_valid():
-        user = ProfileForm(instance = request.user)
-    return render(request, 'pages/profile.html', args)
+    form = ProfileForm(instance=request.user.profile)
+    return render(request, 'pages/profile.html', {'form':form})

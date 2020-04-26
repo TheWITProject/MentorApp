@@ -38,12 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'userProfile.apps.UserProfileConfig',
-   # 'survey.apps.SurveyConfig',
     'api.apps.ApiConfig',
     "survey",
     "bootstrapform",
-    
-    
+    'nested_admin',
 ]
 
 MIDDLEWARE = [
@@ -86,7 +84,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mentorapp',
-        'USER': 'name',
+        'USER': 'angelazhang',
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -139,8 +137,8 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
 
-
-
+MEDIA_URL = '/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
