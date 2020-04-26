@@ -92,17 +92,17 @@ if 'RDS_DB_NAME' in os.environ:
         }
     }
 else:
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mentorapp',
-        'USER': 'name',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'mentorapp',
+            'USER': 'name',
+            'PASSWORD': 'password',
+            'HOST': 'localhost',
+            'PORT': '5432',
 
+        }
     }
-}
 
 
 
