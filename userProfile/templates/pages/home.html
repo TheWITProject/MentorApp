@@ -2,14 +2,29 @@
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
-
 {% block content %}
-  <h2>Welcome, {{ user.get_full_name }} <small>{{ user.username }}</small>!</h2> <br>
+<div class="row">
+	<div class="col-8">
+		<div class="container">
+			<h2>Welcome, {{ user.get_full_name }} <small>{{ user.username }}</small>!</h2>
+		</div>
+	</div>
+	<div class="notification-center col-4">
+		<h2>Notification Center
+			{% for survey in active %}
+			<span class="badge">{{survey}}</span>  
+			{% endfor %}  
+		</h2>
+		{% for survey in surveys %}
+		<a href="/survey/{{survey.id}}">
+			<div class="notification">
+				<h1>{{survey.name}}</h1>
+				Click here to take the survey
+			</div>
+		</a>
+		{% endfor %}
+	</div>
+</div>
 
-  {% for survey in surveys %}
-  <div class = "alert alert-danger" role="alert">
-    Please take the following survey: <a href="/survey/{{survey.id}}"> {{survey.name}} </a>
-  </div>
-  
-  {% endfor %}
+
 {% endblock %}
