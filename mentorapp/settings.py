@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     "survey",
     "bootstrapform",
-    'nested_admin',
-    "aws",
+    'nested_admin'
 ]
 
 MIDDLEWARE = [
