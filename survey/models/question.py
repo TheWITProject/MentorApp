@@ -60,15 +60,15 @@ class Question(models.Model):
     DATE = "date"
 
     QUESTION_TYPES = (
-        (TEXT, _("text (multiple line)")),
-        (SHORT_TEXT, _("short text (one line)")),
-        (RADIO, _("radio")),
-        (SELECT, _("select")),
-        (SELECT_MULTIPLE, _("Select Multiple")),
+        (TEXT, _("Big Text Box(multiple line)")),
+        (SHORT_TEXT, _("Small Text Box(one line)")),
+        (RADIO, _("Radio (Bubbles)")),
+        (SELECT, _("CheckBox (Select One)")),
+        (SELECT_MULTIPLE, _("CheckBox (Select Multiple)")),
         (SELECT_IMAGE, _("Select Image")),
-        (INTEGER, _("integer")),
+        (INTEGER, _("Number")),
         (FLOAT, _("float")),
-        (DATE, _("date")),
+        (DATE, _("Date")),
     )
 
     text = models.TextField(_("Text"))

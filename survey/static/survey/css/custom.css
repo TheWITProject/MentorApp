@@ -1,0 +1,100 @@
+#survey_box{
+    width: 100%;
+    max-width: 650px;
+    padding: 15px;
+    margin: auto;
+    border-radius: 3px;
+    background:#F5F5F5;
+    border: 1px solid #213b74;
+    box-shadow:  -1px 1px #213b74,
+         -2px 2px #213b74,
+         -3px 3px #213b74,
+         -4px 4px #213b74,
+         -5px 5px #213b74;
+
+}
+
+#survey_title{
+    font-size: 60px;
+    color:#cf9212;
+    box-sizing: border-box;  
+}
+
+#entry{
+    background-color:#213b74;
+    border-color: #213b74;
+}
+
+#questions{ 
+    position: relative;
+    font-size: 16px;   
+    font-weight: 500px;
+    letter-spacing: .1px;
+    padding: 15px;
+    font-family: Arial, Helvetica, sans-serif;	
+
+}
+
+#links{
+    color:#cf9212;
+}
+
+.dropdown-menu{
+    height: auto;
+    width: 250px;
+    border-radius: 7px; 
+}
+
+#dropdownMenuLink{
+    background-color: #213b74;
+    margin-left: 15px;
+
+}
+.survey-submit{
+    width: 100%;
+    max-width: 700px;
+    padding: 15px;
+    margin: auto;
+    border-radius: 3px;
+    background:#F5F5F5;
+    box-shadow: 3px 3px 10px 3px cornflowerblue;
+}
+
+.survey-header{
+    color:#cf9212;
+}
+
+.text-box{
+    padding: 5px;
+    border-radius: 10px;
+    background:#DCDCDC;
+    width: 80%;
+    font-size:16px;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    height: 120px;
+    border: 1px solid black;
+}
+.short-box, .int-box{
+    padding: 5px;
+    border-radius: 10px;
+    background:#DCDCDC;
+    width: 80%;
+    font-size:16px;
+    border: 1px solid black;
+}
+
+.survey-description{
+    font-size:15px;
+}
+#date-box{
+    padding: 5px;
+    border-radius: 10px;
+    background:#DCDCDC;
+    color:white;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+    font-size:16px;
+    border: 1px solid black;
+
+}
