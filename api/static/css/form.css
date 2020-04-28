@@ -4,6 +4,7 @@
     max-width: 360px;
     padding: 15px;
     margin: auto;
+    margin-top: 15%;
     border-radius: 3px;
     background: #cf9212;
     box-shadow: 3px 3px 10px 3px cornflowerblue;
@@ -43,4 +44,8 @@
   #enter {
     background-color:#213b74;
     border-color: #213b74;
+  }
+
+  #questions{
+    color:red;
   }

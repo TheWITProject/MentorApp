@@ -216,6 +216,16 @@ class ResponseForm(models.ModelForm):
             field.widget.attrs["category"] = ""
         if question.type == Question.DATE:
             field.widget.attrs["class"] = "date"
+            field.widget.attrs["id"] = "date-box"
+        if question.type == Question.TEXT:
+            field.widget.attrs["class"] = "text-box"
+        if question.type == Question.SHORT_TEXT:
+            field.widget.attrs["class"] = "short-box"
+        if question.type == Question.INTEGER:
+            field.widget.attrs["class"] = "int-box"
+        # if question.type == Question.RADIO:
+        #     field.widget.attrs["class"] = "btn btn-secondary" 
+
         # logging.debug("Field for %s : %s", question, field.__dict__)
         self.fields["question_%d" % question.pk] = field
 
