@@ -5,7 +5,12 @@
     margin: auto;
     border-radius: 3px;
     background:#F5F5F5;
-    box-shadow: 3px 3px 10px 3px cornflowerblue;
+    border: 1px solid #213b74;
+    box-shadow:  -1px 1px #213b74,
+         -2px 2px #213b74,
+         -3px 3px #213b74,
+         -4px 4px #213b74,
+         -5px 5px #213b74;
 
 }
 
