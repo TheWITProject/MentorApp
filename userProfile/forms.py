@@ -20,6 +20,7 @@ class ProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
             super(ProfileForm, self).__init__(*args, **kwargs)
             for field in iter(self.fields):
-                self.fields[field].widget.attrs.update({
-            'class': 'form-control'
-    })
+                if field is not 'profile_pic':
+                    self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+        })
