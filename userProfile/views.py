@@ -74,17 +74,13 @@ def edit_profile(request):
         print(request.FILES)
         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if profile_form.is_valid():
-            #user_form.save()
             profile_form.save()
-            messages.success(request, _('Your profile was successfully updated!'))
             return redirect("profile")
         else:
             messages.error(request, _('Please correct the error below.'))
     else:
-        #user_form = SignUpForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
     return render(request, 'pages/edit_profile.html', {
-        #'user_form': user_form,
 
         'profile_form': profile_form
     })

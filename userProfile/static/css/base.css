@@ -121,8 +121,12 @@ padding-bottom:15px
   border-radius: 50%
 }
 
-.fas{
+.fa-pen{
   color:grey;
+}
+
+.fas ::after{
+  color:white;
 }
 
 .edit{
