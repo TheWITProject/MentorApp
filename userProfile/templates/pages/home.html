@@ -3,22 +3,21 @@
 
 {% block content %}
 <div class="row">
-	<div class="col-8">
+	<div class="col-9">
 		<div class="container">
 			<h2>Welcome, {{ user.profile.first_name }}!</h2>
 		</div>
 	</div>
-	<div class="notification-center col-4">
-		<h2>Notification Center
+	<div class="notification-center col-3">
+		<h4>Notification Center
 			{% for survey in active %}
 			<span class="badge">{{survey}}</span>  
 			{% endfor %}  
-		</h2>
+		</h4>
 		{% for survey in surveys %}
 		<a href="/survey/{{survey.id}}">
 			<div class="notification">
-				<h1>{{survey.name}}</h1>
-				Click here to take the survey
+				<p>{{survey.name}} <br> Click here to take the survey</p>
 			</div>
 		</a>
 		{% endfor %}

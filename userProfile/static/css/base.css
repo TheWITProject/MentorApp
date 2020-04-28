@@ -102,10 +102,13 @@ form{
 }
 .notification-center .notification{
   border: 2px solid #CCCCCC;
-  margin: 1em;
+  margin: 1em 1em 1em 0em;
   padding: 1em;
   border-radius: 1em;
   transition: 500ms;
+  height: 50%;
+  width: 90%;
+  font-size:small;
 
 }
 .notification-center .notification:hover{
@@ -121,7 +124,7 @@ form{
   color:#213b74;
 }
 
-.notification-center h2{
+.notification-center h4{
   color:#cf9212;;
 }
 .dropbtn {
@@ -183,6 +186,7 @@ form{
 }
 .dropdown-content a:hover{
   background-color:beige;
+  border-radius: 1em;
 
 }
 .notification-number{
