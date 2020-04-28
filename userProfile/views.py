@@ -12,16 +12,30 @@ from django.utils.translation import ugettext_lazy as _
 
 from userProfile.forms import *
 from userProfile.tokens import account_activation_token
+from survey.models import Response, Survey
 
 @login_required
-def home(request):
-    return render(request, 'pages/home.html')
+def home(request): 
+    user_id = User.objects.get(username=request.user).pk #getting user where username = the user and the id through pk
+    #getting the number of active surveys completed by the user 
+    completed = len(Survey.objects.filter(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
+    #compare number of active completed surveys == active surveys (surveys are completed) 
+    # if completed == len(Survey.objects.filter(is_published = True)):
+    #     #redirect to profile page 
+    #     return redirect('home')
+    #if not then get the surveys that were not completed by the user
+    active_survey = [len(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))]
+    not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
+    #allow us to pass this to template 
+    args = {'surveys': not_completed, 'active': active_survey}
+    #render home
+    return render(request, 'pages/home.html',args) 
 
 def logout_view(request):
 	logout(request)
 	return redirect('/')
 
-def signup(request):
+def signup(request): 
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -85,9 +99,25 @@ def edit_profile(request):
         'profile_form': profile_form
     })
 
-
-
 @login_required
 def profile(request):
+    # form = ProfileForm(request.POST)
+    # args = {'form':form}
+    # if form.is_valid():
+    #     user = ProfileForm(instance = request.user)
+    # return render(request, 'pages/profile.html', args)
     form = ProfileForm(instance=request.user.profile)
     return render(request, 'pages/profile.html', {'form':form})
+
+def set_notifications(request):
+    if request.user.is_authenticated:
+        user_id = User.objects.get(username=request.user).pk 
+        context = {}
+        context["notifications"] = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True)) 
+        context["current_page"] = request.path
+        return context
+    context = {}
+    return context
+
+    
+
