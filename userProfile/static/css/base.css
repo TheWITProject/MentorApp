@@ -3,9 +3,52 @@ body{
 }
 
 .main{
-    min-height: 100vh;
+    min-height: 70vh;
     height: 100%;
 }
+
+h3 {
+  text-align: left;
+  font-size:medium;
+  font-style: italic;
+  color:#cfa912;
+}
+
+p {
+
+  font-weight: 100;
+}
+
+h5 {
+  font-size:1.00rem
+}
+
+#profileimg img{
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+#profileimg {
+
+  position: relative;
+  display: inline-block;
+}
+
+.column-header{
+  color:#cf9212;
+  text-align: center;
+  padding-top: inherit;
+}
+
+.profileHeader{
+display: flex;
+font-size: x-large;
+padding-bottom:15px
+}
+
 
 .footer{
     min-height: 100px;
@@ -46,12 +89,48 @@ body{
   text-align: center;
   flex-direction: row;
   
-  max-width: 900px;
-  height: 700px;
+  max-width: 60%;
+  height: 70%;
   padding: 10px;
   margin: auto;
-  background-color: gray;
+  border: 1px solid #213b74;
+  box-shadow:  -1px 1px #213b74,
+       -2px 2px #213b74,
+       -3px 3px #213b74,
+       -4px 4px #213b74,
+       -5px 5px #213b74;
 
+
+}
+
+.nav-pills .nav-link.active{
+  background-color: #213b74;
+}
+
+.nav-pills .nav-link {
+  color: #213b74;
+}
+
+.icon-buton {
+  background:lightgrey;
+  border:transparent;
+  position: absolute;
+  left: 80%;
+  top: 90%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%
+}
+
+.fa-pen{
+  color:grey;
+}
+
+.fas ::after{
+  color:white;
+}
+
+.edit{
+  padding: 5px !important;
 }
 
 .column {
@@ -60,6 +139,7 @@ body{
   background-color: white;
   flex-direction: column;
   padding: 10px;
+  border-right: 1px solid darkgrey;
 }
 
 .profile{
@@ -72,9 +152,9 @@ body{
 }
 
 .profileinfo{
-  color: white;
+  color: grey;
   flex: 7;
-  background-color:#667ea8ec;
+  background-color:#eaf1ffec;
   padding: 25px;
 }
 
@@ -87,11 +167,57 @@ body{
   font-size: 1.1rem;
   line-height: 1;
   border-radius: .3rem;
+  margin-top:5px;
+  /* margin-left: 7px; */
+  display: flex; 
 
 }
 
 .col-sm-6 {
-  padding: 15px;
-  text-align: right;
+  text-align: left;
+  display:flow-root;
 
+
+}
+
+/* modal */
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: end;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
