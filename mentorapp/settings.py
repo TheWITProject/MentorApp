@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "survey",
     "bootstrapform",
     'nested_admin',
+    "aws",
 ]
 
 MIDDLEWARE = [
@@ -145,12 +146,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
+MEDIA_URL = '/static/images/'
+MEDIA_ROOT = 'images'
+
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
-
-MEDIA_URL = '/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
