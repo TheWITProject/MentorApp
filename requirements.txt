@@ -12,8 +12,4 @@ pandas==1.0.3
 matplotlib==3.2.1
 seaborn==0.10.0
 pySankey==0.0.1
-<<<<<<< HEAD
 django-nested-admin==3.3.0
-=======
-django-nested-admin==3.3.0
->>>>>>> 014f67e89cc597187ccf48b88c40ed3bab8cd76c

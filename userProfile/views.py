@@ -53,15 +53,16 @@ def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+    except (TypeError, ValueError, OverflowError, user.DoesNotExist):
         user = None
 
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.profile.email_confirmed = True
         user.save()
+        user.profile.save()
         login(request, user)
-        return redirect('profile')
+        return redirect('edit_profile')
     else:
         return render(request, 'registration/account_activation_invalid.html')
 
@@ -70,21 +71,16 @@ def activate(request, uidb64, token):
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
-        #user_form = SignUpForm(request.POST, instance=request.user)
         print(request.FILES)
         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if profile_form.is_valid():
-            #user_form.save()
             profile_form.save()
-            messages.success(request, _('Your profile was successfully updated!'))
             return redirect("profile")
         else:
             messages.error(request, _('Please correct the error below.'))
     else:
-        #user_form = SignUpForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
     return render(request, 'pages/edit_profile.html', {
-        #'user_form': user_form,
 
         'profile_form': profile_form
     })
