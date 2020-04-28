@@ -3,13 +3,8 @@ body{
 }
 
 .main{
-<<<<<<< HEAD
-  min-height: 100vh;
-  height: 100%;
-=======
     min-height: 70vh;
     height: 100%;
->>>>>>> a80714f8d63c41778dea538f605f3de4b3eefef5
 }
 
 h3 {
@@ -278,6 +273,7 @@ form{
   margin-top:5px;
   /* margin-left: 7px; */
   display: flex; 
+
 
 }
 
