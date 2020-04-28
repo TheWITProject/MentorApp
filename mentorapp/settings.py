@@ -145,7 +145,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
-MEDIA_URL = '/static/images/'
+MEDIA_URL = '/images/'
 MEDIA_ROOT = 'images'
 
 LOGIN_URL = 'login'
