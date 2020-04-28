@@ -1,9 +1,103 @@
 {% extends 'base.html' %}
+
+
 {% block content %}
-<form method="post">
-  {% csrf_token %}
-  {{ profile_form.as_p }}
-  <button type="submit">Save changes</button>
-</form>
+
+<div class="viewbox">
+
+  <div class = "column">
+
+      <div class="column-header"><h4>{{user.profile.first_name}}'s Profile</h4></div>
+        <div class="tabs">
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="far fa-user"></i> Personal Info </a>
+            <a class="nav-link" id="v-pills-profile-tab" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" onclick="editProfileAlert()"><i style="margin-left:-35px" class="fas fa-cog"></i> Settings</a>
+            <a class="nav-link" id="v-pills-settings-tab" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false" onclick="editProfileAlert()"><i style="margin-left:-35px"  class="fas fa-info"></i> Matches</a>
+          </div>
+      </div>
+    </div>
+
+  
+  <form class="profileinfo" method="post" action ="" enctype = "multipart/form-data">
+    {% csrf_token %}
+    <div class='profileHeader'> 
+      <div id = "profileimg">
+        <img src='{{request.user.profile.profile_pic.url}}'>
+        <button type="button" class="icon-buton" onclick="popitup()"><i class="fas fa-pen"></i></button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        {% for field in profile_form%}
+          {% if field.name != 'profile_pic' %}
+            <div class="col-sm-6 edit">
+              {{ field.label }}
+
+              {{ field }}
+            </div>
+          {% endif %}
+  
+
+        {% endfor %}
+      </div>
+    </div>
+        <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id = "profileimg">
+            <img src="{{ profile_form.instance.profile_pic.url }}" />
+            <p>{{ profile_form.profile_pic}}</p>
+        </div>
+      </div>
+
+    </div>
+
+    <button type="submit" class= "savebutton" >Save Changes</button>
+  </form>
+
+</div>
+
+<script language="javascript" type="text/javascript">
+
+function popitup() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+}
+
+function editProfileAlert() {
+  alert('Please save changes to your profile!')
+}
+
+
+// Get the button that opens the modal
+var modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+window.reload() = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "block";
+  }
+}
+
+</script>
+
 {% endblock %}
+
 

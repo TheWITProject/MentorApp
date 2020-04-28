@@ -17,11 +17,15 @@ CHOICES_SEPARATOR = getattr(settings, "CHOICES_SEPARATOR", ",")
 EXCEL_COMPATIBLE_CSV = False
 DEFAULT_SURVEY_PUBLISHING_DURATION = 7
 
+
+
 MEDIA_URL = "/media/"
 STATIC_URL = "/static/"
 
 MEDIA_ROOT = Path(ROOT, "media")
 STATIC_ROOT = Path(ROOT, "static")
+
+
 
 DEBUG_ADMIN_NAME = "test_admin"
 DEBUG_ADMIN_PASSWORD = "test_password"

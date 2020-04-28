@@ -20,9 +20,9 @@ def home(request):
     #getting the number of active surveys completed by the user 
     completed = len(Survey.objects.filter(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
     #compare number of active completed surveys == active surveys (surveys are completed) 
-    if completed == len(Survey.objects.filter(is_published = True)):
-        #redirect to profile page 
-        return redirect('profile')
+    # if completed == len(Survey.objects.filter(is_published = True)):
+    #     #redirect to profile page 
+    #     return redirect('home')
     #if not then get the surveys that were not completed by the user
     active_survey = [len(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))]
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
@@ -67,15 +67,16 @@ def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+    except (TypeError, ValueError, OverflowError, user.DoesNotExist):
         user = None
 
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.profile.email_confirmed = True
         user.save()
+        user.profile.save()
         login(request, user)
-        return redirect('home')
+        return redirect('edit_profile')
     else:
         return render(request, 'registration/account_activation_invalid.html')
 
@@ -84,30 +85,29 @@ def activate(request, uidb64, token):
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
-        #user_form = SignUpForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        print(request.FILES)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if profile_form.is_valid():
-            #user_form.save()
             profile_form.save()
-            messages.success(request, _('Your profile was successfully updated!'))
-            return render(request,'pages/profile.html',{'profile_form': profile_form})
+            return redirect("profile")
         else:
             messages.error(request, _('Please correct the error below.'))
     else:
-        #user_form = SignUpForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
     return render(request, 'pages/edit_profile.html', {
-        #'user_form': user_form,
+
         'profile_form': profile_form
     })
 
 @login_required
 def profile(request):
-    form = ProfileForm(request.POST)
-    args = {'form':form}
-    if form.is_valid():
-        user = ProfileForm(instance = request.user)
-    return render(request, 'pages/profile.html', args)
+    # form = ProfileForm(request.POST)
+    # args = {'form':form}
+    # if form.is_valid():
+    #     user = ProfileForm(instance = request.user)
+    # return render(request, 'pages/profile.html', args)
+    form = ProfileForm(instance=request.user.profile)
+    return render(request, 'pages/profile.html', {'form':form})
 
 def set_notifications(request):
     if request.user.is_authenticated:
@@ -120,3 +120,4 @@ def set_notifications(request):
     return context
 
     
+

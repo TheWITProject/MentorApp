@@ -8,7 +8,7 @@ class UserChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+        
         return tuple((i.name, i.value) for i in cls)
 
 # ----------------------------  COUNTY ENUMS ----------------------------------
@@ -26,7 +26,6 @@ class CountyChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
         return tuple((i.name, i.value) for i in cls)
 
 
@@ -49,7 +48,7 @@ class AlamedaChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+
         return tuple((i.name, i.value) for i in cls)
 
 class ContraCostaChoice(Enum):
@@ -75,7 +74,7 @@ class ContraCostaChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+
         return tuple((i.name, i.value) for i in cls)
 
 class MarinChoice(Enum):
@@ -93,7 +92,7 @@ class MarinChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+
         return tuple((i.name, i.value) for i in cls)
 
 class NapaChoice(Enum):
@@ -105,7 +104,7 @@ class NapaChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+
         return tuple((i.name, i.value) for i in cls)
 
 class SanMateoChoice(Enum):
@@ -132,7 +131,7 @@ class SanMateoChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+
         return tuple((i.name, i.value) for i in cls)
 
 class SantaClaraChoice(Enum):
@@ -154,7 +153,7 @@ class SantaClaraChoice(Enum):
     
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+
         return tuple((i.name, i.value) for i in cls)
 
 class SolanoChoice(Enum):
@@ -168,7 +167,7 @@ class SolanoChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+
         return tuple((i.name, i.value) for i in cls)
 
 class SonomaChoice(Enum):
@@ -184,7 +183,7 @@ class SonomaChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+
         return tuple((i.name, i.value) for i in cls)
 
 
@@ -198,7 +197,7 @@ class GenderChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+
         return tuple((i.name, i.value) for i in cls)
 
 class EducationChoice(Enum):
@@ -212,7 +211,7 @@ class EducationChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+
         return tuple((i.name, i.value) for i in cls)
 
 
@@ -250,7 +249,7 @@ class IndustryChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+
         return tuple((i.name, i.value) for i in cls)
 
 
@@ -272,7 +271,7 @@ class TrackChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+
         return tuple((i.name, i.value) for i in cls)
 
 
@@ -287,5 +286,5 @@ class EthnicityChoice(Enum):
 
     @classmethod
     def choices(cls):
-        # print(tuple((i.name, i.value) for i in cls))
+
         return tuple((i.name, i.value) for i in cls)
