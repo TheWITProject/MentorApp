@@ -63,7 +63,7 @@ class Question(models.Model):
         (TEXT, _("Big Text Box(multiple line)")),
         (SHORT_TEXT, _("Small Text Box(one line)")),
         (RADIO, _("Radio (Bubbles)")),
-        (SELECT, _("CheckBox (Select One)")),
+        (SELECT, _("Select One")),
         (SELECT_MULTIPLE, _("CheckBox (Select Multiple)")),
         (SELECT_IMAGE, _("Select Image")),
         (INTEGER, _("Number")),
