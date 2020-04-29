@@ -223,6 +223,8 @@ class ResponseForm(models.ModelForm):
             field.widget.attrs["class"] = "short-box"
         if question.type == Question.INTEGER:
             field.widget.attrs["class"] = "int-box"
+        if question.type == Question.SELECT:
+            field.widget.attrs["class"] = "selector-box"
         # if question.type == Question.RADIO:
         #     field.widget.attrs["class"] = "btn btn-secondary" 
 
