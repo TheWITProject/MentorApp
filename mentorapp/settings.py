@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "survey",
     "bootstrapform",
     'nested_admin',
+    'ml_endpoints',
 ]
 
 MIDDLEWARE = [
@@ -85,10 +86,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mentorapp',
-        'USER': 'postgres',
-        'PASSWORD': 'NEW_PASSWORD',
+        'USER': 'shafali',
+        'PASSWORD': '',
         'HOST': 'localhost',
-        'PORT': '5433',
+        'PORT': '5432',
 
     }
 }
