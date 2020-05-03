@@ -74,3 +74,10 @@ def update_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
         instance.profile.save()
 
+class FrequentlyAsked(models.Model):
+    question = models.CharField(max_length=1000, default='')
+    answer = models.TextField(max_length=5000, default='')
+    class Meta:
+        verbose_name_plural ="Frequently Asked Questions"
+    def __str__(self):
+        return self.question

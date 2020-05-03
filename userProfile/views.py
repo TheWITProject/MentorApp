@@ -16,19 +16,12 @@ from survey.models import Response, Survey
 
 @login_required
 def home(request): 
-    user_id = User.objects.get(username=request.user).pk #getting user where username = the user and the id through pk
-    #getting the number of active surveys completed by the user 
+    user_id = User.objects.get(username=request.user).pk 
     completed = len(Survey.objects.filter(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
-    #compare number of active completed surveys == active surveys (surveys are completed) 
-    # if completed == len(Survey.objects.filter(is_published = True)):
-    #     #redirect to profile page 
-    #     return redirect('home')
-    #if not then get the surveys that were not completed by the user
     active_survey = [len(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))]
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
-    #allow us to pass this to template 
-    args = {'surveys': not_completed, 'active': active_survey}
-    #render home
+    faq_objects = FrequentlyAsked.objects.all()
+    args = {'surveys': not_completed, 'active': active_survey, 'faq_objects': faq_objects}
     return render(request, 'pages/home.html',args) 
 
 def logout_view(request):
@@ -80,8 +73,6 @@ def activate(request, uidb64, token):
     else:
         return render(request, 'registration/account_activation_invalid.html')
 
-
-
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
@@ -119,5 +110,6 @@ def set_notifications(request):
     context = {}
     return context
 
-    
+
+
 

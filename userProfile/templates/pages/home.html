@@ -3,26 +3,63 @@
 
 {% block content %}
 <div class="row">
-	<div class="col-9">
-		<div class="container">
-			<h2>Welcome, {{ user.profile.first_name }}!</h2>
+	<div class="notification-center col-8">
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<h2>Welcome, {{ user.profile.first_name }}!</h2> <br>
+					<h4>Congrats on getting selected for this Mentor Program. We hope you learn and develop professional
+						skills for your career and grow with your mentor!</h4>
+				</div>
+				<div class="carousel-item">
+					<h4>Notification Center
+						{% for survey in active %}
+						<span class="badge">{{survey}}</span>  
+						{% if survey == 0 %}
+						<h5>You have completed all surveys!</h5>
+						{% endif %}
+						{% endfor %}  
+					</h4>
+					{% for survey in surveys %}
+					<a href="/survey/{{survey.id}}">
+						<div class="notification">
+							<p>{{survey.name}} <br> Click here to take the survey</p>
+						</div>
+					</a>
+					{% endfor %}
+				</div>
+				<div class="carousel-item">
+					<h1>Check out the FAQ's</h1>
+					{% for faq in faq_objects %}
+					{{ faq.question }}
+					{{ faq.answer }}
+					{% endfor %}
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
 		</div>
 	</div>
-	<div class="notification-center col-3">
-		<h4>Notification Center
-			{% for survey in active %}
-			<span class="badge">{{survey}}</span>  
-			{% endfor %}  
-		</h4>
-		{% for survey in surveys %}
-		<a href="/survey/{{survey.id}}">
-			<div class="notification">
-				<p>{{survey.name}} <br> Click here to take the survey</p>
+
+	<div class="col-4">
+		<div class="container">
+			<h3>Congrats! This is your match!</h3> <br>
+			<div class='profileHeader'>
+				<div id="profileimg"><img src='{{request.user.profile.profile_pic.url}}' width="240"></div>
+				<small>John Doe</small>
 			</div>
-		</a>
-		{% endfor %}
+		</div>
 	</div>
-</div>
 
-
-{% endblock %}
+	{% endblock %}
