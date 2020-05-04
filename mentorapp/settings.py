@@ -26,7 +26,7 @@ SECRET_KEY = 'v77!w980vxmft4ege5quusj%5+)p3p!xu8914wxef$!5bq7%r@'
 if os.environ.get('DJANGO_SETTINGS_MODULE'):
     print("Debug is enabled.")
     DEBUG = True
-    ALLOWED_HOSTS = ['localhost']
+    ALLOWED_HOSTS = ['localhost', 'yearup-mentorapp.us-east-1.elasticbeanstalk.com']
 
 else:
     DEBUG = False
