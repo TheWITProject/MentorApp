@@ -23,15 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'v77!w980vxmft4ege5quusj%5+)p3p!xu8914wxef$!5bq7%r@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.environ.get('DJANGO_SETTINGS_MODULE'):
+if 'RDS_DB_NAME' in os.environ:
+    DEBUG = False
+    ALLOWED_HOSTS = ['yearup-mentorapp.us-east-1.elasticbeanstalk.com']
+else:
     print("Debug is enabled.")
     DEBUG = True
     ALLOWED_HOSTS = ['localhost', 'yearup-mentorapp.us-east-1.elasticbeanstalk.com']
-
-else:
-    DEBUG = False
-    ALLOWED_HOSTS = ['yearup-mentorapp.us-east-1.elasticbeanstalk.com']
-
 
 # Application definition
 
