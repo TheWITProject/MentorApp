@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Survey submitted" %}{% endblock title %}
+
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'survey/css/custom.css' %}" />
+
+<div class = "survey-submit">
+<h1 class = "survey-header">{% trans "Survey submitted"%}</h1>
+<p>
+    <div class="alert alert-success">
+       {% trans "Thanks! Your answers have been saved" %}
+    </div>
+    {% if response.survey.editable_answers %}
+        <div class="alert alert-info">
+           {% trans "You can always come back and change them." %}
+        </div>
+    {% endif %}
+</p>
+
+</div>
+
+{% endblock %}

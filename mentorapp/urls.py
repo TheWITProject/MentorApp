@@ -16,7 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from yearUpApp import views
+from userProfile import views
+from django.conf.urls import include, url
+
+
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -26,6 +32,9 @@ urlpatterns = [
     path('logout/', views.logout_view , name="logout"),
     path('account_activation_sent/', views.account_activation_sent, name='account_activation_sent'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('edit_profile/', views.edit_profile, name='edit_profile'),
+    path('profile/', views.profile, name='profile'),
+
 
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='passwordReset/password_change_done.html'),
         name='password_change_done'),
@@ -42,4 +51,12 @@ urlpatterns = [
 
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='passwordReset/password_reset_complete.html'),
      name='password_reset_complete'),
+
+    path("survey/", include("survey.urls")),
+
+    path('nested_admin/', include('nested_admin.urls')),
+
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

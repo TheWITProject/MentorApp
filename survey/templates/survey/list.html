@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'survey/css/custom.css' %}" />
+<!-- <div id="intro">
+	<h1>{% trans "Welcome to the Django Survey app"%}</h1>
+
+	<ul>
+		{% for survey in surveys %}
+		<li><a class = "links" href="{{ survey.get_absolute_url }}">{% trans "Take the Survey"%} {{survey.name}}</a></li>
+		{% endfor %}
+	</div>
+</div> -->
+
+<div id = "dropdown" class="dropdown show">
+	<h1>Regional Surveys</h1> <br>
+	<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	Bay Area </a>
+	
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+	
+			{% for survey in surveys %}
+			<li><a id = "links" href="{{ survey.get_absolute_url }}">{% trans "Take the Survey"%} {{survey.name}}</a></li>
+			{% endfor %}
+  </div>
+</div>
+{% endblock %}
