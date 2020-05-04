@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "bootstrapform",
     'nested_admin',
     'ml_endpoints',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
