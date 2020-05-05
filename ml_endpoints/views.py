@@ -29,6 +29,17 @@ from .serializers import MLRequestSerializer
 # If an object can be retrieved this returns a 200 OK response, with a serialized representation of the object as the body of the response.
 #  Otherwise it will return a 404 Not Found.
 
+#CREATEMODELMIXIN: Provides a .create(request, *args, **kwargs) method, that implements creating and saving a new model instance.
+#If an object is created this returns a 201 Created response, with a serialized representation of the object as the body of the response.
+#If the representation contains a key named url, then the Location header of the response will be populated with that value.
+#If the request data provided for creating the object was invalid, a 400 Bad Request response will be returned, with the error details as the body of the response.
+
+#UPDATEMODELMIXIN: Provides a .update(request, *args, **kwargs) method, that implements updating and saving an existing model instance.
+# Also provides a .partial_update(request, *args, **kwargs) method, which is similar to the update method, except that all fields for the update will be optional.
+# This allows support for HTTP PATCH requests.
+# If an object is updated this returns a 200 OK response, with a serialized representation of the object as the body of the response.
+# If the request data provided for updating the object was invalid, a 400 Bad Request response will be returned, with the error details as the body of the response.
+
 #GENERICVIEWSET: The GenericViewSet class inherits from GenericAPIView, and provides the default set of get_object, get_queryset methods and other generic view base behavior,
 #but does not include any actions by default.
 class EndpointViewSet(
