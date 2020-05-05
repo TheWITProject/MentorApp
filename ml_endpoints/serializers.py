@@ -1,24 +1,36 @@
-from rest_framework import serializers
+from rest_framework import serializers #library to use serializers which contain all the fields 
 from .models import Endpoint
 from .models import MLAlgorithmStatus
 from .models import MLAlgorithm
 from .models import MLRequest
 
-class EndpointSerializer(serializers.ModelSerializer):
-    class Meta:
+# Serializers allow complex data such as querysets and model instances to be converted 
+# to native Python datatypes that can then be easily rendered into JSON, XML or other
+#  content types. Serializers also provide deserialization, allowing parsed data to be 
+#  converted back into complex types, after first validating the incoming data.
+
+# The ModelSerializer class provides a shortcut that lets you automatically create a Serializer
+#  class with fields that correspond to the Model fields.
+# The ModelSerializer class is the same as a regular Serializer class, except that:
+    # It will automatically generate a set of fields for you, based on the model.
+    # It will automatically generate validators for the serializer, such as unique_together validators.
+    # It includes simple default implementations of .create() and .update().
+
+class EndpointSerializer(serializers.ModelSerializer): 
+    class Meta: # Class use to pass extra infomation and it is used in forms.
         model = Endpoint
-        read_only_fields = ("id", "name", "created_at")
+        read_only_fields = ("id", "name", "created_at") #Read only is to ensure that the field is used when serializing a representation, but is not used when creating or updating an instance during deserialization.
         fields = read_only_fields
 
 
 class MLAlgorithmSerializer(serializers.ModelSerializer):
 
-    current_status = serializers.SerializerMethodField(read_only=True)
+    current_status = serializers.SerializerMethodField(read_only=True) # Set to True to ensure the field is used when serializing a representation
 
     def get_current_status(self, mlalgorithm):
         return MLAlgorithmStatus.objects.filter(parent_mlalgorithm=mlalgorithm).latest('created_at').status
 
-    class Meta:
+    class Meta: 
         model = MLAlgorithm
         read_only_fields = ("id", "name", "code",
                             "created_at",
