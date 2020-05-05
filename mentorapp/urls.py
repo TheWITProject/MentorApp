@@ -23,7 +23,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
 
-from ml_endpoints.urls import urlpatterns as endpoints_urlpatterns
+# from ml_endpoints.urls import urlpatterns as endpoints_urlpatterns
 
 
 urlpatterns = [
@@ -57,9 +57,10 @@ urlpatterns = [
     path("survey/", include("survey.urls")),
 
     path('nested_admin/', include('nested_admin.urls')),
-
-    # path('endpoints_urlpatterns/', include('ml_endpoints.urls')),
+    # path(r"^api/v1/", include('router.urls')),
+    # path(r"^api/v1/", include('ml_endpoints.urls'))
+    path('', include('ml_endpoints.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
-urlpatterns += endpoints_urlpatterns
+# urlpatterns += endpoints_urlpatterns
