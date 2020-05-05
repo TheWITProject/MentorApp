@@ -16,6 +16,21 @@ from .serializers import MLAlgorithmStatusSerializer
 from .models import MLRequest
 from .serializers import MLRequestSerializer
 
+#MIXINS: The mixin classes provide the actions that are used to provide the basic view behavior.
+# Note that the mixin classes provide action methods rather than defining the handler methods,
+# such as .get() and .post(), directly. This allows for more flexible composition of behavior.
+
+#LISTMODEMIXIN:Provides a .list(request, *args, **kwargs) method, that implements listing a queryset.
+# If the queryset is populated, this returns a 200 OK response,
+# with a serialized representation of the queryset as the body of the response.
+# The response data may optionally be paginated.
+
+#RETRIEVEMODELMIXIN: Provides a .retrieve(request, *args, **kwargs) method, that implements returning an existing model instance in a response.
+# If an object can be retrieved this returns a 200 OK response, with a serialized representation of the object as the body of the response.
+#  Otherwise it will return a 404 Not Found.
+
+#GENERICVIEWSET: The GenericViewSet class inherits from GenericAPIView, and provides the default set of get_object, get_queryset methods and other generic view base behavior,
+#but does not include any actions by default.
 class EndpointViewSet(
     mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet
 ):
