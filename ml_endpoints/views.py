@@ -42,6 +42,10 @@ from .serializers import MLRequestSerializer
 
 #GENERICVIEWSET: The GenericViewSet class inherits from GenericAPIView, and provides the default set of get_object, get_queryset methods and other generic view base behavior,
 #but does not include any actions by default.
+
+# ViewSets use a Serializer or Serializers to correctly represent API-related objects, and are exposed in urls.py by being 
+# registered with a Router. API actions provided by a ViewSet include “list”, “create”, “retreive”, “update”, “partial_update”,
+#  and “destroy”.
 class EndpointViewSet(
     mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet
 ):
@@ -82,7 +86,7 @@ class MLAlgorithmStatusViewSet(
         except Exception as e:
             raise APIException(str(e))
 
-class MLRequestViewSet(
+class MLRequestViewSet(  #A DRF ViewSet is a collection of views representing all API actions available at an API endpoint
     mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet,
     mixins.UpdateModelMixin
 ):
