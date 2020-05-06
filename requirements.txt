@@ -13,4 +13,6 @@ matplotlib==3.2.1
 seaborn==0.10.0
 pySankey==0.0.1
 django-nested-admin==3.3.0
-
+djangorestframework
+markdown
+django-filter  

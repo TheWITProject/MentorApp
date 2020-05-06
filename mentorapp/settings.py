@@ -87,7 +87,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mentorapp',
-        'USER': 'yasiris',
+        'USER': 'shafali',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
