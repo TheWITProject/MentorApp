@@ -20,8 +20,7 @@ def home(request):
     completed = len(Survey.objects.filter(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
     active_survey = [len(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))]
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
-    faq_objects = FrequentlyAsked.objects.all()
-    args = {'surveys': not_completed, 'active': active_survey, 'faq_objects': faq_objects}
+    args = {'surveys': not_completed, 'active': active_survey,}
     return render(request, 'pages/home.html',args) 
 
 def logout_view(request):
@@ -110,6 +109,8 @@ def set_notifications(request):
     context = {}
     return context
 
-
-
+def faq_page(request):
+    faq_objects = FrequentlyAsked.objects.all()
+    args = {'faq_objects': faq_objects}
+    return render(request, 'pages/faq.html', args)
 

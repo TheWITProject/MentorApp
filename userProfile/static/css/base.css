@@ -23,7 +23,6 @@ h3 {
 }
 
 p {
-
   font-weight: 100;
 }
 
@@ -61,14 +60,12 @@ padding-bottom:15px
 .footer{
   min-height: 100px;
   position: relative;
-  margin-top:100px;
-  
 }
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
-    }
+  }
 }
 
 .search-bar{
@@ -85,12 +82,13 @@ form{
   border-color: #213b74;
 }
 
-  .btn-outline-primary:hover {
-    background-color:  #213b74;
-    border-color: #213b74;
-
+.btn-outline-primary:hover {
+  background-color:  #213b74;
+  border-color: #213b74;
   }
 
+
+  /* Notifications and Notification Center */
 .badge{
   position: absolute;
   padding: 5px 7px;
@@ -108,16 +106,17 @@ form{
   font-size:1.25em;
   margin-top:0;
 
+
 }
 .notification-center .notification{
   border: 2px solid #CCCCCC;
   margin: 1em 1em 1em 0em;
-  padding: 1em;
+  padding: 0.25em;
   border-radius: 1em;
   transition: 500ms;
-  height: auto;
-  width: 40%;
-  font-size:13px;
+  height: 50%;
+  width: 100%;
+  font-size:0.9em;
 }
 
 .notification-center .notification:hover{
@@ -125,9 +124,10 @@ form{
 }
 
 .notification-center{
-  border-left: 2px solid #CCCCCC;
   height:100%;
-  text-align:center;
+  width: 40%;
+  /* text-align:center; */
+  padding:20px;
 }
 
 .notification-center a{
@@ -141,7 +141,9 @@ form{
 
 .notification-center h4{
   color:#cf9212;;
+  text-align:center;
 }
+
 .dropbtn {
   background-color: transparent;
   color: black;
@@ -167,7 +169,6 @@ form{
   border-radius: 1em;
   border: 2px solid #CCCCCC;
   font-size:13px;
-
 }
 
 .dropdown-content a {
@@ -205,16 +206,18 @@ form{
   border-radius: 1em;
 }
 
+.surveys-complete{
+  color:#213b74;
+  font-style: italic;
+}
+
   /* profile */
 
 .viewbox {
-  
-  display: flex;
-    
+  display: flex;  
   align-items: stretch;
   text-align: center;
   flex-direction: row;
-  
   max-width: 60%;
   height: 70%;
   padding: 10px;
@@ -225,8 +228,6 @@ form{
        -3px 3px #213b74,
        -4px 4px #213b74,
        -5px 5px #213b74;
-
-
 }
 
 .nav-pills .nav-link.active{
@@ -296,15 +297,24 @@ form{
   margin-top:5px;
   /* margin-left: 7px; */
   display: flex; 
-
-
 }
 
 .col-sm-6 {
   text-align: left;
   display:flow-root;
+}
 
+.col-4{
+  border-left: 4px solid #CCCCCC;
+}
 
+h2{
+  text-align:center;
+  color:black;
+}
+
+h4{
+  color:#cf9212;
 }
 
 /* modal */
@@ -349,28 +359,72 @@ form{
   cursor: pointer;
 }
 
+/* Carousel (Home Page) */
+
 .carousel-item{
   background-color:#f2f2f2;
   width:100%;
-  height: 500px;
+  height: 400px;
   overflow-y:auto;
   padding:20px;
-  border: 1px solid #213b74;
-
+  border: 2px solid #213b74;
 }
 
 .carousel-indicators{
   background-color:#213b74;
-  bottom:-50px;
-}
-
-.col-4{
-  border-left: 2px solid #CCCCCC;
+  margin: 0 auto; 
+  text-align: center;
+  width: 100%;
+  padding-top:5px;
 }
 
 .carousel-control-next-icon{
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
-}
+    margin:auto;
+  }
 .carousel-control-prev-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+li.active{
+  background-color:orange;
+}
+
+.faq_questions{
+  color:#cf9212;
+  font-size:22px;
+  text-align:start;
+  font-style: italic;
+}
+
+.faq_answers{
+  color:#213b74;
+  font-size:20px;
+  text-align:left;
+}
+
+.carousel-content{
+  position:absolute; 
+  left:10%; 
+  text-align:center;
+  right:10%;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+.carousel-control-next, .carousel-control-prev {
+  height:70%;
+}
+
+.faqlink{
+  font-size:1.25em;
+  color:#cf9212;
+}
+
+.faq_box{
+  margin:20px;
 }
