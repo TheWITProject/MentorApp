@@ -13,6 +13,8 @@ from django.utils.translation import ugettext_lazy as _
 from userProfile.forms import *
 from userProfile.tokens import account_activation_token
 from survey.models import Response, Survey
+from userProfile.models import FrequentlyAsked
+
 
 @login_required
 def home(request): 
@@ -111,6 +113,8 @@ def set_notifications(request):
 
 def faq_page(request):
     faq_objects = FrequentlyAsked.objects.all()
-    args = {'faq_objects': faq_objects}
+    args = {}
+    if faq_objects:
+        args = {'faq_objects': faq_objects}
     return render(request, 'pages/faq.html', args)
 
