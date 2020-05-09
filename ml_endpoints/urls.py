@@ -7,6 +7,7 @@ from .views import MLAlgorithmViewSet
 from .views import MLAlgorithmStatusViewSet
 from .views import MLRequestViewSet
 
+#Routers are connected to viewSet
 router = DefaultRouter(trailing_slash=False)
 router.register(r"endpoints", EndpointViewSet, basename="endpoints")
 router.register(r"mlalgorithms", MLAlgorithmViewSet, basename="mlalgorithms")
