@@ -44,8 +44,7 @@ INSTALLED_APPS = [
     'nested_admin',
     'ml_endpoints',
     'rest_framework',
-    #Apps
-    'apps.ml', 
+    'ml', 
 ]
 
 MIDDLEWARE = [
