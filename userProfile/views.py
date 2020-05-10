@@ -9,12 +9,11 @@ from django.template.loader import render_to_string
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
-
 from userProfile.forms import *
 from userProfile.tokens import account_activation_token
 from survey.models import Response, Survey
 from userProfile.models import FrequentlyAsked
-
+from userProfile.models import FrequentlyAskedMentor
 
 @login_required
 def home(request): 
@@ -37,17 +36,16 @@ def signup(request):
             user.is_active = False
             user.save()
 
-
             current_site = get_current_site(request)
             subject = 'Activate Your MySite Account'
-            message = render_to_string('registration/account_activation_email.html', {
+            message = render_to_string('registration/account_activation_email.html',{
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
-            })
+            }, context_instance = RequestContext(request))
             user.email_user(subject, message)
-
+            
             return redirect('account_activation_sent')
     else:
         form = SignUpForm()
@@ -113,8 +111,14 @@ def set_notifications(request):
 
 def faq_page(request):
     faq_objects = FrequentlyAsked.objects.all()
+    faq_mentor_objects = FrequentlyAskedMentor.objects.all()
+    print(faq_objects)
+    print(faq_mentor_objects)
+
     args = {}
     if faq_objects:
-        args = {'faq_objects': faq_objects}
+        args["faq_objects"] = faq_objects 
+    if faq_mentor_objects:
+        args["faq_mentor_objects"] = faq_mentor_objects
     return render(request, 'pages/faq.html', args)
 
