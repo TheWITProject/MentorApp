@@ -112,9 +112,6 @@ def set_notifications(request):
 def faq_page(request):
     faq_objects = FrequentlyAsked.objects.all()
     faq_mentor_objects = FrequentlyAskedMentor.objects.all()
-    print(faq_objects)
-    print(faq_mentor_objects)
-
     args = {}
     if faq_objects:
         args["faq_objects"] = faq_objects 
