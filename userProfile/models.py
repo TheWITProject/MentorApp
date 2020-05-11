@@ -7,6 +7,7 @@ from django.dispatch import receiver
 from .enums import *
 
 
+
 class AdditionalQuestions(models.Model):
     name = models.CharField(max_length=1000,default='')
     # questions_count = models.IntegerField(default=0)

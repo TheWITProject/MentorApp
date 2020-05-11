@@ -12,8 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from userProfile.forms import *
 from userProfile.tokens import account_activation_token
 from survey.models import Response, Survey
-from userProfile.models import FrequentlyAsked
-from userProfile.models import FrequentlyAskedMentor
+from userProfile.models import FrequentlyAsked, FrequentlyAskedMentor
 
 @login_required
 def home(request): 
