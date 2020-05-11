@@ -31,4 +31,5 @@ admin.site.register(AdditionalQuestions, AdditionalQuestionsAdmin)
 admin.site.register(Response, ResponseAdmin)
 admin.site.register(Profile, UserResponderAdmin)
 admin.site.register(FrequentlyAsked)
+admin.site.register(FrequentlyAskedMentor)
 
