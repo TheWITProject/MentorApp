@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
+
+load_dotenv() 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,7 +32,7 @@ if 'RDS_DB_NAME' in os.environ:
 else:
     print("Debug is enabled.")
     DEBUG = True
-    ALLOWED_HOSTS = ['localhost', 'yearup-mentorapp.us-east-1.elasticbeanstalk.com']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -155,6 +158,13 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
 
+    
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get('email_user')
+EMAIL_HOST_PASSWORD = os.environ.get('email_pass')
+EMAIL_PORT = 587
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')

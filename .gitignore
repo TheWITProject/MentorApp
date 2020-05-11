@@ -6,6 +6,7 @@ __pycache__
 .DS_Store
 myvenv
 db.sqlite3
+.env
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
