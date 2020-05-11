@@ -5,9 +5,19 @@
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
 <div class="faq_box">
     <h2 style="font-weight:100">Frequently Asked Questions</h2> <br>
+
     {% for faq in faq_objects %}
+    {% if user.profile.user_type == "IS_MENTEE" %}
     <h2 class="faq_questions">{{ faq.question }}</h2>
-    <h2 class="faq_answers">{{ faq.answer }}</h2><br>
+    <h2 class="faq_answers">{{ faq.answer }}</h2> <br>
+    {% endif %}
+    {% endfor %}
+
+    {% for faq in faq_mentor_objects %}
+    {% if user.profile.user_type == "IS_MENTOR" %}
+    <h2 class="faq_questions">{{ faq.mentor_questions }}</h2>
+    <h2 class="faq_answers">{{ faq.mentor_answers }}</h2><br>
+    {% endif %}
     {% endfor %}
 </div>
 {% endblock %}
