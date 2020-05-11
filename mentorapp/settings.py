@@ -32,7 +32,7 @@ if 'RDS_DB_NAME' in os.environ:
 else:
     print("Debug is enabled.")
     DEBUG = True
-    ALLOWED_HOSTS = ['localhost', 'yearup-mentorapp.us-east-1.elasticbeanstalk.com']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -166,6 +166,6 @@ EMAIL_HOST_USER = os.environ.get('email_user')
 EMAIL_HOST_PASSWORD = os.environ.get('email_pass')
 EMAIL_PORT = 587
 if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
