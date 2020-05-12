@@ -165,8 +165,8 @@ LOGIN_REDIRECT_URL = 'home'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = os.environ.get('email_user')
-EMAIL_HOST_PASSWORD = os.environ.get('email_pass')
+EMAIL_HOST_USER = os.environ['email_user']
+EMAIL_HOST_PASSWORD = os.environ['email_pass']
 EMAIL_PORT = 587
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
