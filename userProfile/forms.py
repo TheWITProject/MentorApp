@@ -24,3 +24,4 @@ class ProfileForm(forms.ModelForm):
                     self.fields[field].widget.attrs.update({
                 'class': 'form-control'
         })
+

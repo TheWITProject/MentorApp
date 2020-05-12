@@ -7,6 +7,7 @@ from django.dispatch import receiver
 from .enums import *
 
 
+
 class AdditionalQuestions(models.Model):
     name = models.CharField(max_length=1000,default='')
     # questions_count = models.IntegerField(default=0)
@@ -74,3 +75,18 @@ def update_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
         instance.profile.save()
 
+class FrequentlyAsked(models.Model):
+    question = models.CharField(max_length=1000, default='')
+    answer = models.TextField(max_length=5000, default='')
+    class Meta:
+        verbose_name_plural ="Frequently Asked Questions Mentee"
+    def __str__(self):
+        return self.question
+
+class FrequentlyAskedMentor(models.Model):
+    mentor_questions = models.CharField(max_length=1000, default='')
+    mentor_answers = models.TextField(max_length=5000, default='')
+    class Meta:
+        verbose_name_plural="Frequently Asked Questions Mentor"
+    def __str__(self):
+        return self.mentor_questions
