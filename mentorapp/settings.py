@@ -106,8 +106,8 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'mentorapp',
-            'USER': 'yasiris',
-            'PASSWORD': 'password',
+            'USER': 'name',
+            'PASSWORD': '',
             'HOST': 'localhost',
             'PORT': '5432',
 
