@@ -28,13 +28,12 @@
 	<!-- End Body -->
 
 	{% include 'genericTemplate/footer.html' %}
+	<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'survey/js/jquery.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'survey/js/jquery-ui.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'survey/js/bootstrap.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'survey/js/custom.js' %}"></script>
 	<script src="{% static 'js/cropper.min.js' %}"></script>    <!--js cropper lib-->
-	<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
-
 	{% block extrajs %}{% endblock %}
 </body>
 
