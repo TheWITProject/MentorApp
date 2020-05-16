@@ -11,6 +11,7 @@
 	<script src="https://kit.fontawesome.com/8c52d763a6.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="{% static 'css/base.css' %}">
 	<link rel="icon" href="{% static 'img/favicon.ico'%}" />
+	<link href="{% static 'css/cropper.min.css' %}" rel="stylesheet">   <!--cropper lib -->
 	{% block extracss %}{% endblock %}
 </head>
 
@@ -31,6 +32,9 @@
 	<script type="text/javascript" src="{% static 'survey/js/jquery-ui.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'survey/js/bootstrap.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'survey/js/custom.js' %}"></script>
+	<script src="{% static 'js/cropper.min.js' %}"></script>    <!--js cropper lib-->
+	<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+
 	{% block extrajs %}{% endblock %}
 </body>
 
