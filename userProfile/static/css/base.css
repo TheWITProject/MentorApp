@@ -429,7 +429,11 @@ li.active{
   margin:20px;
 }
 
-/* .modal-body{
-  background-color: black;
+.modal-backdrop {
+  z-index: -1;
+}
 
-} */
+.modal-content{
+  width: 500px;
+  height: 500px;
+}

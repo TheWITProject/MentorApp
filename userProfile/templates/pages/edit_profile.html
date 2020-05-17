@@ -79,14 +79,14 @@
       });
 
       /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
-      // $(".js-crop-and-upload").click(function () {
-      //   var cropData = $image.cropper("getData");
-      //   $("#id_x").val(cropData["x"]);
-      //   $("#id_y").val(cropData["y"]);
-      //   $("#id_height").val(cropData["height"]);
-      //   $("#id_width").val(cropData["width"]);
-      //   $("#formUpload").submit();
-      // });
+       $(".js-crop-and-upload").click(function () {
+         var cropData = $image.cropper("getData");
+         $("#id_x").val(cropData["x"]);
+         $("#id_y").val(cropData["y"]);
+         $("#id_height").val(cropData["height"]);
+         $("#id_width").val(cropData["width"]);
+         $("#formUpload").submit();
+      });
 
     });
   </script>
@@ -154,16 +154,13 @@
 
     <button type="submit" class="savebutton">Save Changes</button>
   </form>
-	
+
 
       <!-- MODAL TO CROP THE IMAGE -->
   <div class="modal fade" id="modalCrop">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
           <h4 class="modal-title">Crop the photo</h4>
         </div>
         <div class="modal-body">
@@ -179,7 +176,7 @@
             </button>
           </div>
           <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-          <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
+          <button type="button" class="btn btn-primary js-crop-and-upload" data-dismiss="modal">Crop and upload</button>
         </div>
       </div>
     </div>
@@ -192,4 +189,3 @@
 
 
 {% endblock %}
-

@@ -1,8 +1,10 @@
+from PIL import Image
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from .models import Profile
+from django.core.files import File
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. Please provide a valid email address.')
@@ -40,9 +42,9 @@ class ProfileForm(forms.ModelForm):
         w = self.cleaned_data.get('width')
         h = self.cleaned_data.get('height')
 
-        image = Image.open(photo.file)
+        image = Image.open(photo.profile_pic)
         cropped_image = image.crop((x, y, w+x, h+y))
         resized_image = cropped_image.resize((200, 200), Image.ANTIALIAS)
-        resized_image.save(photo.file.path)
+        resized_image.save(photo.profile_pic.path)
 
         return photo
