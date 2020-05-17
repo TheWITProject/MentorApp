@@ -1,129 +1,5 @@
 {% extends 'base.html' %}
-
-{% block content %}
-
-<div class="viewbox">
-
-  <div class="column">
-
-    <div class="column-header">
-      <h4>{{user.profile.first_name}}'s Profile</h4>
-    </div>
-    <div class="tabs">
-      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
-          aria-controls="v-pills-home" aria-selected="true"><i class="far fa-user"></i> Personal Info </a>
-        <a class="nav-link" id="v-pills-profile-tab" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
-          aria-selected="false" onclick="editProfileAlert()"><i style="margin-left:-35px" class="fas fa-cog"></i>
-          Settings</a>
-        <a class="nav-link" id="v-pills-settings-tab" href="#v-pills-settings" role="tab"
-          aria-controls="v-pills-settings" aria-selected="false" onclick="editProfileAlert()"><i
-            style="margin-left:-35px" class="fas fa-info"></i> Matches</a>
-      </div>
-    </div>
-  </div>
-
-
-  <form class="profileinfo" method="post" action="" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class='profileHeader'>
-      <div id="profileimg">
-        <img src='{{request.user.profile.profile_pic.url}}'>
-        <button type="button" class="icon-buton" onclick="popitup()"><i class="fas fa-pen"></i></button>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        {% for field in profile_form%}
-        {% if field.name != 'profile_pic' %}
-        <div class="col-sm-6 edit">
-          {{ field.label }}
-
-          {{ field }}
-        </div>
-        {% endif %}
-
-        {% endfor %}
-      </div>
-    </div>
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div id="profileimg">
-          <img src="{{ profile_form.instance.profile_pic.url }}" />
-          <p>{{ profile_form.profile_pic}}</p>
-
-<!--
-           INSERTED CODE HERE
-          <div class="modal-header">
-           <span aria-hidden="true">&times;</span>
-         </button>
-         <h4 class="modal-title">Crop the photo</h4>
-       </div>
-       <div class="modal-body">
-         <img src="" id="image" style="max-width: 100%;">
-       </div>
-       <div class="modal-footer">
-         <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
-       </div>
-
-     END INSERT  -->
-
-
-
-        </div>
-      </div>
-
-    </div>
-
-
-  <div class="modal fade" id="modalCrop">
-   <div class="modal-dialog">
-     <div class="modal-content">
-       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-         <h4 class="modal-title">Crop the photo</h4>
-       </div>
-       <div class="modal-body">
-         <img src="" id="image" style="max-width: 100%;">
-       </div>
-       <div class="modal-footer">
-         <div class="btn-group pull-left" role="group">
-           <button type="button" class="btn btn-default js-zoom-in">
-             <span class="glyphicon glyphicon-zoom-in"></span>
-           </button>
-           <button type="button" class="btn btn-default js-zoom-out">
-             <span class="glyphicon glyphicon-zoom-out"></span>
-           </button>
-         </div>
-         <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-         <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
-       </div>
-     </div>
-   </div>
- </div>
-
-
-
-
-    <button type="submit" class="savebutton">Save Changes</button>
-  </form>
-
-</div>
-
-
-{% endblock %}
-
-
-
-
-
-
+{% load static%}
 {% block extrajs %}
   <script>
 
@@ -215,3 +91,105 @@
     });
   </script>
 {% endblock %}
+
+{% block content %}
+<link href="{% static 'survey/css/bootstrap.min.css' %}" rel="stylesheet">   <!--cropper lib -->
+<div class="viewbox">
+
+  <div class="column">
+
+    <div class="column-header">
+      <h4>{{user.profile.first_name}}'s Profile</h4>
+    </div>
+    <div class="tabs">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+          aria-controls="v-pills-home" aria-selected="true"><i class="far fa-user"></i> Personal Info </a>
+        <a class="nav-link" id="v-pills-profile-tab" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+          aria-selected="false" onclick="editProfileAlert()"><i style="margin-left:-35px" class="fas fa-cog"></i>
+          Settings</a>
+        <a class="nav-link" id="v-pills-settings-tab" href="#v-pills-settings" role="tab"
+          aria-controls="v-pills-settings" aria-selected="false" onclick="editProfileAlert()"><i
+            style="margin-left:-35px" class="fas fa-info"></i> Matches</a>
+      </div>
+    </div>
+  </div>
+
+
+  <form class="profileinfo" method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class='profileHeader'>
+      <div id="profileimg">
+        <img src='{{request.user.profile.profile_pic.url}}'>
+        <button type="button" class="icon-buton" onclick="popitup()"><i class="fas fa-pen"></i></button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        {% for field in profile_form%}
+        {% if field.name != 'profile_pic' %}
+        <div class="col-sm-6 edit">
+          {{ field.label }}
+
+          {{ field }}
+        </div>
+        {% endif %}
+
+        {% endfor %}
+      </div>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="profileimg">
+          <img src="{{ profile_form.instance.profile_pic.url }}" />
+          <p>{{ profile_form.profile_pic}}</p>
+        </div>
+      </div>
+
+    </div>
+
+    <button type="submit" class="savebutton">Save Changes</button>
+  </form>
+	
+
+      <!-- MODAL TO CROP THE IMAGE -->
+  <div class="modal fade" id="modalCrop">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Crop the photo</h4>
+        </div>
+        <div class="modal-body">
+          <img src="" id="image" style="max-width: 100%;">
+        </div>
+        <div class="modal-footer">
+          <div class="btn-group pull-left" role="group">
+            <button type="button" class="btn btn-default js-zoom-in">
+              <span class="glyphicon glyphicon-zoom-in"></span>
+            </button>
+            <button type="button" class="btn btn-default js-zoom-out">
+              <span class="glyphicon glyphicon-zoom-out"></span>
+            </button>
+          </div>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+          <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+{% endblock %}
+
