@@ -16,5 +16,5 @@ pySankey==0.0.1
 django-nested-admin==3.3.0
 djangorestframework
 markdown
-django-filter  
+django-filter
 python-dotenv
