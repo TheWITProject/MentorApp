@@ -62,11 +62,11 @@ padding-bottom:15px
   position: relative;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
-}
+} */
 
 .search-bar{
   max-width: 500px;
@@ -433,7 +433,13 @@ li.active{
   z-index: -1;
 }
 
-.modal-content{
-  width: 500px;
-  height: 500px;
+.modal-lg{
+  width: auto;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .container{
+    width: 100%;
+  }
 }
