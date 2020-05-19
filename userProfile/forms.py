@@ -24,7 +24,6 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         phone = model.phone
-        #do we need to add x,y,width,height to the fields here ???
         fields = ('first_name', 'last_name','profile_pic', 'phone', 'user_type','title','company','county','county','gender','ethnicity','education','industry','learningtrack','linkedin','funfact', 'x', 'y', 'width', 'height' )
     def __init__(self, *args, **kwargs):
             super(ProfileForm, self).__init__(*args, **kwargs)
@@ -34,8 +33,10 @@ class ProfileForm(forms.ModelForm):
                 'class': 'form-control'
         })
 
-    def save(self):    #saving the values into the vars we initilialized before
-        photo = super(ProfileForm, self).save()     #initializing super here!!!
+    #saving values of x,y,w,h of the photo that user uploads
+    #implementation is for the cropper box
+    def save(self):
+        photo = super(ProfileForm, self).save()
 
         x = self.cleaned_data.get('x')
         y = self.cleaned_data.get('y')
