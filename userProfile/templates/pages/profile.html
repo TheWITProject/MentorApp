@@ -53,14 +53,14 @@
                 Name
               </h5>
               <p>
-                {{ user.profile.title }} {{ user.profile.first_name }} {{ user.profile.last_name }}</p>
+                {{ user.profile.job_title }} {{ user.profile.first_name }} {{ user.profile.last_name }}</p>
             </div>
             <div class="col-sm-6">
               <h5>
                 Preferred Pronouns
               </h5>
               <p>
-                {{ user.profile.get_gender_display}}</p>
+                {{ user.profile.get_gender_pronouns_display}}</p>
             </div>
             <div class="col-sm-6">
               <h5>
