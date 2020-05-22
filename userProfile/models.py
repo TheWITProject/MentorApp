@@ -55,6 +55,8 @@ class Profile(models.Model):
     learningtrack = models.CharField(max_length = 20, choices=TrackChoice.choices(), default = '')
     linkedin = models.URLField(max_length = 60, default = '')
     funfact = models.CharField(max_length=100, default='')
+    cohort = models.CharField(max_length = 20, choices=CohortChoice.choices(), default = '')
+    site_location = models.CharField(max_length = 20, choices=SiteChoice.choices(), default = '')
 
     def __str__(self):
         return self.user.username
