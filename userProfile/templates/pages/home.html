@@ -3,26 +3,68 @@
 
 {% block content %}
 <div class="row">
-	<div class="col-9">
-		<div class="container">
-			<h2>Welcome, {{ user.profile.first_name }}!</h2>
+	<div class="col-8">
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			<div class="carousel-inner">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				</ol>
+				<br>
+				<div class="carousel-item active">
+					<div class="carousel-content">
+						<h2>Welcome, {{ user.profile.first_name }}!</h2> <br>
+						<h4>Congratulations on getting selected for this Mentor Program. We hope you learn and develop
+							professional skills for your career and grow with your match!</h4> <br><br>
+						<h4>Please be sure to complete your profile on the profile page and any surveys shown on the
+							right so we can match you to the right people!</h4>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="carousel-content">
+						<h2>Frequently Asked Questions</h2> <br>
+						<a class="faqlink" href="{% url 'faq' %}">Click here for the
+							recent FAQs</a>
+					</div>
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			</a>
+			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			</a>
 		</div>
 	</div>
-	<div class="notification-center col-3">
+
+	<div class="col-4">
+		<div class="container">
+			<br>
+			<h3>Congratulations! You've got a match!</h3> <br>
+			<div class='profileHeader'>
+				<div id="profileimg"><img src="/images/profileimage.png" width="240"></div>
+				<small>John Doe</small>
+			</div>
+		</div>
+	</div>
+
+	<div class="notification-center">
 		<h4>Notification Center
 			{% for survey in active %}
-			<span class="badge">{{survey}}</span>  
+			<span class="badge">{{survey}}</span> 
+			{% if survey == 0 %}
+			<br> <br>
+			<h5 class="surveys-complete">You have completed all surveys!</h5>
+			{% endif %}
 			{% endfor %}  
 		</h4>
 		{% for survey in surveys %}
 		<a href="/survey/{{survey.id}}">
 			<div class="notification">
-				<p>{{survey.name}} <br> Click here to take the survey</p>
+				<p class="survey-text">{{survey.name}} <br> Click here to take the survey</p>
 			</div>
 		</a>
 		{% endfor %}
 	</div>
-</div>
 
-
-{% endblock %}
+	{% endblock %}

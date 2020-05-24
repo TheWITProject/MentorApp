@@ -23,6 +23,8 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
 
+# from ml_endpoints.urls import urlpatterns as endpoints_urlpatterns
+
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -34,7 +36,7 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('profile/', views.profile, name='profile'),
-
+    path('faq/', views.faq_page, name='faq' ),
 
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='passwordReset/password_change_done.html'),
         name='password_change_done'),
@@ -55,8 +57,10 @@ urlpatterns = [
     path("survey/", include("survey.urls")),
 
     path('nested_admin/', include('nested_admin.urls')),
-
+    # path(r"^api/v1/", include('router.urls')),
+    # path(r"^api/v1/", include('ml_endpoints.urls'))
+    path('', include('ml_endpoints.urls')),
 ]
 
-
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+# urlpatterns += endpoints_urlpatterns

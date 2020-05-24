@@ -1,11 +1,12 @@
 from __future__ import unicode_literals
- 
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .enums import *
 from django.db.models import Q
+
 
 class AdditionalQuestions(models.Model):
     name = models.CharField(max_length=1000,default='')
@@ -19,21 +20,21 @@ class AdditionalQuestions(models.Model):
         verbose_name_plural ="Additional Questions"
     def __str__(self):
         return self.name
- 
+
 class Question(models.Model):
     question_form = models.ForeignKey(AdditionalQuestions, on_delete=models.CASCADE)
     label = models.CharField(max_length=1000)
     order = models.IntegerField(default=0)
     def __str__(self):
         return self.label
- 
+
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
     text = models.CharField(max_length=1000)
     def __str__(self):
         return self.text
 
- 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(default='profileimage.png', null = True, blank=True)
@@ -56,7 +57,7 @@ class Profile(models.Model):
     
     def __str__(self):
         return self.user.username
- 
+
 
 class Response(models.Model):
     question_form = models.ForeignKey(AdditionalQuestions, on_delete=models.CASCADE, null=True)
@@ -65,10 +66,26 @@ class Response(models.Model):
     answer = models.ForeignKey(Answer,on_delete=models.CASCADE, limit_choices_to=Q(question_id = 1), null=True)   
     def __str__(self):
         return self.question.label
- 
-  
+
+
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
         instance.profile.save()
+
+class FrequentlyAsked(models.Model):
+    question = models.CharField(max_length=1000, default='')
+    answer = models.TextField(max_length=5000, default='')
+    class Meta:
+        verbose_name_plural ="Frequently Asked Questions Mentee"
+    def __str__(self):
+        return self.question
+
+class FrequentlyAskedMentor(models.Model):
+    mentor_questions = models.CharField(max_length=1000, default='')
+    mentor_answers = models.TextField(max_length=5000, default='')
+    class Meta:
+        verbose_name_plural="Frequently Asked Questions Mentor"
+    def __str__(self):
+        return self.mentor_questions

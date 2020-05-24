@@ -9,26 +9,18 @@ from django.template.loader import render_to_string
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
-
 from userProfile.forms import *
 from userProfile.tokens import account_activation_token
 from survey.models import Response, Survey
+from userProfile.models import FrequentlyAsked, FrequentlyAskedMentor
 
 @login_required
 def home(request): 
-    user_id = User.objects.get(username=request.user).pk #getting user where username = the user and the id through pk
-    #getting the number of active surveys completed by the user 
+    user_id = User.objects.get(username=request.user).pk 
     completed = len(Survey.objects.filter(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
-    #compare number of active completed surveys == active surveys (surveys are completed) 
-    # if completed == len(Survey.objects.filter(is_published = True)):
-    #     #redirect to profile page 
-    #     return redirect('home')
-    #if not then get the surveys that were not completed by the user
     active_survey = [len(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))]
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
-    #allow us to pass this to template 
-    args = {'surveys': not_completed, 'active': active_survey}
-    #render home
+    args = {'surveys': not_completed, 'active': active_survey,}
     return render(request, 'pages/home.html',args) 
 
 def logout_view(request):
@@ -43,17 +35,16 @@ def signup(request):
             user.is_active = False
             user.save()
 
-
             current_site = get_current_site(request)
             subject = 'Activate Your MySite Account'
-            message = render_to_string('registration/account_activation_email.html', {
+            message = render_to_string('registration/account_activation_email.html',{
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
             user.email_user(subject, message)
-
+            
             return redirect('account_activation_sent')
     else:
         form = SignUpForm()
@@ -124,5 +115,13 @@ def set_notifications(request):
     context = {}
     return context
 
-    
+def faq_page(request):
+    faq_objects = FrequentlyAsked.objects.all()
+    faq_mentor_objects = FrequentlyAskedMentor.objects.all()
+    args = {}
+    if faq_objects:
+        args["faq_objects"] = faq_objects 
+    if faq_mentor_objects:
+        args["faq_mentor_objects"] = faq_mentor_objects
+    return render(request, 'pages/faq.html', args)
 
