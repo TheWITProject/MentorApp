@@ -139,7 +139,15 @@
                 <p>
                 {{ user.profile.funfact}}</p>
                 </div>
+                {{ user.response.answer.value}}
+                {% for field in form2%}
+                    <div class="col-sm-6 edit">
+                      {{ field.label }}
+                      {{ field }}
+                    </div>
+                {% endfor %}
             </div>
+        
 
             <button type = "button" class= "editbutton" onclick="parent.location= '/edit_profile/'" id="enter" >Edit Profile</button>
           </div>
