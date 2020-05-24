@@ -43,9 +43,6 @@ class UserResponderAdmin(admin.ModelAdmin):
 admin.site.register(AdditionalQuestions, AdditionalQuestionsAdmin) 
 admin.site.register(Response, ResponseAdmin)
 admin.site.register(Profile, UserResponderAdmin)
-<<<<<<< HEAD
-=======
 admin.site.register(FrequentlyAsked)
 admin.site.register(FrequentlyAskedMentor)
 
->>>>>>> 87fe5473a2bc855539e4e6d9779bfe9a7aad7afa
