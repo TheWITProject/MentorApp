@@ -55,6 +55,10 @@ class Profile(models.Model):
     learningtrack = models.CharField(max_length = 20, choices=TrackChoice.choices(), default = '')
     linkedin = models.URLField(max_length = 60, default = '')
     funfact = models.CharField(max_length=100, default='')
+    # x = models.FloatField()
+    # y = models.FloatField()
+    # width = models.FloatField()
+    # height = models.FloatField()
 
     def __str__(self):
         return self.user.username
