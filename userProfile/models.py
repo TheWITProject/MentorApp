@@ -57,6 +57,10 @@ class Profile(models.Model):
     funfact = models.CharField(max_length=100, default='')
     cohort = models.CharField(max_length = 20, choices=CohortChoice.choices(), default = '')
     site_location = models.CharField(max_length = 20, choices=SiteChoice.choices(), default = '')
+    # x = models.FloatField()
+    # y = models.FloatField()
+    # width = models.FloatField()
+    # height = models.FloatField()
 
     def __str__(self):
         return self.user.username
