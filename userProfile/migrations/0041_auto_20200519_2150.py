@@ -14,9 +14,4 @@ class Migration(migrations.Migration):
             name='frequentlyasked',
             options={'verbose_name_plural': 'Frequently Asked Questions Mentee'},
         ),
-        migrations.RenameField(
-            model_name='profile',
-            old_name='title',
-            new_name='job_title',
-        ),
     ]

@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='profile',
-            name='gender_pronouns',
+            name='gender',
             field=models.CharField(choices=[('HE', 'He/Him'), ('SHE', 'She/Her'), ('THEY', 'They/Them'), ('OTHER', 'Other')], default='', max_length=20),
         ),
         migrations.AddField(
@@ -77,7 +77,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='profile',
-            name='job_title',
+            name='title',
             field=models.CharField(default='', max_length=30),
         ),
         migrations.AddField(
