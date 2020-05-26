@@ -24,7 +24,7 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         phone = model.phone
-        fields = ('first_name', 'last_name','profile_pic', 'phone', 'user_type','title','company','county','county','gender','ethnicity','education','industry','learningtrack','linkedin','funfact', 'x', 'y', 'width', 'height' )
+        fields = ('first_name', 'last_name','profile_pic', 'phone', 'user_type','job_title','company','county','county','gender_pronouns','ethnicity','education','industry','learningtrack','linkedin','funfact', 'cohort', 'site_location', 'x', 'y', 'width', 'height' )
     def __init__(self, *args, **kwargs):
             super(ProfileForm, self).__init__(*args, **kwargs)
             self.fields['x'].required = False
