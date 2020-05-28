@@ -124,10 +124,10 @@ form{
 }
 
 .notification-center{
-  height:100%;
-  width: 40%;
-  /* text-align:center; */
-  padding:20px;
+  height:auto;
+  text-align:center;
+
+
 }
 
 .notification-center a{
@@ -139,7 +139,7 @@ form{
   align-items:center;
 }
 
-.notification-center h4{
+.notification-center h5{
   color:#cf9212;;
   text-align:center;
 }
@@ -314,8 +314,9 @@ h2{
   color:black;
 }
 
-h4{
+h5{
   color:#cf9212;
+  text-align:center;
 }
 
 /* modal */
@@ -360,35 +361,23 @@ h4{
   cursor: pointer;
 }
 
-/* Carousel (Home Page) */
+/* Home Page */
 
-.carousel-item{
-  background-color:#f2f2f2;
-  width:100%;
-  height: 400px;
-  overflow-y:auto;
+.col-8{
   padding:20px;
-  border: 2px solid #213b74;
 }
 
-.carousel-indicators{
-  background-color:#213b74;
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
-  padding-top:5px;
-}
-
-.carousel-control-next-icon{
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
-    margin:auto;
-  }
-.carousel-control-prev-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
-}
-
-li.active{
-  background-color:orange;
+.welcome, .notification-center{
+  background-color: white;
+  border-radius: 30px;
+  padding: 25px;
+  margin: 20px;
+  border: 1px solid #213b74;
+  box-shadow: -1px 1px #213b74,
+  -2px 2px #213b74,
+  -3px 3px #213b74,
+  -4px 4px #213b74,
+  -5px 5px #213b74;
 }
 
 .faq_questions{
@@ -404,22 +393,7 @@ li.active{
   text-align:left;
 }
 
-.carousel-content{
-  position:absolute;
-  left:10%;
-  text-align:center;
-  right:10%;
-}
 
-::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background-color: rgba(0, 0, 0, .5);
-  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
-}
-
-.carousel-control-next, .carousel-control-prev {
-  height:70%;
-}
 
 .faqlink{
   font-size:1.25em;
