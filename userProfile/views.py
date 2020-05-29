@@ -13,6 +13,8 @@ from userProfile.forms import *
 from userProfile.tokens import account_activation_token
 from survey.models import Response, Survey
 from userProfile.models import FrequentlyAsked, FrequentlyAskedMentor
+from django.views.generic.edit import FormView
+from django.urls import reverse_lazy
 
 @login_required
 def home(request): 
@@ -118,3 +120,20 @@ def faq_page(request):
         args["faq_mentor_objects"] = faq_mentor_objects
     return render(request, 'pages/faq.html', args)
 
+def send_email(self, request, queryset):
+    form = SendEmailForm(initial={'users': queryset})
+    return render(request, 'pages/send_email.html', {'form': form})
+    
+class SendUserEmails(FormView):
+    template_name = 'pages/send_email.html'
+    form_class = SendEmailForm
+    success_url = reverse_lazy('admin:users_user_changelist')
+
+    def form_valid(self, form):
+        users = form.cleaned_data['users']
+        subject = form.cleaned_data['subject']
+        message = form.cleaned_data['message']
+        email_users.delay(users, subject, message)
+        user_message = '{0} users emailed successfully!'.format(form.cleaned_data['users'].count())
+        messages.success(self.request, user_message)
+        return super(SendUserEmails, self).form_valid(form)

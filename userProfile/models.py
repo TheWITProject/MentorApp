@@ -96,3 +96,9 @@ class FrequentlyAskedMentor(models.Model):
         verbose_name_plural="Frequently Asked Questions Mentor"
     def __str__(self):
         return self.mentor_questions
+
+# class Email(models.Model):
+#     to_email = models.CharField(max_length=1000, default='')
+#     from_email = models.CharField(max_length=1000, default='')
+#     subject = models.CharField(max_length=1000, default='')
+#     message_email = models.TextField(max_length=5000, default='')
