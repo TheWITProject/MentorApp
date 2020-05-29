@@ -275,3 +275,24 @@ class EthnicityChoice(Enum):
     @classmethod
     def choices(cls):
         return tuple((i.name, i.value) for i in cls)
+
+
+class CohortChoice(Enum):
+    SPRING20 = "Spring 2020"
+    FALL20 = "Fall 2020"
+    SPRING21 = "Spring 2021"
+    FALL21 = "Fall 2021"
+
+    @classmethod
+    def choices(cls):
+
+        return tuple((i.name, i.value) for i in cls)
+
+
+class SiteChoice(Enum):
+    YUBA = "Bay Area"
+
+    @classmethod
+    def choices(cls):
+
+        return tuple((i.name, i.value) for i in cls)
