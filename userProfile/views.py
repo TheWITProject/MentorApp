@@ -76,7 +76,7 @@ def edit_profile(request):
     if request.method == 'POST':
         print(request.FILES)
         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        add_form = AdditionalQuestionsForm(request.POST, request.FILES, instance=request.user.profile)
+        # add_form = AdditionalQuestionsForm(request.POST, request.FILES, instance=request.user.profile)
         if profile_form.is_valid() and add_form.is_valid():
             profile_form.save()
             add_form.save()
@@ -85,10 +85,10 @@ def edit_profile(request):
             messages.error(request, _('Please correct the error below.'))
     else:
         profile_form = ProfileForm(instance=request.user.profile)
-        add_form = AdditionalQuestionsForm(instance=request.user.profile)
+        # add_form = AdditionalQuestionsForm(instance=request.user.profile)
     return render(request, 'pages/edit_profile.html', {
         'profile_form': profile_form,
-        'add_form': add_form
+        # 'add_form': add_form
     })
 
     
@@ -100,8 +100,8 @@ def profile(request):
     #     user = ProfileForm(instance = request.user)
     # return render(request, 'pages/profile.html', args)
     form = ProfileForm(instance=request.user.profile)
-    form2 = AdditionalQuestionsForm(instance=request.user.profile)
-    return render(request, 'pages/profile.html', {'form':form, 'form2':form2})
+    # form2 = AdditionalQuestionsForm(instance=request.user.profile)
+    return render(request, 'pages/profile.html', {'form':form, })
 
 
 
