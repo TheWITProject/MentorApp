@@ -401,7 +401,22 @@ h5{
 }
 
 .faq_box{
-  margin:20px;
+  
+  border-radius: 25px;
+  overflow:scroll;
+  align-items: stretch;
+  text-align: center;
+  max-width: 60%;
+  height: 70%;
+  padding: 10px;
+  margin: auto;
+  background-color: white;
+  border: 1px solid #213b74;
+  box-shadow:  -1px 1px #213b74,
+       -2px 2px #213b74,
+       -3px 3px #213b74,
+       -4px 4px #213b74,
+       -5px 5px #213b74;
 }
 
 .modal-backdrop {
