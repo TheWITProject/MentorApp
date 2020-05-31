@@ -52,8 +52,22 @@ h5 {
 
 .profileHeader{
 display: flex;
+flex-direction: column;
 font-size: x-large;
-padding-bottom:15px
+padding-bottom:15px;
+background-color: white;
+overflow: auto;
+
+  border-radius: 25px;
+  padding: 10px;
+  margin: 0em 1em 1em 1em;
+  border: 1px solid #213b74;
+  box-shadow:  -1px 1px #213b74,
+       -2px 2px #213b74,
+       -3px 3px #213b74,
+       -4px 4px #213b74,
+       -5px 5px #213b74;
+
 }
 
 
@@ -307,6 +321,8 @@ form{
 
 .col-4{
   border-left: 4px solid #CCCCCC;
+  text-align:center;
+
 }
 
 h2{
