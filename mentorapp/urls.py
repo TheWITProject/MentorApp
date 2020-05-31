@@ -18,8 +18,6 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from userProfile import views
 from django.conf.urls import include, url
-
-
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -37,7 +35,6 @@ urlpatterns = [
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('profile/', views.profile, name='profile'),
     path('faq/', views.faq_page, name='faq' ),
-    path('email-users/', views.SendUserEmails.as_view(), name='email'),
 
 
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='passwordReset/password_change_done.html'),

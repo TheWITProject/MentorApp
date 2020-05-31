@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .enums import *
-
+from django.utils.translation import ugettext_lazy as _
 
 
 class AdditionalQuestions(models.Model):
@@ -97,8 +97,17 @@ class FrequentlyAskedMentor(models.Model):
     def __str__(self):
         return self.mentor_questions
 
-# class Email(models.Model):
-#     to_email = models.CharField(max_length=1000, default='')
-#     from_email = models.CharField(max_length=1000, default='')
-#     subject = models.CharField(max_length=1000, default='')
-#     message_email = models.TextField(max_length=5000, default='')
+class Email(models.Model):
+    from_email = models.CharField(max_length=1000, default='')
+    to_email = models.CharField(max_length=20000, default='', blank=True)
+    email_mentors = models.BooleanField(default=False, verbose_name=_('Email All Mentors'))
+    email_mentees = models.BooleanField(default=False, verbose_name=_('Email All Mentees'))
+    cc_to_email = models.CharField(max_length=20000, default='', blank=True, verbose_name=_('CC:'))
+    cc_email_mentors = models.BooleanField(default=False, verbose_name=_('CC All Mentors'))
+    cc_email_mentees = models.BooleanField(default=False, verbose_name=_('CC All Mentees'))
+    bcc_to_email = models.CharField(max_length=20000, default='', blank=True, verbose_name=_('BCC:'))
+    bcc_email_mentors = models.BooleanField(default=False, verbose_name=_('BCC All Mentors'))
+    bcc_email_mentees = models.BooleanField(default=False, verbose_name=_('BCC All Mentees'))
+    subject = models.CharField(max_length=5000, default='')
+    message_email = models.TextField(max_length=30000, default='')
+
