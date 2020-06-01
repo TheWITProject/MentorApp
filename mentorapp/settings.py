@@ -91,6 +91,8 @@ WSGI_APPLICATION = 'mentorapp.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 if 'RDS_DB_NAME' in os.environ:
+    EMAIL_HOST_USER = os.environ['email_user']
+    EMAIL_HOST_PASSWORD = os.environ['email_pass']
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -165,8 +167,8 @@ LOGIN_REDIRECT_URL = 'home'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = os.environ['email_user']
-EMAIL_HOST_PASSWORD = os.environ['email_pass']
+EMAIL_HOST_USER = 'random@gmail.com'
+EMAIL_HOST_PASSWORD = 'random'
 EMAIL_PORT = 587
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
