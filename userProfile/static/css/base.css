@@ -50,7 +50,7 @@ h5 {
   padding-top: inherit;
 }
 
-.profileHeader{
+.matchprofile{
 display: flex;
 flex-direction: column;
 font-size: x-large;
@@ -68,6 +68,12 @@ overflow: auto;
        -4px 4px #213b74,
        -5px 5px #213b74;
 
+}
+
+.profileheader{
+  display: flex;
+  font-size: x-large;
+  padding-bottom:15px;
 }
 
 
@@ -143,6 +149,8 @@ form{
 
 
 }
+
+
 
 .notification-center a{
   text-decoration: none;
@@ -330,7 +338,7 @@ h2{
   color:black;
 }
 
-h5{
+h6{
   color:#cf9212;
   text-align:center;
 }
