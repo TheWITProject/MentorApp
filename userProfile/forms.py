@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from .models import Profile
 from django.core.files import File
-from django.utils.translation import gettext as _
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. Please provide a valid email address.')
