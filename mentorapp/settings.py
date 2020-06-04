@@ -27,6 +27,8 @@ SECRET_KEY = 'v77!w980vxmft4ege5quusj%5+)p3p!xu8914wxef$!5bq7%r@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if 'RDS_DB_NAME' in os.environ:
+    EMAIL_HOST_USER = os.environ['email_user']
+    EMAIL_HOST_PASSWORD = os.environ['email_pass']
     DEBUG = False
     ALLOWED_HOSTS = ['yearup-mentorapp.us-east-1.elasticbeanstalk.com']
 else:
@@ -51,6 +53,7 @@ INSTALLED_APPS = [
     'ml_endpoints',
     'rest_framework',
     'ml',
+    'match',
 ]
 
 MIDDLEWARE = [
@@ -106,8 +109,13 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'mentorapp',
+<<<<<<< HEAD
             'USER': 'name',
             'PASSWORD': 'password',
+=======
+            'USER': 'shafali',
+            'PASSWORD': '',
+>>>>>>> 0fde7e0c0cf8fdd63daa47f21b04a0c782dccbdf
             'HOST': 'localhost',
             'PORT': '5432',
 
