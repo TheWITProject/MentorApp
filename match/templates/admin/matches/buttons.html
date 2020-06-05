@@ -1,0 +1,17 @@
+{% extends 'admin/change_list.html' %}
+
+{% block object-tools %}
+<div>
+        <form action="immortal/" method="POST">
+            {% csrf_token %}
+                <button type="submit">Make Matches</button>
+        </form>
+        <br>
+        <form action="mortal/" method="POST">
+            {% csrf_token %}
+                <button type="submit">Download Matches! :) </button>
+        </form>
+        <br>
+    </div>
+    {{ block.super }}
+{% endblock %}
