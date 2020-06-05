@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.conf.urls import url, include
 from django.urls import path
+from django.http import HttpResponseRedirect
 from match.models import *
 #
 # class MatchesAdmin(admin.ModelAdmin):
@@ -19,13 +20,12 @@ class MatchesAdmin(admin.ModelAdmin):
         return my_urls + urls
 
     def make_matches(self, request):
-        self.model.objects.all().update(is_immortal=True)
-        self.message_user(request, "All heroes are now immortal")
+        self.message_user(request, "Matches have been made")
         return HttpResponseRedirect("../")
 
     def export_matches(self, request):
-        self.model.objects.all().update(is_immortal=False)
-        self.message_user(request, "All heroes are now mortal")
+        self.message_user(request, "Matches have been downloaded")
         return HttpResponseRedirect("../")
+
 
 admin.site.register(Matches, MatchesAdmin)
