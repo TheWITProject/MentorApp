@@ -129,15 +129,17 @@
         {% for field in profile_form%}
         {% if field.name != 'profile_pic' %}
         <div class="col-sm-6 edit">
-          {{ field.label }}
+              {{ field.label }}
 
-          {{ field }}
+              {{ field }}
+
         </div>
         {% endif %}
 
         {% endfor %}
       </div>
     </div>
+
     <!-- The Modal -->
     <div id="myModal" class="modal">
 
@@ -176,7 +178,6 @@
         </div>
       </div>
     </div>
-
     <button type="submit" class="savebutton">Save Changes</button>
   </form>
 
