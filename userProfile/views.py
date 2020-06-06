@@ -13,6 +13,7 @@ from userProfile.forms import *
 from userProfile.tokens import account_activation_token
 from survey.models import Response, Survey
 from userProfile.models import FrequentlyAsked, FrequentlyAskedMentor
+from django.views.generic.edit import FormView
 
 @login_required
 def home(request): 
@@ -117,4 +118,3 @@ def faq_page(request):
     if faq_mentor_objects:
         args["faq_mentor_objects"] = faq_mentor_objects
     return render(request, 'pages/faq.html', args)
-

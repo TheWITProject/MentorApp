@@ -16,27 +16,29 @@
 </head>
 
 <body>
-{% include 'genericTemplate/header.html' %}
+	{% include 'genericTemplate/header.html' %}
 
-<!-- Body -->
-<div class="wrapper">
-<div class="main">
-	{% block content %}
+	<!-- Body -->
+	<div class="wrapper">
+		<div class="main">
+			{% block content %}
 
-	{% endblock content %}
-	</div>
-	<!-- End Body -->
+			{% endblock content %}
+		</div>
+		<!-- End Body -->
 
-	{% include 'genericTemplate/footer.html' %}
-	{% comment %}
+		{% include 'genericTemplate/footer.html' %}
+		<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+		{% comment %}
 		<script type="text/javascript" src="{% static 'survey/js/jquery.min.js' %}"></script> {% endcomment %}
 		<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'survey/js/jquery-ui.min.js' %}"></script>
 		{% comment %}
 		<script type="text/javascript" src="{% static 'survey/js/bootstrap.min.js' %}"></script> {% endcomment %}
 		<script type="text/javascript" src="{% static 'survey/js/custom.js' %}"></script>
-		<script src="{% static 'js/cropper.min.js' %}"></script>    <!--js cropper lib-->
-	{% block extrajs %}{% endblock %}
+		<script src="{% static 'js/cropper.min.js' %}"></script>
+		<!--js cropper lib-->
+		{% block extrajs %}{% endblock %}
 </body>
 
 
