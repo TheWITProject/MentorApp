@@ -445,12 +445,13 @@ li.active{
   }
 }
 
+/* Past Survey CSS */
+
 #links{
     color:#213b74;
     font-size: 15px;
 }
 
-.pastsurveys{
+#pastsurveys{
     text-align: left;
-
 }
