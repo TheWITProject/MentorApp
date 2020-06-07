@@ -19,6 +19,8 @@
 		{% if request.user.is_authenticated %}
 		<a class="p-2 text-dark" href="{% url 'home' %}">Home</a>
 		<a class="p-2 text-dark" href="{% url 'profile' %}">Profile</a>
+		<!-- <a class="p-2 text-dark" href="/survey">Past Surveys</a> -->
+
 		<!-- <a class="p-2 text-dark" href="/survey"> List of Surveys</a> -->
 		{% if current_page != "/" %}
 		<div class="dropdown">

@@ -21,6 +21,8 @@ def home(request):
     completed = len(Survey.objects.filter(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
     active_survey = [len(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))]
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
+    not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
+
     args = {'surveys': not_completed, 'active': active_survey,}
     return render(request, 'pages/home.html',args) 
 
@@ -97,7 +99,8 @@ def profile(request):
     #     user = ProfileForm(instance = request.user)
     # return render(request, 'pages/profile.html', args)
     form = ProfileForm(instance=request.user.profile)
-    return render(request, 'pages/profile.html', {'form':form})
+    all_surveys = tuple(Survey.objects.all().filter(is_published = True))
+    return render(request, 'pages/profile.html', {'form':form, 'allsurveys':all_surveys})
 
 def set_notifications(request):
     if request.user.is_authenticated:

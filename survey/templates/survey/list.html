@@ -14,16 +14,17 @@
 	</div>
 </div> -->
 
-<div id = "dropdown" class="dropdown show">
-	<h1>Regional Surveys</h1> <br>
-	<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	Bay Area </a>
-	
-	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-	
-			{% for survey in surveys %}
-			<li><a id = "links" href="{{ survey.get_absolute_url }}">{% trans "Take the Survey"%} {{survey.name}}</a></li>
-			{% endfor %}
-  </div>
+<!-- <div id="dropdown" class="dropdown show"> -->
+<div class="past_surveys">
+	<h1 id="past_survey_h1">Past Surveys</h1> <br>
+	<!-- <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+	aria-haspopup="true" aria-expanded="false">
+	Bay Area </a> -->
+
+	<!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"> -->
+
+	{% for survey in surveys %}
+	<li><a id="links" href="{{ survey.get_absolute_url }}">{% trans "Edit the Survey"%} {{survey.name}}</a></li>
+	{% endfor %}
 </div>
 {% endblock %}

@@ -14,6 +14,25 @@
 
 }
 
+#past_survey_h1{
+    font-weight: 100;
+    text-align: center;
+}
+
+.past_surveys{
+    padding: 25px;
+    border-radius: 50px;
+    margin: auto;
+    width:30%;
+    border: 1px solid #213b74;
+    box-shadow:  -1px 1px #213b74,
+        -2px 2px #213b74,
+        -3px 3px #213b74,
+        -4px 4px #213b74,
+        -5px 5px #213b74;
+    font-size: 20px;
+}
+
 #survey_title{
     font-size: 60px;
     color:#cf9212;
@@ -32,14 +51,13 @@
     letter-spacing: .1px;
     padding: 15px;
     font-family: Arial, Helvetica, sans-serif;	
-
 }
 
 #links{
     color:#cf9212;
 }
 
-.dropdown-menu{
+/* .dropdown-menu{
     height: auto;
     width: 250px;
     border-radius: 7px; 
@@ -49,7 +67,7 @@
     background-color: #213b74;
     margin-left: 15px;
 
-}
+}  */
 .survey-submit{
     width: 100%;
     max-width: 700px;
