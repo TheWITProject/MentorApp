@@ -445,3 +445,12 @@ li.active{
   }
 }
 
+#links{
+    color:#213b74;
+    font-size: 15px;
+}
+
+.pastsurveys{
+    text-align: left;
+
+}

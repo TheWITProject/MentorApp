@@ -208,13 +208,13 @@
         </div>
 
         <div class="tab-pane fade" id="v-pills-survey" role="tabpanel" aria-labelledby="v-pills-survey-tab">
-          <h3>Past Surveys</h3>
-          <p style='font-style:italic; text-align:left'>
-            <!-- <a class="p-2 text-dark" href="/survey">Past Surveys</a>  -->
+          <h3>Past Surveys</h3> <br>
+          <!-- <a class="p-2 text-dark" href="/survey">Past Surveys</a>  -->
+          <div class="pastsurveys">
             {% for survey in allsurveys %}
             <li><a id="links" href="{{ survey.get_absolute_url }}">{% trans "Edit the Survey"%} {{survey.name}}</a></li>
             {% endfor %}
-          </p>
+          </div>
         </div>
       </div>
 </div>
