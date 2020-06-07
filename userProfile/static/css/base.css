@@ -30,7 +30,7 @@ h5 {
   font-size:1.00rem
 }
 
-#profileimg img{
+#profileimg img,  #profileimghome img{
   width: 100px;
   height: 100px;
   position: relative;
@@ -39,8 +39,18 @@ h5 {
 }
 
 #profileimg {
+  text-align: left;
+  /* position: relative; */
+  /* display: inline-block; */
+}
+/* 
+#profileimgpen {
+  text-align: left;
+  /* position: relative; */
+  /* display: inline-block; */
 
-  position: relative;
+#profileimghome {
+  position: relative; 
   display: inline-block;
 }
 
@@ -272,6 +282,9 @@ form{
 
 .fa-pen{
   color:grey;
+  position: relative;
+  display: inline-block; 
+  
 }
 
 .fas ::after{
