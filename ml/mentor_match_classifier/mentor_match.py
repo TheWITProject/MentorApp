@@ -1,20 +1,20 @@
-import joblib # Joblib is such an package that can simply turn our Python code into parallel computing mode and of course increase the computing speed.
+import os
+import joblib
 import pandas as pd
 
 
 class MentorMatchClassifier: # constructor to load preprocesign objects from jupiter notebook
     def __init__(self):
-        # TO DO: fix path here to be relative
-        path_to_responses_file = '/Users/ezronis/dev/MentorApp/research/'
-        self.fix_df_arrays = joblib.load(path_to_responses_file + "fix_df_arrays.joblib")
-        self.create_user_id = joblib.load(path_to_responses_file + "create_user_id.joblib")
-        self.create_score_matrix = joblib.load(path_to_responses_file + "create_score_matrix.joblib")
-        self.assign_id = joblib.load(path_to_responses_file + "assign_id.joblib")
-        self.calculate_match_scores = joblib.load(path_to_responses_file + "calculate_match_scores.joblib")
-        self.top_matches_mentor = joblib.load(path_to_responses_file + "top_matches_mentor.joblib")
-        self.top_matches_student = joblib.load(path_to_responses_file + "top_matches_student.joblib")
-        self.get_mentor_match = joblib.load(path_to_responses_file + "get_mentor_match.joblib")
-        self.matches_to_json = joblib.load(path_to_responses_file + "matches_to_json.joblib")
+        path_to_responses_file = os.path.dirname(os.path.abspath(__file__)) + '/../../research/'
+        self.fix_df_arrays = joblib.load(path_to_responses_file + 'fix_df_arrays.joblib')
+        self.create_user_id = joblib.load(path_to_responses_file + 'create_user_id.joblib')
+        self.create_score_matrix = joblib.load(path_to_responses_file + 'create_score_matrix.joblib')
+        self.assign_id = joblib.load(path_to_responses_file + 'assign_id.joblib')
+        self.calculate_match_scores = joblib.load(path_to_responses_file + 'calculate_match_scores.joblib')
+        self.top_matches_mentor = joblib.load(path_to_responses_file + 'top_matches_mentor.joblib')
+        self.top_matches_student = joblib.load(path_to_responses_file + 'top_matches_student.joblib')
+        self.get_mentor_match = joblib.load(path_to_responses_file + 'get_mentor_match.joblib')
+        self.matches_to_json = joblib.load(path_to_responses_file + 'matches_to_json.joblib')
 
     # creating preprocessig method which takes JSON data as input 
     def preprocessing(self, input_data):
