@@ -17,15 +17,15 @@ class SignUpForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
 
     #defining variables for cropping the image
-    x = forms.FloatField(widget=forms.HiddenInput(), required = False)   #x coordinate of where the cropfield is
-    y = forms.FloatField(widget=forms.HiddenInput(), required = False)   #y coordinate of where cropfield is
-    width = forms.FloatField(widget=forms.HiddenInput(), required = False)    #width of cropbox
-    height = forms.FloatField(widget=forms.HiddenInput(), required = False)   #heigh of cropbox
+    x = forms.FloatField(widget=forms.HiddenInput(), required = False, label ="")   #x coordinate of where the cropfield is
+    y = forms.FloatField(widget=forms.HiddenInput(), required = False, label ="")   #y coordinate of where cropfield is
+    width = forms.FloatField(widget=forms.HiddenInput(), required = False, label ="")    #width of cropbox
+    height = forms.FloatField(widget=forms.HiddenInput(), required = False, label ="")   #heigh of cropbox
 
     class Meta:
         model = Profile
         phone = model.phone
-        fields = ('first_name', 'last_name','profile_pic', 'phone', 'user_type','job_title','company','county','county','gender_pronouns','ethnicity','education','industry','learningtrack','linkedin','funfact', 'cohort', 'site_location', 'x', 'y', 'width', 'height' )
+        fields = ('first_name', 'last_name','profile_pic', 'phone', 'user_type','job_title','company','county','county','gender_pronouns','ethnicity','education','industry','learningtrack','linkedin','funfact', 'x', 'y', 'width', 'height' )
     def __init__(self, *args, **kwargs):
             super(ProfileForm, self).__init__(*args, **kwargs)
             self.fields['x'].required = False
