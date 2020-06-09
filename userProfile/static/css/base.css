@@ -475,3 +475,14 @@ li.active{
        -4px 4px #213b74,
        -5px 5px #213b74;
 }
+
+/* Past Survey CSS */
+
+#links{
+    color:#213b74;
+    font-size: 15px;
+}
+
+#pastsurveys{
+    text-align: left;
+}

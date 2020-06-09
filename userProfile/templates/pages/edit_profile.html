@@ -1,99 +1,95 @@
 {% extends 'base.html' %}
 {% load static%}
 {% block extrajs %}
-  <script>
+<script>
 
 
 
-    function popitup() {
-      var modal = document.getElementById("myModal");
-      modal.style.display = "block";
-    }
-
-    function editProfileAlert() {
-      alert('Please save changes to your profile!')
-    }
-
-
-
-    // Get the button that opens the modal
+  function popitup() {
     var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  }
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+  function editProfileAlert() {
+    alert('Please save changes to your profile!')
+  }
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
+  // Get the button that opens the modal
+  var modal = document.getElementById("myModal");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
       modal.style.display = "none";
     }
+  }
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
+  window.reload = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "block";
     }
+  }
 
-    window.reload = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "block";
+  $(function () {
+
+    /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
+    $("#id_profile_pic").change(function () {
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $("#image").attr("src", e.target.result);
+          $("#modalCrop").modal("show");
+        }
+        reader.readAsDataURL(this.files[0]);
       }
-    }
+    });
 
-
-
-
-    $(function () {
-
-      /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
-      $("#id_profile_pic").change(function () {
-        if (this.files && this.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            $("#image").attr("src", e.target.result);
-            $("#modalCrop").modal("show");
-          }
-          reader.readAsDataURL(this.files[0]);
+    /* SCRIPTS TO HANDLE THE CROPPER BOX */
+    var $image = $("#image");
+    var cropBoxData;
+    var canvasData;
+    $("#modalCrop").on("shown.bs.modal", function () {
+      $image.cropper({
+        viewMode: 1,
+        aspectRatio: 1 / 1,
+        minCropBoxWidth: 200,
+        minCropBoxHeight: 200,
+        ready: function () {
+          $image.cropper("setCanvasData", canvasData);
+          $image.cropper("setCropBoxData", cropBoxData);
         }
       });
-
-      /* SCRIPTS TO HANDLE THE CROPPER BOX */
-      var $image = $("#image");
-      var cropBoxData;
-      var canvasData;
-      $("#modalCrop").on("shown.bs.modal", function () {
-        $image.cropper({
-          viewMode: 1,
-          aspectRatio: 1/1,
-          minCropBoxWidth: 200,
-          minCropBoxHeight: 200,
-          ready: function () {
-            $image.cropper("setCanvasData", canvasData);
-            $image.cropper("setCropBoxData", cropBoxData);
-          }
-        });
-      }).on("hidden.bs.modal", function () {
-        cropBoxData = $image.cropper("getCropBoxData");
-        canvasData = $image.cropper("getCanvasData");
-        $image.cropper("destroy");
-      });
-
-      /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
-       $(".js-crop-and-upload").click(function () {
-         var cropData = $image.cropper("getData");
-         $("#id_x").val(cropData["x"]);
-         $("#id_y").val(cropData["y"]);
-         $("#id_height").val(cropData["height"]);
-         $("#id_width").val(cropData["width"]);
-         // $("#formUpload").submit();
-      });
-
+    }).on("hidden.bs.modal", function () {
+      cropBoxData = $image.cropper("getCropBoxData");
+      canvasData = $image.cropper("getCanvasData");
+      $image.cropper("destroy");
     });
-  </script>
+
+    /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
+    $(".js-crop-and-upload").click(function () {
+      var cropData = $image.cropper("getData");
+      $("#id_x").val(cropData["x"]);
+      $("#id_y").val(cropData["y"]);
+      $("#id_height").val(cropData["height"]);
+      $("#id_width").val(cropData["width"]);
+      // $("#formUpload").submit();
+    });
+
+  });
+</script>
 {% endblock %}
 
 {% block content %}
-<link href="{% static 'survey/css/bootstrap.min.css' %}" rel="stylesheet">   <!--cropper lib -->
+<link href="{% static 'survey/css/bootstrap.min.css' %}" rel="stylesheet">
+<!--cropper lib -->
 <div class="viewbox">
 
   <div class="column">
@@ -111,6 +107,9 @@
         <a class="nav-link" id="v-pills-settings-tab" href="#v-pills-settings" role="tab"
           aria-controls="v-pills-settings" aria-selected="false" onclick="editProfileAlert()"><i
             style="margin-left:-35px" class="fas fa-info"></i> Matches</a>
+        <a class="nav-link" id="v-pills-survey-tab" href="#v-pills-survey" role="tab" aria-controls="v-pills-survey"
+          aria-selected="false" onclick="editProfileAlert()"><i style="margin-left:-35px" class="fas fa-file"></i>
+          Past Surveys</a>
       </div>
     </div>
   </div>
@@ -173,7 +172,8 @@
               </button>
             </div>
             <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-            <button type="button" class="btn btn-primary js-crop-and-upload" data-dismiss="modal">Crop and upload</button>
+            <button type="button" class="btn btn-primary js-crop-and-upload" data-dismiss="modal">Crop and
+              upload</button>
           </div>
         </div>
       </div>
