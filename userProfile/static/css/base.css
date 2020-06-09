@@ -40,17 +40,12 @@ h5 {
 
 #profileimg {
   text-align: left;
-  /* position: relative; */
-  /* display: inline-block; */
+
 }
-/* 
-#profileimgpen {
-  text-align: left;
-  /* position: relative; */
-  /* display: inline-block; */
+
 
 #profileimghome {
-  position: relative; 
+  position: relative;
   display: inline-block;
 }
 
@@ -281,8 +276,8 @@ form{
 .fa-pen{
   color:grey;
   position: relative;
-  display: inline-block; 
-  
+  display: inline-block;
+
 }
 
 .fas ::after{
@@ -399,9 +394,9 @@ h6{
 }
 
 
-/* li.active{
+li.active{
   background-color:orange;
-} */
+}
 
 .col-8{
   padding:20px;
