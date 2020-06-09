@@ -10,8 +10,8 @@ from import_export.admin import ExportMixin
 #         model = Profile
 
 # @admin.register(Profile)
-class ProfileAdmin(ExportMixin, admin.ModelAdmin):
-    pass
+# class ProfileAdmin(ExportMixin, admin.ModelAdmin):
+#     pass
 
 class AnswerInline(nested_admin.NestedTabularInline):
    model = Answer
@@ -33,7 +33,7 @@ class ResponseInline(admin.TabularInline):
 class ResponseAdmin(nested_admin.NestedModelAdmin):
    list_display = ("question", "user", "question_form")
 
-class UserResponderAdmin(admin.ModelAdmin):
+class UserResponderAdmin(ExportMixin, admin.ModelAdmin):
    inlines = [ResponseInline,]
 
 class EmailAdmin(admin.ModelAdmin):
@@ -101,9 +101,9 @@ class EmailAdmin(admin.ModelAdmin):
 
 admin.site.register(AdditionalQuestions, AdditionalQuestionsAdmin) 
 admin.site.register(Response, ResponseAdmin)
-# admin.site.register(Profile, UserResponderAdmin)
+admin.site.register(Profile, UserResponderAdmin)
 admin.site.register(FrequentlyAsked)
 admin.site.register(FrequentlyAskedMentor)
 admin.site.register(Email, EmailAdmin)
-admin.site.register(Profile, ProfileAdmin)
+# admin.site.register(Profile, ProfileAdmin)
 
