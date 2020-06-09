@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from .models import Profile
 from django.core.files import File
+
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. Please provide a valid email address.')
 
@@ -59,3 +60,5 @@ class ProfileForm(forms.ModelForm):
             resized_image.save(photo.profile_pic.path)
 
         return photo
+
+

@@ -70,10 +70,10 @@ overflow: auto;
 
 }
 
-.profileheader{
+.profileHeader{
   display: flex;
   font-size: x-large;
-  padding-bottom:15px;
+  padding-bottom:15px
 }
 
 
@@ -150,8 +150,6 @@ form{
 
 }
 
-
-
 .notification-center a{
   text-decoration: none;
   color:#213b74;
@@ -161,7 +159,7 @@ form{
   align-items:center;
 }
 
-.notification-center h5{
+.notification-center h4{
   color:#cf9212;;
   text-align:center;
 }
@@ -330,7 +328,6 @@ form{
 .col-4{
   border-left: 4px solid #CCCCCC;
   text-align:center;
-
 }
 
 h2{
@@ -338,11 +335,14 @@ h2{
   color:black;
 }
 
+h4{
+  color:#cf9212;
+}
+
 h6{
   color:#cf9212;
   text-align:center;
 }
-
 /* modal */
 
 /* The Modal (background) */
@@ -385,7 +385,10 @@ h6{
   cursor: pointer;
 }
 
-/* Home Page */
+
+/* li.active{
+  background-color:orange;
+} */
 
 .col-8{
   padding:20px;
@@ -402,6 +405,28 @@ h6{
   -3px 3px #213b74,
   -4px 4px #213b74,
   -5px 5px #213b74;
+}
+
+
+ ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+.modal-backdrop {
+  z-index: -1;
+}
+
+.modal-lg{
+  width: auto;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .container{
+    width: 100%;
+  }
 }
 
 .faq_questions{
@@ -425,7 +450,7 @@ h6{
 }
 
 .faq_box{
-  
+
   border-radius: 25px;
   overflow:scroll;
   align-items: stretch;
@@ -441,19 +466,4 @@ h6{
        -3px 3px #213b74,
        -4px 4px #213b74,
        -5px 5px #213b74;
-}
-
-.modal-backdrop {
-  z-index: -1;
-}
-
-.modal-lg{
-  width: auto;
-  height: auto;
-}
-
-@media (min-width: 768px) {
-  .container{
-    width: 100%;
-  }
 }
