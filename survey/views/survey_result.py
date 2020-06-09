@@ -52,6 +52,7 @@ def serve_result_csv(request, primary_key):
     if survey.need_logged_user:
         return serve_protected_result(request, survey)
     return serve_unprotected_result_csv(survey)
+
 def serve_result_json(request, primary_key):
     """ ... only if the survey does not require login or the user is logged.
     :param int primary_key: The primary key of the survey. """
