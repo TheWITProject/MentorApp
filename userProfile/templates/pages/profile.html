@@ -29,7 +29,7 @@
   <form class="profileinfo" method="get">
 
 
-    <form class="profile_display" method="post">{% csrf_token %}
+    <div class="profile_display" method="post">{% csrf_token %}
       {% csrf_token %}
       <div class="tab-content" id="v-pills-tabContent">
         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
@@ -178,9 +178,30 @@
         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
           <h3>Settings</h3>
           <p>
-            <button type="button" class="editbutton" onclick="parent.location= '/password_change/'" id="enter">Change
-              Password</button>
-          </p>
+            <!-- <button type="button" class="editbutton" onclick="parent.location= '/password_change/'" id="enter">Change Password</button> -->
+
+
+
+              <link rel="stylesheet" href="{% static 'css/form.css' %}">
+
+              <form method="POST" class="form-signin">{% csrf_token %}
+                <h1 class="h3 mb-3 font-weight-normal">Change password</h1>
+                  <input name="old_password" class="form-control" placeholder="Old password" type="password" id="id_old_password" required="true">
+                  <input name="new_password1" class="form-control" placeholder="New password" type="password" id="id_new_password1" required="true">
+                  <input name="new_password2" class="form-control" placeholder="Confirm password" type="password" id="id_new_password2" required="true">
+              
+                  {% for field in form %}
+                    {% for error in field.errors %}
+                      <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                  {% endfor %}
+              
+                  <button id="enter" class="btn enter btn-lg btn-primary btn-block" type="submit">Update</button>
+                </form>
+
+            </p>
+          
+            
         </div>
 
         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
