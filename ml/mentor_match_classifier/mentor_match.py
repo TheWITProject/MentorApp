@@ -31,7 +31,7 @@ class MentorMatchClassifier: # constructor to load preprocesign objects from jup
         match_json_result = self.mm.matches_to_json(input_data, prediction)
         return {"matches": match_json_result, "status": "OK"}
 
-    def compute_prediciton(self, input_data):
+    def compute_prediction(self, input_data):
         try:
             input_data = self.preprocessing(input_data)
             prediction = self.predict(input_data)

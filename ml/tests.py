@@ -12,7 +12,7 @@ class MLTests(TestCase):
         with open(os.path.dirname(os.path.abspath(__file__)) + '/../research/surveys.json') as json_file:
             input_data = json.load(json_file)
         mentor_match_alg = MentorMatchClassifier()
-        response = mentor_match_alg.compute_prediciton(input_data)
+        response = mentor_match_alg.compute_prediction(input_data)
         self.assertEqual('OK', response['status'])
         self.assertTrue('matches' in response)
 

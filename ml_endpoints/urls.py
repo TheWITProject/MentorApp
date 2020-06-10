@@ -6,16 +6,19 @@ from .views import EndpointViewSet
 from .views import MLAlgorithmViewSet
 from .views import MLAlgorithmStatusViewSet
 from .views import MLRequestViewSet
+from .views import PredictView
 
-#Routers are connected to viewSet
+
 router = DefaultRouter(trailing_slash=False)
 router.register(r"endpoints", EndpointViewSet, basename="endpoints")
 router.register(r"mlalgorithms", MLAlgorithmViewSet, basename="mlalgorithms")
 router.register(r"mlalgorithmstatuses", MLAlgorithmStatusViewSet, basename="mlalgorithmstatuses")
 router.register(r"mlrequests", MLRequestViewSet, basename="mlrequests")
-#
+
 urlpatterns = [
     path("api/v1/", include(router.urls)),
 
-    # path()
+    url(
+        r"^api/v1/(?P<endpoint_name>.+)/predict$", PredictView.as_view(), name="predict"
+    ),
 ]
