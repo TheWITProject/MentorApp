@@ -16,19 +16,21 @@ from userProfile.models import FrequentlyAsked, FrequentlyAskedMentor
 from django.views.generic.edit import FormView
 
 @login_required
-def home(request): 
-    user_id = User.objects.get(username=request.user).pk 
+def home(request):
+    user_id = User.objects.get(username=request.user).pk
     completed = len(Survey.objects.filter(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
     active_survey = [len(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))]
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
+    not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
+
     args = {'surveys': not_completed, 'active': active_survey,}
-    return render(request, 'pages/home.html',args) 
+    return render(request, 'pages/home.html',args)
 
 def logout_view(request):
 	logout(request)
 	return redirect('/')
 
-def signup(request): 
+def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -45,7 +47,7 @@ def signup(request):
                 'token': account_activation_token.make_token(user),
             })
             user.email_user(subject, message)
-            
+
             return redirect('account_activation_sent')
     else:
         form = SignUpForm()
@@ -97,13 +99,14 @@ def profile(request):
     #     user = ProfileForm(instance = request.user)
     # return render(request, 'pages/profile.html', args)
     form = ProfileForm(instance=request.user.profile)
-    return render(request, 'pages/profile.html', {'form':form})
+    all_surveys = tuple(Survey.objects.all().filter(is_published = True))
+    return render(request, 'pages/profile.html', {'form':form, 'allsurveys':all_surveys})
 
 def set_notifications(request):
     if request.user.is_authenticated:
-        user_id = User.objects.get(username=request.user).pk 
+        user_id = User.objects.get(username=request.user).pk
         context = {}
-        context["notifications"] = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True)) 
+        context["notifications"] = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
         context["current_page"] = request.path
         return context
     context = {}
@@ -114,7 +117,7 @@ def faq_page(request):
     faq_mentor_objects = FrequentlyAskedMentor.objects.all()
     args = {}
     if faq_objects:
-        args["faq_objects"] = faq_objects 
+        args["faq_objects"] = faq_objects
     if faq_mentor_objects:
         args["faq_mentor_objects"] = faq_mentor_objects
     return render(request, 'pages/faq.html', args)
