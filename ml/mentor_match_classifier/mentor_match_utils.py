@@ -119,4 +119,4 @@ class MentorMatchingMethods:
         matches_df['User IDs'] = user_id
         matches_df['Match IDs'] = match_id
         print(matches_df)
-        return matches_df.to_json()
+        return matches_df.to_json(orient='records')
