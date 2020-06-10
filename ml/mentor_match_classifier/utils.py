@@ -1,7 +1,7 @@
 from ast import literal_eval
 import numpy as np 
 
-def count_equal_responses(self, student, mentor):
+def count_equal_responses(student, mentor):
         count = 0
         if isinstance(student, (int, np.integer)):
             count += 0

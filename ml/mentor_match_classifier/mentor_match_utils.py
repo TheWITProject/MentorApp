@@ -7,7 +7,7 @@ from ast import literal_eval
 from matching import Player  
 from matching.games import HospitalResident
 
-from utils import count_equal_responses
+from ml.mentor_match_classifier.utils import count_equal_responses
 
 class MentorMatchingMethods:
 
@@ -120,31 +120,3 @@ class MentorMatchingMethods:
         matches_df['Match IDs'] = match_id
         print(matches_df)
         return matches_df.to_json()
-
-import json
-import os
-
-def main():
-    mm = MentorMatchingMethods()
-    with open(os.path.dirname(os.path.abspath(__file__)) + '/../../research/surveys.json') as json_file:
-        input_data = json.load(json_file)
-    df = pd.DataFrame(input_data)
-    print('a')
-    df = mm.fix_df_arrays(df)
-    print('b')
-    df = mm.create_user_id(df)
-    print('c')
-    print(df)
-    score_matrix = mm.create_score_matrix(df)
-    print('d')
-    score_matrix = mm.assign_id(df, score_matrix)
-    print('e')
-    print(score_matrix)
-    score_matrix = mm.calculate_match_scores(score_matrix, df)
-    print('f')
-    mentor_pref_dict, mentor_pref_dict_5 = mm.top_matches_mentor(score_matrix)
-    student_pref_dict, student_pref_dict_5 = mm.top_matches_student(score_matrix)
-    mentor_matches = mm.get_mentor_match(mentor_pref_dict, student_pref_dict)
-    mentor_matches_json = mm.matches_to_json(mentor_matches, df)
-
-main()
