@@ -105,7 +105,6 @@ class MentorMatchingMethods:
         # creating dataframe with mentor and student matches
         matches_df = pd.DataFrame(user_ids,columns = ['User IDs'])
         matches_df['Match IDs'] = matches_ids
-        print(matches_df)
 
         # replacing randomly generated IDs with database user ids
         user_id = []
@@ -118,5 +117,4 @@ class MentorMatchingMethods:
 
         matches_df['User IDs'] = user_id
         matches_df['Match IDs'] = match_id
-        print(matches_df)
         return matches_df.to_json(orient='records')
