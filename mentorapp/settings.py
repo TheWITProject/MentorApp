@@ -109,7 +109,7 @@ else:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'mentorapp',
             'USER': 'name',
-            'PASSWORD': '',
+            'PASSWORD': 'password',
             'HOST': 'localhost',
             'PORT': '5432',
 

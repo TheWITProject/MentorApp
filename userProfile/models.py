@@ -110,4 +110,3 @@ class Email(models.Model):
     bcc_email_mentees = models.BooleanField(default=False, verbose_name=_('BCC All Mentees'))
     subject = models.CharField(max_length=5000, default='')
     message_email = models.TextField(max_length=30000, default='')
-
