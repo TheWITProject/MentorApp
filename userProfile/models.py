@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .enums import *
+from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 
