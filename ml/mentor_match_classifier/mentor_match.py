@@ -36,7 +36,6 @@ class MentorMatchClassifier: # constructor to load preprocesign objects from jup
             input_data = self.preprocessing(input_data)
             prediction = self.predict(input_data)
             prediction = self.postprocessing(prediction, input_data)
-            print(prediction)
         except Exception as e:
             return {"status": "Error" ," message": str(e)}
         
