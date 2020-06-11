@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import logging
-
 from django.utils.translation import gettext_lazy as _
 from pandas.core.frame import DataFrame
 from pySankey import sankey
-
 from survey.exporter.tex.question2tex import Question2Tex
 from survey.models.question import Question
 

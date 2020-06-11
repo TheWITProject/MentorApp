@@ -245,18 +245,13 @@ class IndustryChoice(Enum):
 
 
 class TrackChoice(Enum):
-    PROFDEV= "Professional Development"
-    INTERVIEWSKILL = "Interviewing Skills" 
-    NETWORKING = "Networking" 
-    LEADERSHIP = "Leadership"
-    PUBLICSPEAK = "Public Speaking" 
-    TECHSKILL = "Technical Skills" 
-    TIMEMANAGE = "Time Management" 
-    RESEARCH = "Research" 
-    TECHNOLOGY ="Technology" 
-    COMMUNICATION = "Communication"
     PM = "Project Management"
-    UPDATES = "Industry Updates" 
+    IT = "IT Helpdesk"
+    NS = "Network/Desktop Support"
+    QA = "Quality Assurance"
+    CYBER = "Cyber Security" 
+    DA = "Data Analytics"
+
 
     @classmethod
     def choices(cls):
