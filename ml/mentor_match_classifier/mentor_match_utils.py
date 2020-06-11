@@ -40,10 +40,10 @@ class MentorMatchingMethods:
         return score_matrix 
 
     def final_score(self, region, no_group, with_group):
-        # if(region == 0):     #if the mentor/mentee have dif regions
-        #     return 0
-        # else:
-            # return (no_group + with_group)
+        if(region == 0):     #if the mentor/mentee have dif regions
+            return 0
+        else:
+            return (no_group + with_group)
         return (no_group + with_group)
 
     def calculate_match_scores(self, surveys, score_matrix):
