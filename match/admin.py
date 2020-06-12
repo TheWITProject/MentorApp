@@ -4,25 +4,25 @@ from django.urls import path
 from django.http import HttpResponseRedirect
 from match.models import *
 from .serializers import MatchesSerializer
-#
-# class MatchesAdmin(admin.ModelAdmin):
-#     pass
+from django.http import HttpResponse
 
-# @admin.register(Hero)
 import requests
 import pandas as pd
 import json
 import os
+import csv
 
 class MatchesAdmin(admin.ModelAdmin):
     change_list_template = "admin/matches/buttons.html"
+    list_display = ("user_id", "puser")
+    actions = ['export_matches']
     
 
     def get_urls(self):
         urls = super().get_urls()
         my_urls = [
             path('makematches/', self.make_matches),
-            path('download/', self.export_matches),
+            # path('download/', self.export_matches),
         ]
         return my_urls + urls
 
@@ -45,9 +45,26 @@ class MatchesAdmin(admin.ModelAdmin):
             print(serializer.errors)
         return HttpResponseRedirect("../")
 
-    def export_matches(self, request):
+    def export_matches(self, request, queryset):
+
+        f = open('some.csv', 'w')
+        writer = csv.writer(f)
+        writer.writerow(["user_id", "match_id"])
+
+        for s in queryset:
+            writer.writerow([s.user_id, s.match_id])
+        
+        f.close()
+        f = open('some.csv', 'r')
+        response = HttpResponse(f, content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename = matches.csv'
         self.message_user(request, "Matches have been downloaded")
-        return HttpResponseRedirect("../")
+
+        return response
+        # return HttpResponseRedirect("../")
+    
+
 
 
 admin.site.register(Matches, MatchesAdmin)
+
