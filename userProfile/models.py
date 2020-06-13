@@ -7,10 +7,10 @@ from django.dispatch import receiver
 from .enums import *
 from django.utils.translation import ugettext_lazy as _
 
-
+#class Quiz
 class AdditionalQuestions(models.Model):
     name = models.CharField(max_length=1000,default='')
-    # questions_count = models.IntegerField(default=0)
+    questions_count = models.IntegerField(default=0)
     #description = models.CharField(max_length=70)
     created = models.DateTimeField(auto_now_add=True,null=True,blank=True)
     # slug = models.SlugField()
@@ -35,9 +35,20 @@ class Answer(models.Model):
     def __str__(self):
         return self.text
 
+    def __init__(self, *args, **kwargs):
+        try:
+            question = Question.objects.get(pk=kwargs["question_id"])
+        except KeyError:
+            question = kwargs.get("question")
+            print("action failed")
+        # body = kwargs.get("body")
+        # if question and body:
+        #     self.check_answer_body(question, body)
+        super(Answer, self).__init__(*args, **kwargs)
+
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)     #ONetoOne vs ForeignKey (Document)
     profile_pic = models.ImageField(default='profileimage.png', null = True, blank=True)
     question_form = models.ForeignKey(AdditionalQuestions, on_delete=models.CASCADE, null = True)
     email_confirmed = models.BooleanField(default=False)
@@ -74,12 +85,34 @@ class Response(models.Model):
     def __str__(self):
         return self.question.label
 
+    def __init__(self, *args, **kwargs):
+        try:
+            answer = Answer.objects.filter(question_id="1")
+        except KeyError:
+            #question = kwargs.get("question")
+            print("response failed")
+        # body = kwargs.get("body")
+        # if question and body:
+        #     self.check_answer_body(question, body)
+        super(Response, self).__init__(*args, **kwargs)
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=User)  #AdditionalQuestions instead of User
 def update_user_profile(sender, instance, created, **kwargs):
+    question_form = AdditionalQuestions.objects.filter(id = instance.id)
+
     if created:
-        Profile.objects.create(user=instance)
+        Profile.objects.create(user=instance.id)  #ADDED ID
         instance.profile.save()
+
+        question_form.update(questions_count=instance.question_set.filter(question_form=instance.pk).count())
+
+# ADDED THIS
+@receiver(post_save, sender=Question)
+def set_default(sender, instance, created,**kwargs):
+    question_form = AdditionalQuestions.objects.filter(id = instance.question_form.id)
+
+    question_form.update(questions_count=instance.question_form.question_set.filter(question_form=instance.question_form.pk).count())
+
 
 class FrequentlyAsked(models.Model):
     question = models.CharField(max_length=1000, default='')
