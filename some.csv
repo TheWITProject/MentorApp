@@ -1,13 +1,5 @@
-user_id,match_id
-21,17
-27,26
-17,21
-26,27
-21,17
-27,26
-17,21
-26,27
-21,17
-27,26
-17,21
-26,27
+User ID,Username,User's First Name,User's Last Name,Match ID,Match's First Name,Match's Last Name
+12,mentor_2,Mentor,Two,10,Student,Two
+11,mentor_1,Mentor,One,9,Number,One
+10,student_2,Student,Two,12,Mentor,Two
+9,student_1,Number,One,11,Mentor,One

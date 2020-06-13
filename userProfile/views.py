@@ -80,9 +80,9 @@ def edit_profile(request):
         print(request.FILES)
         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         # add_form = AdditionalQuestionsForm(request.POST, request.FILES, instance=request.user.profile)
-        if profile_form.is_valid() and add_form.is_valid():
+        if profile_form.is_valid():
             profile_form.save()
-            add_form.save()
+            #add_form.save()
             return redirect("profile")
         else:
             messages.error(request, _('Please correct the error below.'))
