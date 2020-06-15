@@ -18,8 +18,22 @@ class AdditionalQuestionsAdmin(nested_admin.NestedModelAdmin):
    list_display = ("name","created")
    inlines = [QuestionInline,]
  
+# class ResponseInline(admin.TabularInline):
+#    model = Response
+#    def formfield_for_foreignkey(self,db_field , request, **kwargs):
+#       list_display = (self.model.question,)
+#       if db_field.name == "answer":
+#          kwargs["queryset"] = Answer.objects.filter(question_id = list_display[0].id)
+#       return super().formfield_for_foreignkey(db_field, request, **kwargs)
+  
 class ResponseInline(admin.TabularInline):
    model = Response
+   # question = model.question
+   # print (question.answers.all())
+   # def formfield_for_foreignkey(self, db_field , request, **kwargs):
+   #    if db_field.name == "answer":
+   #       kwargs["queryset"] = Answer.objects.filter(question_id = self.value)
+   #    return super().formfield_for_foreignkey(db_field, request, **kwargs)
  
 class ResponseAdmin(nested_admin.NestedModelAdmin):
    list_display = ("question", "user", "question_form")

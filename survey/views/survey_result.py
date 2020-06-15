@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import pandas as pd
 from django.conf import settings
 from django.contrib import messages
@@ -65,6 +64,3 @@ def serve_result_json(request, primary_key):
     if survey.need_logged_user:
         return serve_protected_result_json(request, survey)
     return serve_unprotected_result_json(survey)
-
-
-

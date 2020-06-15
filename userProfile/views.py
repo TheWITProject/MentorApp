@@ -91,11 +91,8 @@ def edit_profile(request):
             messages.error(request, _('Please correct the error below.'))
     else:
         profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'pages/edit_profile.html', {
-
-        'profile_form': profile_form
-    })
-
+    return render(request, 'pages/edit_profile.html', {'profile_form': profile_form,})
+    
 @login_required
 def profile(request):
     # form = ProfileForm(request.POST)

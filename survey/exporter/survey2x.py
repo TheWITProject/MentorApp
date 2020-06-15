@@ -23,7 +23,6 @@ class Survey2X:
         self._check_survey(survey)
         self.survey = survey
         self.__directory = '/tmp'
-
     @staticmethod
     def _check_survey(survey):
         if not isinstance(survey, Survey):
