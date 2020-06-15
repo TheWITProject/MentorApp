@@ -2,16 +2,7 @@ from django.contrib import admin
 from .models import *
 import nested_admin
 from django.core.mail import EmailMessage
-# from import_export import resources
 from import_export.admin import ExportMixin
-
-# class ProfileExport(resources.ModelResource):
-#     class Meta:
-#         model = Profile
-
-# @admin.register(Profile)
-# class ProfileAdmin(ExportMixin, admin.ModelAdmin):
-#     pass
 
 class AnswerInline(nested_admin.NestedTabularInline):
    model = Answer
@@ -105,5 +96,4 @@ admin.site.register(Profile, UserResponderAdmin)
 admin.site.register(FrequentlyAsked)
 admin.site.register(FrequentlyAskedMentor)
 admin.site.register(Email, EmailAdmin)
-# admin.site.register(Profile, ProfileAdmin)
 
