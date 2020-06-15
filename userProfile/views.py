@@ -14,16 +14,23 @@ from userProfile.tokens import account_activation_token
 from survey.models import Response, Survey
 from userProfile.models import FrequentlyAsked, FrequentlyAskedMentor
 from django.views.generic.edit import FormView
+from match.models import Matches
+from userProfile.models import Profile
 
 @login_required
 def home(request):
     user_id = User.objects.get(username=request.user).pk
+    print(user_id)
     completed = len(Survey.objects.filter(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
     active_survey = [len(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))]
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
 
-    args = {'surveys': not_completed, 'active': active_survey,}
+    match_model_user = Matches.objects.get(user_id=user_id)
+    match_model_match = Profile.objects.get(user_id=match_model_user.match_id)
+    print(match_model_match)
+
+    args = {'surveys': not_completed, 'active': active_survey,'match':match_model_match}
     return render(request, 'pages/home.html',args)
 
 def logout_view(request):
@@ -80,9 +87,9 @@ def edit_profile(request):
         print(request.FILES)
         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         # add_form = AdditionalQuestionsForm(request.POST, request.FILES, instance=request.user.profile)
-        if profile_form.is_valid() and add_form.is_valid():
+        if profile_form.is_valid() :
             profile_form.save()
-            add_form.save()
+            # add_form.save()
             return redirect("profile")
         else:
             messages.error(request, _('Please correct the error below.'))

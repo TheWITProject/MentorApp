@@ -38,11 +38,11 @@
 		<h3 style = "text-align: center;">Congratulations! You've got a match!</h3> <br>
 		<div class='matchprofile'>
 			<div id="profileimghome"><img src="/images/profileimage.png" width="240"></div>
-			<br><small>John Doe<br>
-			john.doe@gmail.com<br>
-			Technology<br>
-			Google<br>
-			Software Engineer</small>
+			<br><small><h4>{{ match.first_name }} {{ match.last_name }}</h4><br>
+			{{ match.user.email }}<br>
+			{{ match.industry }}<br>
+			{{ match.company }}<br>
+			{{ match.job_title }}</small>
 		</div>
 	</div>
 
