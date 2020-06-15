@@ -35,15 +35,21 @@
 
 	<div class="col-4">
 		<br>
+		{% if match != 0 %}
 		<h3 style = "text-align: center;">Congratulations! You've got a match!</h3> <br>
 		<div class='matchprofile'>
 			<div id="profileimghome"><img src="/images/profileimage.png" width="240"></div>
 			<br><small><h4>{{ match.first_name }} {{ match.last_name }}</h4><br>
 			{{ match.user.email }}<br>
-			{{ match.industry }}<br>
+			{{ match.get_industry_display }}<br>
 			{{ match.company }}<br>
 			{{ match.job_title }}</small>
 		</div>
+		
+		{% else %}
+				<br> <br>
+				<h5 id="profileimghome">You have no match yet</h5>
+		{% endif %}
 	</div>
 
 	
