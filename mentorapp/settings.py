@@ -55,7 +55,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'ml',
     'match',
+    'import_export'
 ]
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
