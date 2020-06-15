@@ -1,5 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+{% block extrajs %}
+  <script>
+$(document).ready(function(){
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab){
+        $('#v-pills-profile a[href="' + activeTab + '"]').tab('show');
+    }
+});
+</script>
+{% endblock %}
+
 {% block content %}
 
 <div class="viewbox">
@@ -181,7 +200,6 @@
             <button type="button" class="editbutton" onclick="parent.location= '/password_change/'" id="enter">Change Password</button>
 
 
-
               <link rel="stylesheet" href="{% static 'css/form.css' %}">
 
               <form method="POST" class="form-signin">{% csrf_token %}
@@ -196,7 +214,7 @@
                     {% endfor %}
                   {% endfor %}
               
-                  <button id="enter" class="btn enter btn-lg btn-primary btn-block" onclick="parent.location= '/password_change/done/'" type="submit">Update</button>
+                  <button id="enter" class="btn enter btn-lg btn-primary btn-block" type="submit">Update</button>
                 </form>
 
             </p>
