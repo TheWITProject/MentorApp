@@ -71,7 +71,6 @@ class Survey2Csv(Survey2X):
 
         :param Survey survey: The survey we're treating. """
         header = [_("user")]  # , u"entity"]
-        # header += [_("user_id")]
         question_order = ["user"]  # , u"entity" ]
         for question in self.survey.questions.all():
             header.append(question.text)
@@ -93,9 +92,6 @@ class Survey2Csv(Survey2X):
     @staticmethod
     def export_as_csv(modeladmin, request, queryset):
         response = HttpResponse(content_type="text/csv")
-        print(response)
-        print(queryset)
-        print(request)
         response.write(codecs.BOM_UTF8)
         filename = ""
         for i, survey in enumerate(queryset):

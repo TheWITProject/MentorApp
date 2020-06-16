@@ -4,11 +4,7 @@ from django.urls import path
 from django.http import HttpResponseRedirect
 from match.models import *
 from .serializers import MatchesSerializer
-#
-# class MatchesAdmin(admin.ModelAdmin):
-#     pass
 
-# @admin.register(Hero)
 import requests
 import pandas as pd
 import json
