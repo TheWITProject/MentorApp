@@ -25,18 +25,16 @@ class MatchesAdmin(admin.ModelAdmin):
         urls = super().get_urls()
         my_urls = [
             path('makematches/', self.make_matches),
-            # path('download/', self.export_matches),
         ]
         return my_urls + urls
 
     def make_matches(self, request):
         r = requests.get('http://127.0.0.1:8000/survey/json/4')
         r.json()
-        print(os.getcwd())
         # x = requests.post('http://127.0.0.1:8000/api/v1/mlalgorithmstatuses', json = r.json())
        
-        mock_json = pd.read_json('/mnt/c/Users/angel/OneDrive/Documents/WITProject/MentorApp/match/mock.json', orient = 'records')
-        print(mock_json)
+        cur_dir = os.getcwd()
+        mock_json = pd.read_json(cur_dir + "/match/mock.json", orient = 'records')
         dict_json = mock_json.to_dict('records')
         serializer = MatchesSerializer(data=dict_json, many=True)
         if serializer.is_valid():
