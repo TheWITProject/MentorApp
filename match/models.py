@@ -9,10 +9,6 @@ class Response_json(models.Model):
 class Matches(models.Model):
     user_id = models.CharField(max_length=1000)
     match_id = models.CharField(max_length=1000)
-    #mentor_firstname = Profile.objects.get(user_id=user_id).first_name
-
-
-    #puser = models.ForeignKey(Profile, on_delete=models.SET_NULL, verbose_name=_("User"), null=True, blank=True)
 
     def __str__(self):
         return self.user_id
