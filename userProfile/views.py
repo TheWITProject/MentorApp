@@ -95,15 +95,8 @@ def edit_profile(request):
     if request.method == 'POST':
         print(request.FILES)
         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-<<<<<<< HEAD
-        # add_form = AdditionalQuestionsForm(request.POST, request.FILES, instance=request.user.profile)
-        if profile_form.is_valid() :
-            profile_form.save()
-            # add_form.save()
-=======
         if profile_form.is_valid():
             profile_form.save()
->>>>>>> 3e0d5fe5631cdd87ce62a750e7812cc10099f204
             return redirect("profile")
         else:
             messages.error(request, _('Please correct the error below.'))
