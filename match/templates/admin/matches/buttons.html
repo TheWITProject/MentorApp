@@ -7,11 +7,6 @@
                 <button type="submit">Make Matches</button>
         </form>
         <br><br>
-        <form action="download/" method="POST">
-            {% csrf_token %}
-                <button type="submit">Download Matches! :) </button>
-        </form>
-        <br><br>
     </div>
     {{ block.super }}
 {% endblock %}
