@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import *
 import nested_admin
 from django.core.mail import EmailMessage
+from import_export.admin import ExportMixin
 
 class AnswerInline(nested_admin.NestedTabularInline):
    model = Answer
@@ -37,7 +38,7 @@ class ResponseInline(admin.TabularInline):
 class ResponseAdmin(nested_admin.NestedModelAdmin):
    list_display = ("question", "user", "question_form")
 
-class UserResponderAdmin(admin.ModelAdmin):
+class UserResponderAdmin(ExportMixin, admin.ModelAdmin):
    inlines = [ResponseInline,]
 
 class EmailAdmin(admin.ModelAdmin):

@@ -7,6 +7,7 @@ from userProfile.models import Profile
 from .serializers import MatchesSerializer
 from django.http import HttpResponse
 
+
 import requests
 import pandas as pd
 import json
@@ -37,7 +38,6 @@ class MatchesAdmin(admin.ModelAdmin):
         mock_json = pd.read_json('/mnt/c/Users/angel/OneDrive/Documents/WITProject/MentorApp/match/mock.json', orient = 'records')
         print(mock_json)
         dict_json = mock_json.to_dict('records')
-        # mock_json = x.to_json
         serializer = MatchesSerializer(data=dict_json, many=True)
         if serializer.is_valid():
             matches_save = serializer.save() 
@@ -63,7 +63,7 @@ class MatchesAdmin(admin.ModelAdmin):
         self.message_user(request, "Matches have been downloaded")
 
         return response
-        # return HttpResponseRedirect("../")
+        
 
     def name(self, obj):
         return Profile.objects.get(user_id=obj.user_id).first_name
