@@ -14,6 +14,8 @@ from userProfile.tokens import account_activation_token
 from survey.models import Response, Survey
 from userProfile.models import FrequentlyAsked, FrequentlyAskedMentor, Profile
 from django.views.generic.edit import FormView
+from match.models import Matches
+from userProfile.models import Profile
 
 from django.http import HttpResponse
 from tablib import Dataset
@@ -28,8 +30,16 @@ def home(request):
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
 
-    args = {'surveys': not_completed, 'active': active_survey,}
-    return render(request, 'pages/home.html',args)
+    try:
+        match_model_user = Matches.objects.get(user_id=user_id)
+        match_model_match = Profile.objects.get(user_id=match_model_user.match_id)
+    
+        args = {'surveys': not_completed, 'active': active_survey,'match':match_model_match}
+        return render(request, 'pages/home.html',args)
+    
+    except:
+        args = {'surveys': not_completed, 'active': active_survey,'match':0}
+        return render(request, 'pages/home.html',args)
 
 def logout_view(request):
 	logout(request)
