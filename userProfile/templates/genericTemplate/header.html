@@ -10,17 +10,11 @@
 		<p class="m-auto">Hello, {{request.user.username}}</p>
 		{% endif %}
 	</h5>
-	<!-- <div class="search-bar mt-sm-2 mr-2">
-  	<form method="get">
-  		<input class="form-control"  type="text" name="q" id="id_q" placeholder="Search...">
-  	</form>
-  </div> -->
 	<nav class="my-2 my-md-0 mr-md-3">
 		{% if request.user.is_authenticated %}
 		<a class="p-2 text-dark" href="{% url 'home' %}">Home</a>
 		<a class="p-2 text-dark" href="{% url 'profile' %}">Profile</a>
 		<a class="p-2 text-dark" href="{% url 'faq' %}">FAQs</a>
-		<!-- <a class="p-2 text-dark" href="/survey"> List of Surveys</a> -->
 		{% if current_page != "/" %}
 		<div class="dropdown">
 			<button class="dropbtn">

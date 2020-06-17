@@ -20,6 +20,7 @@ $(document).ready(function(){
 {% endblock %}
 
 {% block content %}
+{% load i18n %}
 
 <div class="viewbox">
   <div class="column">
@@ -40,6 +41,9 @@ $(document).ready(function(){
         <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
           aria-controls="v-pills-settings" aria-selected="false"><i style="margin-left:-35px" class="fas fa-info"></i>
           Matches</a>
+        <a class="nav-link" id="v-pills-survey-tab" data-toggle="pill" href="#v-pills-survey" role="tab"
+          aria-controls="v-pills-survey" aria-selected="false"><i class="fas fa-file"></i>
+          Past Surveys</a>
       </div>
     </div>
 
@@ -78,7 +82,7 @@ $(document).ready(function(){
                 Preferred Pronouns
               </h5>
               <p>
-                {{ user.profile.get_gender_display}}</p>
+                {{ user.profile.get_gender_pronouns_display}}</p>
             </div>
             <div class="col-sm-6">
               <h5>
@@ -136,7 +140,7 @@ $(document).ready(function(){
                 Job Title
               </h5>
               <p>
-                {{ user.profile.title }} </p>
+                {{ user.profile.job_title }} </p>
             </div>
 
             <div class="col-sm-6">
@@ -239,6 +243,17 @@ $(document).ready(function(){
           <p style='font-style:italic; text-align:left'>
             Coming Soon
           </p>
+        </div>
+
+        <div class="tab-pane fade" id="v-pills-survey" role="tabpanel" aria-labelledby="v-pills-survey-tab">
+          <h3>Past Surveys</h3> <br>
+          <!-- <a class="p-2 text-dark" href="/survey">Past Surveys</a>  -->
+          <div id="pastsurveys">
+            {% for survey in allsurveys %}
+            <li><a id="links" href="{{ survey.get_absolute_url }}">{% trans "Edit your survey response for"%}
+                {{survey.name}}</a></li>
+            {% endfor %}
+          </div>
         </div>
       </div>
 </div>

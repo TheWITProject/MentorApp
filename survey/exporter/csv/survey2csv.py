@@ -36,6 +36,7 @@ class Survey2Csv(Survey2X):
         except AttributeError:
             # 'NoneType' object has no attribute 'username'
             user_answers["user"] = _("Anonymous")
+
         # user_answers[u"entity"] = response.user.entity
         for answer in response.answers.all():
             Survey2Csv.__get_user_line_from_answers(answer, user_answers)
@@ -45,6 +46,7 @@ class Survey2Csv(Survey2X):
                 user_line.append(user_answers[key_])
             except KeyError:
                 user_line.append("")
+        user_line.append(response.user.pk)
         return user_line
 
     @staticmethod
@@ -73,6 +75,7 @@ class Survey2Csv(Survey2X):
         for question in self.survey.questions.all():
             header.append(question.text)
             question_order.append(question.pk)
+        header += [_("user_id")]
         return header, question_order
 
     def __str__(self):
