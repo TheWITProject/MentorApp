@@ -25,7 +25,6 @@ from userProfile.resources import ProfileExport
 @login_required
 def home(request):
     user_id = User.objects.get(username=request.user).pk
-    print(user_id)
     completed = len(Survey.objects.filter(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
     active_survey = [len(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))]
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
