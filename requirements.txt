@@ -19,3 +19,6 @@ markdown
 django-filter
 python-dotenv
 requests
+django-import-export
+joblib
+matching
