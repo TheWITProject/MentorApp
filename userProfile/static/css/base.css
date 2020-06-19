@@ -40,7 +40,8 @@ h5 {
 
 #profileimg {
   text-align: left;
-
+  position: relative;
+  display: inline;
 }
 
 
@@ -140,8 +141,13 @@ form{
   border-radius: 1em;
   transition: 500ms;
   height: 50%;
-  width: 100%;
+  /* width: 100%; */
   font-size:0.9em;
+}
+
+.notification{
+    width: 60%;
+
 }
 
 .notification-center .notification:hover{
@@ -151,8 +157,6 @@ form{
 .notification-center{
   height:auto;
   text-align:center;
-
-
 }
 
 .notification-center a{
@@ -269,10 +273,10 @@ font-size: 16px;
   background:lightgrey;
   border:transparent;
   position: absolute;
-  left: 80%;
-  top: 90%;
   transform: translate(-50%, -50%);
-  border-radius: 50%
+  border-radius: 50%;
+  left:35%;
+  top:95%;
 }
 
 .fa-pen{
@@ -314,6 +318,7 @@ font-size: 16px;
   flex: 7;
   background-color:#eaf1ffec;
   padding: 25px;
+  overflow-x: scroll;
 }
 
 .editbutton, .savebutton{
@@ -410,11 +415,11 @@ li.active{
   padding: 25px;
   margin: 20px;
   border: 1px solid #213b74;
-  box-shadow: -1px 1px #213b74,
+  /* box-shadow: -1px 1px #213b74,
   -2px 2px #213b74,
   -3px 3px #213b74,
   -4px 4px #213b74,
-  -5px 5px #213b74;
+  -5px 5px #213b74; */
 }
 
 
