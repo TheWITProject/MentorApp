@@ -245,7 +245,7 @@ form{
   flex-direction: row;
   max-width: 60%;
   height: 70%;
-  padding: 10px;
+  /* padding: 10px; */
   margin: auto;
   border: 1px solid #213b74;
   box-shadow:  -1px 1px #213b74,
@@ -253,7 +253,9 @@ form{
        -3px 3px #213b74,
        -4px 4px #213b74,
        -5px 5px #213b74;
+font-size: 16px;
 }
+
 
 .nav-pills .nav-link.active{
   background-color: #213b74;
@@ -304,6 +306,7 @@ form{
 
 .tabs{
   padding: 10px 10px;
+  font-size: 16px;
 }
 
 .profileinfo{
@@ -318,11 +321,10 @@ form{
   background-color: #cf9212;
   border-color: #667ea8ec;
   color: black;
-
   padding: .5rem 1rem;
-  font-size: 1.1rem;
+  font-size: 17.6px;
   line-height: 1;
-  border-radius: .3rem;
+  border-radius: .5rem;
   margin-top:5px;
   /* margin-left: 7px; */
   display: flex;
@@ -334,7 +336,7 @@ form{
 }
 
 .col-4{
-  border-left: 4px solid #CCCCCC;
+  /* border-left: 4px solid #CCCCCC; */
   text-align:center;
 }
 
@@ -485,4 +487,61 @@ li.active{
 
 #pastsurveys{
     text-align: left;
+}
+
+@media screen and (max-width: 375px){
+  .viewbox{
+    flex-direction: column;
+    width:100%;
+    max-width: 80%;
+  }
+  body .col-sm-6{
+    text-align: center;
+    display: flow-root;
+    overflow: scroll;
+
+  }
+  body .profileHeader{
+    flex-direction: row;
+    content: "\a";
+    white-space: pre;
+    text-align: center;
+  }
+  #profileimg{
+    text-align: center;
+  }
+
+  .editbutton, .savebutton{
+    align-items: center;
+    display: inline;
+  }
+
+  h3{
+    text-align: center;
+  }
+
+  .faq_box{
+    max-width: 80%;
+  }
+
+  #homeMediaCSS{
+    flex-direction: row;
+    display: initial;
+  }
+
+  .col-8{
+    max-width: 100%;
+  }
+  
+  .col-4{
+    text-align: center;
+    max-width: 100%;
+    border-top: 4px solid #CCCCCC;
+  }
+}
+
+@media screen and (min-width: 376px){
+.col-4{
+  border-left: 4px solid #CCCCCC;
+  }
 }
