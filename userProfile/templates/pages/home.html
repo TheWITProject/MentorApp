@@ -22,13 +22,17 @@
 				{% endif %}
 				{% endfor %}  
 			</h4>
-			{% for survey in surveys %}
-			<a href="/survey/{{survey.id}}">
-				<div class="notification">
-					<p class="survey-text">{{survey.name}} <br> Click here to take the survey</p>
+			<div class="row">
+				{% for survey in surveys %}
+				<div class="col-sm-4">
+					<a href="/survey/{{survey.id}}">
+						<div class="notification">
+							<p class="survey-text">{{survey.name}} <br> Click here to take the survey</p>
+						</div>
+					</a>
 				</div>
-			</a>
-			{% endfor %}
+				{% endfor %}
+			</div>
 		</div>
 
 	</div>
@@ -53,7 +57,6 @@
 		<h5 id="profileimghome">You don't have a match... yet!</h5>
 		{% endif %}
 	</div>
-
 
 </div>
 {% endblock %}
