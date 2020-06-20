@@ -39,7 +39,7 @@ h5 {
 }
 
 #profileimg {
-  text-align: left;
+  /* text-align: left; */
   position: relative;
   display: inline;
 }
@@ -147,7 +147,6 @@ form{
 
 .notification{
     width: 60%;
-
 }
 
 .notification-center .notification:hover{
@@ -318,6 +317,7 @@ font-size: 16px;
   flex: 7;
   background-color:#eaf1ffec;
   padding: 25px;
+  word-wrap: break-word;
   overflow-x: scroll;
 }
 
@@ -382,6 +382,8 @@ h6{
   padding: 20px;
   border: 1px solid #888;
   width: 50%;
+  align-content: center;
+
 }
 
 /* The Close Button */
@@ -391,6 +393,7 @@ h6{
   font-size: 28px;
   font-weight: bold;
   text-align: end;
+  padding-left:80%;
 }
 
 .close:hover,
@@ -400,6 +403,10 @@ h6{
   cursor: pointer;
 }
 
+input[type=file] {
+    display: block;
+    padding-left: 40%;
+}
 
 li.active{
   background-color:orange;
@@ -457,15 +464,12 @@ li.active{
   text-align:left;
 }
 
-
-
 .faqlink{
   font-size:1.25em;
   color:#cf9212;
 }
 
 .faq_box{
-
   border-radius: 25px;
   overflow:scroll;
   align-items: stretch;
@@ -494,26 +498,36 @@ li.active{
     text-align: left;
 }
 
-@media screen and (max-width: 375px){
+@media screen and (max-width: 375px), only screen and (max-width: 414px){
   .viewbox{
     flex-direction: column;
     width:100%;
     max-width: 80%;
   }
+
   body .col-sm-6{
     text-align: center;
     display: flow-root;
-    overflow: scroll;
-
   }
+
   body .profileHeader{
     flex-direction: row;
-    content: "\a";
-    white-space: pre;
+    white-space: inherit;
     text-align: center;
+    /* margin-right: 25%; */
+    display: inline-block;
+    padding-right:10px;
   }
+  
   #profileimg{
     text-align: center;
+    /* padding-left: 25%; */
+    margin-left:10%;
+  }
+
+  .profileinfo{
+    padding:10px;
+    margin:0px;
   }
 
   .editbutton, .savebutton{
@@ -536,6 +550,7 @@ li.active{
 
   .col-8{
     max-width: 100%;
+    padding:0;
   }
   
   .col-4{
@@ -543,9 +558,34 @@ li.active{
     max-width: 100%;
     border-top: 4px solid #CCCCCC;
   }
+
+  .icon-buton{
+    position: absolute;
+    left: 30%;
+    top: 200%;
+  }
+
+  .notification{
+    width: 100%;
+  }
+
+.matchprofile{
+  font-size: 20px;
+  }
+
+.modal-content{
+  width:80%;
 }
 
-@media screen and (min-width: 376px){
+input[type=file] {
+  display: block;
+  padding:0px;
+}
+
+
+}
+
+@media screen and (min-width: 415px){
 .col-4{
   border-left: 4px solid #CCCCCC;
   }

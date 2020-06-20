@@ -39,8 +39,10 @@
         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
           <div class='profileHeader'>
             <div id="profileimg"><img src='{{request.user.profile.profile_pic.url}}' width="240">
-              {{user.profile.first_name}}
-              {{user.profile.last_name}} ({{user.username}})</div>
+              <div class="profileUserName">{{user.profile.first_name}}
+                {{user.profile.last_name}} ({{user.username}})
+              </div>
+            </div>
           </div>
 
           <div class="row">
