@@ -131,23 +131,22 @@ form{
 .notification-center .notification h1{
   font-size:1.25em;
   margin-top:0;
-
-
 }
+
 .notification-center .notification{
   border: 2px solid #CCCCCC;
   margin: 1em 1em 1em 0em;
   padding: 0.25em;
   border-radius: 1em;
   transition: 500ms;
-  height: 50%;
+  height: auto;
   /* width: 100%; */
   font-size:0.9em;
 }
-
+/* 
 .notification{
     width: 60%;
-}
+} */
 
 .notification-center .notification:hover{
   filter: brightness(.25);
@@ -155,7 +154,11 @@ form{
 
 .notification-center{
   height:auto;
-  text-align:center;
+  width:auto;
+  /* text-align:center; */
+  display: flex;
+  overflow: scroll;
+  
 }
 
 .notification-center a{
@@ -170,6 +173,8 @@ form{
 .notification-center h4{
   color:#cf9212;;
   text-align:center;
+  margin-top:20px;
+  padding:20px;
 }
 
 .dropbtn {
@@ -582,7 +587,17 @@ input[type=file] {
   padding:0px;
 }
 
+#profileimg img{
+  position: initial;
+}
+  .notification-center{
+    display: block;
+    padding:0;
+  }
 
+  .notification{
+    width:80%;
+  }
 }
 
 @media screen and (min-width: 415px){
