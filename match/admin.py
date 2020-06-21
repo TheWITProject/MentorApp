@@ -16,7 +16,7 @@ import csv
 
 class MatchesAdmin(admin.ModelAdmin):
     change_list_template = "admin/matches/buttons.html"
-
+    # autocomplete_fields = ['profile_search']
     list_display = ("user_id", "name", "last_name","match_first_name", "match_last_name", "manual_match","match_profile","user_profile" )
     readonly_fields = ( "name", "last_name","match_first_name", "match_last_name")
     fieldsets = (
@@ -26,6 +26,7 @@ class MatchesAdmin(admin.ModelAdmin):
     )
     actions = ['export_matches']
     
+    search_fields = ['profile_search__first_name']
 
     def get_urls(self):
         urls = super().get_urls()

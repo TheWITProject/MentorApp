@@ -1,7 +1,7 @@
 from django.db import models
-from userProfile.models import *
+from userProfile.models import Profile
 from django.utils.translation import gettext_lazy as _
-from django_extensions.db.fields import AutoSlugField
+
 
 # Create your models here.
 class Response_json(models.Model):
@@ -10,7 +10,7 @@ class Response_json(models.Model):
 class Matches(models.Model):
     match_profile = models.OneToOneField(Profile, on_delete=models.CASCADE, null =True, related_name = "match_profile")
     user_profile = models.OneToOneField(Profile, on_delete=models.CASCADE, null =True,  related_name = "user_profile")
-    
+    profile_search = models.ForeignKey(Profile, on_delete=models.CASCADE, null =True)
     # temp_id = AutoSlugField(populate_from=['match_profile__user_id'])
     # match_user = models.ForeignKey(MatchProfile, on_delete=models.CASCADE, null =True)
     user_id = models.CharField(max_length=1000, blank=True)
@@ -26,5 +26,9 @@ class Matches(models.Model):
 
     def __str__(self):
         return self.user_id
+   
+    class Meta:
+        verbose_name_plural ="Matches"
+    
 
    

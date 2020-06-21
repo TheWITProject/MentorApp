@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .enums import *
 from django.utils.translation import ugettext_lazy as _
+# from match.models import Matches
 
 
 class AdditionalQuestions(models.Model):
@@ -37,6 +38,7 @@ class Answer(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # match_search = models.ForeignKey(Matches, on_delete=models.CASCADE, null =True)
     profile_pic = models.ImageField(default='profileimage.png', null = True, blank=True)
     question_form = models.ForeignKey(AdditionalQuestions, on_delete=models.CASCADE, null = True)
     email_confirmed = models.BooleanField(default=False)

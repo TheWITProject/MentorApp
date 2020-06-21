@@ -3,6 +3,7 @@ from .models import *
 import nested_admin
 from django.core.mail import EmailMessage
 from import_export.admin import ExportMixin
+# from admin_auto_filters.filters import AutocompleteFilter
 
 class AnswerInline(nested_admin.NestedTabularInline):
    model = Answer
@@ -104,10 +105,15 @@ class EmailAdmin(admin.ModelAdmin):
       email.send()
       obj.save()
 
+# class ProfileAdmin(admin.ModelAdmin):
+#    autocomplete_fields = ['first_name', 'last_name']
+
+
 admin.site.register(AdditionalQuestions, AdditionalQuestionsAdmin) 
 admin.site.register(Response, ResponseAdmin)
-admin.site.register(Profile, UserResponderAdmin)
+# admin.site.register(Profile, UserResponderAdmin)
 admin.site.register(FrequentlyAsked)
 admin.site.register(FrequentlyAskedMentor)
 admin.site.register(Email, EmailAdmin)
 admin.site.register(MatchProfile)
+admin.site.register(Profile)
