@@ -37,9 +37,10 @@ class MatchesAdmin(admin.ModelAdmin):
 
     def make_matches(self, request):
         r = requests.get('http://127.0.0.1:8000/survey/json/5')
-        r.json()
-        # x = requests.post('http://127.0.0.1:8000/api/v1/mlalgorithmstatuses', json = r.json())
-       
+        r.json() 
+        print (r.json())
+        x = requests.post('http://127.0.0.1:8000/api/v1/mentor_match_classifier/predict', json = r.json())
+        print(x)
         cur_dir = os.getcwd()
         mock_json = pd.read_json(cur_dir + "/match/mock.json", orient = 'records')
         dict_json = mock_json.to_dict('records')
