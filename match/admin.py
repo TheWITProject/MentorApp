@@ -16,8 +16,14 @@ import csv
 
 class MatchesAdmin(admin.ModelAdmin):
     change_list_template = "admin/matches/buttons.html"
-    list_display = ("user_id", "name", "last_name","match_first_name", "match_last_name")
-    readonly_fields = ("user_id", "match_id", "name", "last_name","match_first_name", "match_last_name")
+
+    list_display = ("user_id", "name", "last_name","match_first_name", "match_last_name", "manual_match","match_profile","user_profile" )
+    readonly_fields = ( "name", "last_name","match_first_name", "match_last_name")
+    fieldsets = (
+        (None, {
+            'fields': ('user_profile', 'match_profile', 'manual_match', )
+        }),
+    )
     actions = ['export_matches']
     
 

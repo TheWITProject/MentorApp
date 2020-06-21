@@ -110,4 +110,4 @@ admin.site.register(Profile, UserResponderAdmin)
 admin.site.register(FrequentlyAsked)
 admin.site.register(FrequentlyAskedMentor)
 admin.site.register(Email, EmailAdmin)
-
+admin.site.register(MatchProfile)
