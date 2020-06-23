@@ -25,7 +25,7 @@ class MatchesAdmin(admin.ModelAdmin):
         }),
     )
     actions = ['export_matches']
-    
+
     search_fields = ['profile_search__first_name']
 
     def get_urls(self):
@@ -36,17 +36,21 @@ class MatchesAdmin(admin.ModelAdmin):
         return my_urls + urls
 
     def make_matches(self, request):
-        r = requests.get('http://127.0.0.1:8000/survey/json/5')
-        r.json() 
+        r = requests.get('http://127.0.0.1:8000/survey/json/1')
+        r.json()
         print (r.json())
         x = requests.post('http://127.0.0.1:8000/api/v1/mentor_match_classifier/predict', json = r.json())
         print(x)
-        cur_dir = os.getcwd()
-        mock_json = pd.read_json(cur_dir + "/match/mock.json", orient = 'records')
+        match_json = x.json()
+        print(match_json)
+        mid_json = match_json['matches']
+        # cur_dir = os.getcwd()
+        print(mid_json)
+        mock_json = pd.read_json(mid_json, orient = 'records')
         dict_json = mock_json.to_dict('records')
         serializer = MatchesSerializer(data=dict_json, many=True)
         if serializer.is_valid():
-            matches_save = serializer.save() 
+            matches_save = serializer.save()
             self.message_user(request, "Matches have been made")
         else:
             self.message_user(request, "Matches have NOT been made")
@@ -61,7 +65,7 @@ class MatchesAdmin(admin.ModelAdmin):
 
         for s in queryset:
             writer.writerow([s.user_id, Profile.objects.get(user_id=s.user_id), Profile.objects.get(user_id=s.user_id).first_name, Profile.objects.get(user_id=s.user_id).last_name, s.match_id, Profile.objects.get(user_id=s.match_id).first_name, Profile.objects.get(user_id=s.match_id).last_name])
-        
+
         f.close()
         f = open('some.csv', 'r')
         response = HttpResponse(f, content_type='text/csv')
@@ -69,7 +73,7 @@ class MatchesAdmin(admin.ModelAdmin):
         self.message_user(request, "Matches have been downloaded")
 
         return response
-        
+
 
     def name(self, obj):
         return Profile.objects.get(user_id=obj.user_id).first_name
@@ -82,9 +86,8 @@ class MatchesAdmin(admin.ModelAdmin):
 
     def match_last_name(self, obj):
         return Profile.objects.get(user_id=obj.match_id).last_name
-    
+
 
 
 
 admin.site.register(Matches, MatchesAdmin)
-
