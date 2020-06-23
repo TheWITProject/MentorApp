@@ -12,8 +12,15 @@ from django.utils.translation import ugettext_lazy as _
 from userProfile.forms import *
 from userProfile.tokens import account_activation_token
 from survey.models import Response, Survey
-from userProfile.models import FrequentlyAsked, FrequentlyAskedMentor
+from userProfile.models import FrequentlyAsked, FrequentlyAskedMentor, Profile
 from django.views.generic.edit import FormView
+from match.models import Matches
+from userProfile.models import Profile
+
+from django.http import HttpResponse
+from tablib import Dataset
+from userProfile.resources import ProfileExport
+
 
 @login_required
 def home(request):
@@ -23,8 +30,16 @@ def home(request):
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
 
-    args = {'surveys': not_completed, 'active': active_survey,}
-    return render(request, 'pages/home.html',args)
+    try:
+        match_model_user = Matches.objects.get(user_id=user_id)
+        match_model_match = Profile.objects.get(user_id=match_model_user.match_id)
+    
+        args = {'surveys': not_completed, 'active': active_survey,'match':match_model_match}
+        return render(request, 'pages/home.html',args)
+    
+    except:
+        args = {'surveys': not_completed, 'active': active_survey,'match':0}
+        return render(request, 'pages/home.html',args)
 
 def logout_view(request):
 	logout(request)
@@ -79,21 +94,14 @@ def edit_profile(request):
     if request.method == 'POST':
         print(request.FILES)
         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        # add_form = AdditionalQuestionsForm(request.POST, request.FILES, instance=request.user.profile)
-        if profile_form.is_valid() and add_form.is_valid():
+        if profile_form.is_valid():
             profile_form.save()
-            add_form.save()
             return redirect("profile")
         else:
             messages.error(request, _('Please correct the error below.'))
     else:
         profile_form = ProfileForm(instance=request.user.profile)
-        # add_form = AdditionalQuestionsForm(instance=request.user.profile)
-    return render(request, 'pages/edit_profile.html', {
-        'profile_form': profile_form,
-        # 'add_form': add_form
-    })
-
+    return render(request, 'pages/edit_profile.html', {'profile_form': profile_form,})
     
 @login_required
 def profile(request):
@@ -125,3 +133,25 @@ def faq_page(request):
     if faq_mentor_objects:
         args["faq_mentor_objects"] = faq_mentor_objects
     return render(request, 'pages/faq.html', args)
+
+
+def export_data(request):
+    if request.method == 'POST':
+        # Get selected option from form
+        file_format = request.POST['file-format']
+        profile_export = ProfileExport()
+        dataset = profile_export.export()
+        if file_format == 'CSV':
+            response = HttpResponse(dataset.csv, content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="exported_data.csv"'
+            return response        
+        elif file_format == 'JSON':
+            response = HttpResponse(dataset.json, content_type='application/json')
+            response['Content-Disposition'] = 'attachment; filename="exported_data.json"'
+            return response
+        elif file_format == 'XLS (Excel)':
+            response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+            response['Content-Disposition'] = 'attachment; filename="exported_data.xls"'
+            return response   
+
+    return render(request, 'export.html')

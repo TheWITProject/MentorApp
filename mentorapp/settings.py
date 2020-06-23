@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import sys
 from dotenv import load_dotenv
+
 
 load_dotenv()
 
@@ -27,12 +29,16 @@ SECRET_KEY = 'v77!w980vxmft4ege5quusj%5+)p3p!xu8914wxef$!5bq7%r@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if 'RDS_DB_NAME' in os.environ:
+    EMAIL_HOST_USER = os.environ['email_user']
+    EMAIL_HOST_PASSWORD = os.environ['email_pass']
     DEBUG = True
     ALLOWED_HOSTS = ['yearup-mentorapp.us-east-1.elasticbeanstalk.com']
 else:
     print("Debug is enabled.")
     DEBUG = True
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+
 
 # Application definition
 
@@ -52,7 +58,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'ml',
     'match',
+    'import_export'
+    
 ]
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -116,7 +126,8 @@ else:
 
         }
     }
-
+if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

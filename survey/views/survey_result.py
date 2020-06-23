@@ -55,6 +55,7 @@ def serve_result_csv(request, primary_key):
 
 def serve_result_json(request, primary_key):
     """ ... only if the survey does not require login or the user is logged.
+
     :param int primary_key: The primary key of the survey. """
     survey = get_object_or_404(Survey, pk=primary_key)
     if not survey.is_published:
@@ -63,6 +64,3 @@ def serve_result_json(request, primary_key):
     if survey.need_logged_user:
         return serve_protected_result_json(request, survey)
     return serve_unprotected_result_json(survey)
-
-
-
