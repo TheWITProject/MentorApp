@@ -23,8 +23,8 @@
           aria-controls="v-pills-settings" aria-selected="false"><i style="margin-left:-35px" class="fas fa-info"></i>
           Matches</a>
         <a class="nav-link" id="v-pills-survey-tab" data-toggle="pill" href="#v-pills-survey" role="tab"
-          aria-controls="v-pills-survey" aria-selected="false"><i class="fas fa-file"></i>
-          Past Surveys</a>
+          aria-controls="v-pills-survey" aria-selected="false"><i style="margin-left:-35px" class="fas fa-file"></i>
+          Surveys</a>
       </div>
     </div>
 
@@ -37,10 +37,12 @@
       {% csrf_token %}
       <div class="tab-content" id="v-pills-tabContent">
         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-          <div class='profileHeader'>
-            <div id="profileimg"><img src='{{request.user.profile.profile_pic.url}}' width="240">
-              {{user.profile.first_name}}
-              {{user.profile.last_name}} ({{user.username}})</div>
+          <div class="profileHeader">
+            <div id="profileimg"><img src='{{request.user.profile.profile_pic.url}}' width="240" style="right:35%">
+              <div class="profileUserName">{{user.profile.first_name}}
+                {{user.profile.last_name}} ({{user.username}})
+              </div>
+            </div>
           </div>
 
           <div class="row">
@@ -208,7 +210,6 @@
 
         <div class="tab-pane fade" id="v-pills-survey" role="tabpanel" aria-labelledby="v-pills-survey-tab">
           <h3>Past Surveys</h3> <br>
-          <!-- <a class="p-2 text-dark" href="/survey">Past Surveys</a>  -->
           <div id="pastsurveys">
             {% for survey in allsurveys %}
             <li><a id="links" href="{{ survey.get_absolute_url }}">{% trans "Edit your survey response for"%}

@@ -2,14 +2,14 @@
 {% load static %}
 
 {% block content %}
-<div class="row">
+<div class="row" id="homeMediaCSS">
 	<div class="col-8">
 		<div class="welcome">
 			<h2>Welcome, {{ user.profile.first_name }}!</h2> <br>
-				<h6>Congratulations on getting selected for this Mentor Program. We hope you learn and develop
-					professional skills for your career and grow with your match!</h6> <br><br>
-				<h6>Please be sure to complete your profile on the profile page and any surveys shown on the
-					 right so we can match you to the right people!</h6>
+			<h6>Congratulations on getting selected for this Mentor Program. We hope you learn and develop
+				professional skills for your career and grow with your match!</h6> <br><br>
+			<h6>Please be sure to complete your profile on the profile page and any surveys shown on the
+				right so we can match you to the right people!</h6>
 		</div>
 
 		<div class="notification-center">
@@ -22,36 +22,41 @@
 				{% endif %}
 				{% endfor %}  
 			</h4>
-			{% for survey in surveys %}
-			<a href="/survey/{{survey.id}}">
-				<div class="notification">
-					<p class="survey-text">{{survey.name}} <br> Click here to take the survey</p>
+			<div class="row">
+				{% for survey in surveys %}
+				<div class="col-sm-4">
+					<a href="/survey/{{survey.id}}">
+						<div class="notification">
+							<p class="survey-text">{{survey.name}} <br> Click here to take the survey</p>
+						</div>
+					</a>
 				</div>
-			</a>
-			{% endfor %}
+				{% endfor %}
+			</div>
 		</div>
-		
+
 	</div>
 
 	<div class="col-4">
 		<br>
 		{% if match != 0 %}
-		<h3 style = "text-align: center;">Congratulations! You've got a match!</h3> <br>
+		<h3 style="text-align: center;">Congratulations! You've got a match!</h3> <br>
 		<div class='matchprofile'>
 			<div id="profileimghome"><img src="/images/profileimage.png" width="240"></div>
-			<br><small><h4>{{ match.first_name }} {{ match.last_name }}</h4><br>
-			{{ match.user.email }}<br>
-			{{ match.get_industry_display }}<br>
-			{{ match.company }}<br>
-			{{ match.job_title }}</small>
+			<small>
+				<h4>{{ match.first_name }} {{ match.last_name }}</h4>
+				{{ match.user.email }}<br>
+				{{ match.get_industry_display }}<br>
+				{{ match.company }}<br>
+				{{ match.job_title }}
+			</small>
 		</div>
-		
+
 		{% else %}
-				<br> <br>
-				<h5 id="profileimghome">You don't have a match... yet!</h5>
+		<br> <br>
+		<h5 id="profileimghome">You don't have a match... yet!</h5>
 		{% endif %}
 	</div>
 
-	
 </div>
 {% endblock %}
