@@ -4,6 +4,8 @@ from django.urls import path
 from django.http import HttpResponseRedirect
 from match.models import *
 from .serializers import MatchesSerializer
+from django.contrib import messages
+
 #
 # class MatchesAdmin(admin.ModelAdmin):
 #     pass
@@ -16,7 +18,7 @@ import os
 
 class MatchesAdmin(admin.ModelAdmin):
     change_list_template = "admin/matches/buttons.html"
-    
+    alert_template = "admin/match/matches/alerts.html"
 
     def get_urls(self):
         urls = super().get_urls()
@@ -46,8 +48,12 @@ class MatchesAdmin(admin.ModelAdmin):
         return HttpResponseRedirect("../")
 
     def export_matches(self, request):
-        self.message_user(request, "Matches have been downloaded")
-        return HttpResponseRedirect("../")
 
+        self.message_user(request, "Matches have been downloaded")
+        messages.warning(request, "Are you considering this to make manual matches ? ")
+        return HttpResponseRedirect("../")
+    
+
+    
 
 admin.site.register(Matches, MatchesAdmin)

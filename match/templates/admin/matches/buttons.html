@@ -1,7 +1,29 @@
 {% extends 'admin/change_list.html' %}
 
 {% block object-tools %}
-<div><br>
+     <div id="confirm">
+        <div class="message"></div>
+        <div>
+            <button class="yes">Yes</button>
+            <button class="no">No</button>
+        </div>
+
+    </div>
+
+    <button onclick = 
+        'functionConfirm("Would you like to make any manual match?", 
+        function yes() 
+        {
+            alert("Then go to ADD MATCHES")
+        },
+        function no() 
+        {
+            alert("Are you sure?")
+        });'
+    > Make Matches</button> 
+
+    <div><br>
+        
         <form action="makematches/" method="POST">
             {% csrf_token %}
                 <button type="submit">Make Matches</button>
@@ -12,6 +34,63 @@
                 <button type="submit">Download Matches! :) </button>
         </form>
         <br><br>
+
     </div>
+<!-- style for alter -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        let confirmBox = $("#confirm");
+        confirmBox.hide();
+        function functionConfirm(msg, myYes, myNo) {
+            confirmBox.find(".message").text(msg);
+            confirmBox.find(".yes,.no").unbind().click(function() {
+                confirmBox.hide();
+            })
+            confirmBox.find(".yes").click(myYes);
+            confirmBox.find(".no").click(myNo);
+            confirmBox.show();
+        }
+    </script>
+    <style>
+        #confirm {
+           display: none;
+           background-color: #79aec8;
+           border: 1px solid #aaa;
+           position: fixed;
+           width: 400px;
+           height: 20px;
+           left: 50%;
+           margin-left: -200px;
+           padding: 50px;
+           box-sizing: border-box;
+           text-align: center;
+           
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           align-items: center;
+        
+        }
+       
+        #confirm button {
+           background-color: #fff;
+           display: inline-block;
+           border-radius: 5px;
+           border: 1px solid #aaa;
+           padding: 5px;
+           text-align: center;
+           width: 80px;
+           cursor: pointer;
+           margin-top: 15px;
+        }
+        #confirm .message {
+           text-align: left;
+           font-weight: bold;
+         
+        }
+     </style>
+
+    
     {{ block.super }}
+
 {% endblock %}
