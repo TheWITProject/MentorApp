@@ -39,7 +39,6 @@ h5 {
 }
 
 #profileimg {
-  /* text-align: left; */
   position: relative;
   display: inline;
 }
@@ -244,7 +243,6 @@ form{
   flex-direction: row;
   max-width: 60%;
   height: 70%;
-  /* padding: 10px; */
   margin: auto;
   border: 1px solid #213b74;
   box-shadow:  -1px 1px #213b74,
@@ -327,7 +325,6 @@ font-size: 16px;
   line-height: 1;
   border-radius: .5rem;
   margin-top:5px;
-  /* margin-left: 7px; */
   display: flex;
 }
 
@@ -337,7 +334,6 @@ font-size: 16px;
 }
 
 .col-4{
-  /* border-left: 4px solid #CCCCCC; */
   text-align:center;
 }
 
@@ -418,11 +414,6 @@ li.active{
   padding: 25px;
   margin: 20px;
   border: 1px solid #213b74;
-  /* box-shadow: -1px 1px #213b74,
-  -2px 2px #213b74,
-  -3px 3px #213b74,
-  -4px 4px #213b74,
-  -5px 5px #213b74; */
 }
 
 
@@ -510,14 +501,12 @@ li.active{
     flex-direction: row;
     white-space: inherit;
     text-align: center;
-    /* margin-right: 25%; */
     display: inline-block;
     padding-right:10px;
   }
   
   #profileimg{
     text-align: center;
-    /* padding-left: 25%; */
     margin-left:10%;
   }
 
