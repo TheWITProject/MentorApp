@@ -17,7 +17,7 @@ import csv
 class MatchesAdmin(admin.ModelAdmin):
     change_list_template = "admin/matches/buttons.html"
     list_display = ("user_id", "name", "last_name","match_first_name", "match_last_name")
-    readonly_fields = ("user_id", "match_id", "name", "last_name","match_first_name", "match_last_name")
+    #readonly_fields = ("user_id", "match_id", "name", "last_name","match_first_name", "match_last_name")
     actions = ['export_matches']
     
 
@@ -31,11 +31,16 @@ class MatchesAdmin(admin.ModelAdmin):
     def make_matches(self, request):
         r = requests.get('http://127.0.0.1:8000/survey/json/4')
         r.json()
-        # x = requests.post('http://127.0.0.1:8000/api/v1/mlalgorithmstatuses', json = r.json())
-       
-        cur_dir = os.getcwd()
-        mock_json = pd.read_json(cur_dir + "/match/mock.json", orient = 'records')
+        x = requests.post('http://127.0.0.1:8000/api/v1/mentor_match_classifier/predict', json = r.json())
+        
+        print(x.json())
+        match_json = x.json()
+
+        mid_json = match_json['matches']
+        mock_json = pd.read_json(mid_json, orient = 'records')
+        print(type(mock_json))
         dict_json = mock_json.to_dict('records')
+
         serializer = MatchesSerializer(data=dict_json, many=True)
         if serializer.is_valid():
             matches_save = serializer.save() 

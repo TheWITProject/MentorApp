@@ -25,15 +25,15 @@ class MentorMatchingMethods:
         return surveys
 
     def create_score_matrix(self, surveys):
-        student_subset_df = surveys[surveys['Are you a Mentor or Student?'] == 'student']
-        mentor_subset_df = surveys[surveys['Are you a Mentor or Student?']== 'mentor']
+        student_subset_df = surveys[surveys['Are you a mentor or student?'] == 'student']
+        mentor_subset_df = surveys[surveys['Are you a mentor or student?']== 'mentor']
 
         score_matrix = pd.DataFrame(np.zeros(shape = (student_subset_df.shape[0],mentor_subset_df.shape[0])))
         score_matrix.columns = student_subset_df['ID']
         return score_matrix 
 
     def assign_id(self, surveys, score_matrix): 
-        mentor_subset_df = surveys[surveys['Are you a Mentor or Student?']== 'mentor']
+        mentor_subset_df = surveys[surveys['Are you a mentor or student?']== 'mentor']
         mentor_subset_df.reset_index(drop=True, inplace=True)  #only thing is how to gain access to the df here 
         score_matrix['mentor_id'] = mentor_subset_df['ID']
         score_matrix.set_index('mentor_id', inplace = True)
@@ -103,18 +103,18 @@ class MentorMatchingMethods:
         matches_ids = student_ids + mentor_ids
 
         # creating dataframe with mentor and student matches
-        matches_df = pd.DataFrame(user_ids,columns = ['User IDs'])
-        matches_df['Match IDs'] = matches_ids
+        matches_df = pd.DataFrame(user_ids,columns = ['user_id'])
+        matches_df['match_id'] = matches_ids
 
         # replacing randomly generated IDs with database user ids
         user_id = []
         match_id = []
-        for mentor in matches_df['User IDs']:
+        for mentor in matches_df['user_id']:
             user_id.append(int(surveys.loc[surveys['ID'] == mentor]['user_id'].values))
 
-        for student in matches_df['Match IDs']:
+        for student in matches_df['match_id']:
             match_id.append(int(surveys.loc[surveys['ID'] == student]['user_id'].values))
 
-        matches_df['User IDs'] = user_id
-        matches_df['Match IDs'] = match_id
+        matches_df['user_id'] = user_id
+        matches_df['match_id'] = match_id
         return matches_df.to_json(orient='records')
