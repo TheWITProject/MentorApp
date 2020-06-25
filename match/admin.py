@@ -26,7 +26,7 @@ class MatchesAdmin(admin.ModelAdmin):
     )
     actions = ['export_matches']
 
-    search_fields = ['profile_search__first_name']
+    # search_fields = ['profile_search__first_name']
 
     def get_urls(self):
         urls = super().get_urls()

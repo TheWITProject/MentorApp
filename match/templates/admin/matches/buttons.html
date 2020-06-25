@@ -9,6 +9,8 @@
         </div>
 
     </div>
+    <!-- <button class="submit" type="submit" -->
+    <!-- style= >Make Matches</button> -->
 
     <button onclick = 
         'functionConfirm("Would you like to make any manual match?", 
@@ -21,12 +23,21 @@
             alert("Are you sure?")
         });'
     > Make Matches</button> 
-
+<!--  -->
     <div><br>
         
         <form action="makematches/" method="POST">
             {% csrf_token %}
-                <button type="submit">Make Matches</button>
+                <button class= "makematch" onclick = 
+				'functionConfirm("Would you like to make any manual match?", 
+				function yes() 
+				{
+					alert("Then go to ADD MATCHES")
+				},
+				function no() 
+				{
+					alert("Are you sure?")
+				});'>Make Matches</button>
         </form>
         <br><br>
         <form action="download/" method="POST">
@@ -36,6 +47,8 @@
         <br><br>
 
     </div>
+
+
 <!-- style for alter -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
@@ -52,6 +65,27 @@
         }
     </script>
     <style>
+        .makematch {
+            background: #999;
+            display: block;
+            float: left;
+            padding: 0px;
+            font-weight: 400;
+            font-size: 12px;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 0.5px;
+            color: #fff;
+            padding-top: 3px;
+            padding-right: 12px;
+            padding-bottom: 3px;
+            padding-left: 12px;
+            border: none;
+            border-radius: 15px;
+                line-height: 20px;
+                font-family: 'Roboto','Lucida Grande','DejaVu Sans','Bitstream Vera Sans','Verdana','Arial','sans-serif';
+
+        }
         #confirm {
            display: none;
            background-color: #79aec8;
@@ -88,9 +122,16 @@
            font-weight: bold;
          
         }
+       
      </style>
+ 
 
     
     {{ block.super }}
 
 {% endblock %}
+
+
+
+
+
