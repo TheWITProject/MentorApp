@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from userProfile import views
+from match import views as matches_views
+
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
@@ -59,6 +61,7 @@ urlpatterns = [
     # path(r"^api/v1/", include('router.urls')),
     # path(r"^api/v1/", include('ml_endpoints.urls'))
     path('', include('ml_endpoints.urls')),
+    path('admin/match/manualmatch', matches_views.manual_match, name='manual_match'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

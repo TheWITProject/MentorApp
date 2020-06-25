@@ -4,46 +4,49 @@
      <div id="confirm">
         <div class="message"></div>
         <div>
-            <button class="yes">Yes</button>
-            <button class="no">No</button>
+            <button class="yes" id= "yes_button">Yes</button>
+            <button class="no" id = "no_button">No</button>
         </div>
 
     </div>
     <!-- <button class="submit" type="submit" -->
     <!-- style= >Make Matches</button> -->
 
-    <button onclick = 
-        'functionConfirm("Would you like to make any manual match?", 
-        function yes() 
+    <!-- <button onclick =
+        'functionConfirm("Would you like to make any manual match?",
+        function yes()
         {
             alert("Then go to ADD MATCHES")
         },
-        function no() 
+        function no()
         {
             alert("Are you sure?")
         });'
-    > Make Matches</button> 
+    > Make Matches</button>  -->
 <!--  -->
     <div><br>
-        
-        <form action="makematches/" method="POST">
+
+        <form action="makematches/" id = "match_form" method="POST">
             {% csrf_token %}
-                <button class= "makematch" onclick = 
-				'functionConfirm("Would you like to make any manual match?", 
-				function yes() 
+                <button type="button" class= "changed_buttons" onclick =
+				'functionConfirm("Would you like to make any manual match?",
+				function yes()
 				{
-					alert("Then go to ADD MATCHES")
+					alert("Then go to MANUAL MATCHES")
 				},
-				function no() 
+				function no()
 				{
 					alert("Are you sure?")
+          document.getElementById("match_form").submit();
 				});'>Make Matches</button>
         </form>
+        <a href = "{% url 'manual_match' %}"><button class = "changed_buttons"> Manual Matches </button> </a>
         <br><br>
-        <form action="download/" method="POST">
+        <!-- <form action="download/" method="POST">
             {% csrf_token %}
                 <button type="submit">Download Matches! :) </button>
-        </form>
+        </form> -->
+        <br><br><br><br>
         <br><br>
 
     </div>
@@ -63,12 +66,15 @@
             confirmBox.find(".no").click(myNo);
             confirmBox.show();
         }
+        if(yes.clicked==false){
+
+        }
     </script>
     <style>
-        .makematch {
+        .changed_buttons {
             background: #999;
             display: block;
-            float: left;
+            float: right;
             padding: 0px;
             font-weight: 400;
             font-size: 12px;
@@ -81,6 +87,7 @@
             padding-bottom: 3px;
             padding-left: 12px;
             border: none;
+            margin:5px;
             border-radius: 15px;
                 line-height: 20px;
                 font-family: 'Roboto','Lucida Grande','DejaVu Sans','Bitstream Vera Sans','Verdana','Arial','sans-serif';
@@ -98,14 +105,14 @@
            padding: 50px;
            box-sizing: border-box;
            text-align: center;
-           
+
            display: flex;
            flex-direction: column;
            justify-content: center;
            align-items: center;
-        
+
         }
-       
+
         #confirm button {
            background-color: #fff;
            display: inline-block;
@@ -120,18 +127,13 @@
         #confirm .message {
            text-align: left;
            font-weight: bold;
-         
-        }
-       
-     </style>
- 
 
-    
-    {{ block.super }}
+        }
+
+     </style>
+
+
+
+    <!-- {{ block.super }} -->
 
 {% endblock %}
-
-
-
-
-
