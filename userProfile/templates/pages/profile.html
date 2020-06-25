@@ -38,8 +38,8 @@
       <div class="tab-content" id="v-pills-tabContent">
         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
           <div class="profileHeader">
-            <div id="profileimg"><img src='{{request.user.profile.profile_pic.url}}' width="240" style="right:35%">
-              <div class="profileUserName">{{user.profile.first_name}}
+            <div id="profileimg"><img src='{{request.user.profile.profile_pic.url}}' width="240">
+              <div class=" profileUserName">{{user.profile.first_name}}
                 {{user.profile.last_name}} ({{user.username}})
               </div>
             </div>
@@ -183,10 +183,11 @@
 
         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
           <h3>Settings</h3>
-          <p>
+          <!-- <p>
             <button type="button" class="editbutton" onclick="parent.location= '/password_change/'" id="enter">Change
               Password</button>
-          </p>
+          </p> -->
+          <iframe src="/password_change/" style="width:100%; height:400px; border:none; overflow: hidden;"></iframe>
         </div>
 
         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">

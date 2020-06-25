@@ -38,11 +38,11 @@ h5 {
   border-radius: 50%;
 }
 
-#profileimg {
+#profileimg img{
   position: relative;
   display: inline;
+  margin-right:60%
 }
-
 
 #profileimghome {
   position: relative;
@@ -80,7 +80,6 @@ overflow: auto;
   font-size: x-large;
   padding-bottom:15px
 }
-
 
 .footer{
   min-height: 100px;
@@ -179,6 +178,7 @@ form{
 .dropdown {
   position: relative;
   display: inline-block;
+
 }
 
 .dropdown-content {
@@ -208,6 +208,8 @@ form{
 
 .dropdown:hover .dropdown-content {
   display: block;
+    max-height: 400px;
+    overflow: scroll;
 }
 
 .dropdown:hover .dropbtn {
@@ -485,6 +487,16 @@ li.active{
     text-align: left;
 }
 
+#changepassconfirm{
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width:70%
+}
+
+
+/* Mobile Friendly Code */
+
 @media screen and (max-width: 375px), only screen and (max-width: 414px){
   .viewbox{
     flex-direction: column;
@@ -513,6 +525,7 @@ li.active{
   .profileinfo{
     padding:10px;
     margin:0px;
+
   }
 
   .editbutton, .savebutton{
@@ -554,23 +567,27 @@ li.active{
     width: 100%;
   }
 
-.matchprofile{
-  font-size: 20px;
+  .matchprofile{
+    font-size: 20px;
   }
 
-.modal-content{
-  width:80%;
+  .modal-content{
+    width:80%;
 }
 
-input[type=file] {
-  display: block;
-  padding:0px;
+  input[type=file] {
+    display: block;
+    padding:0px;
 }
 
-#profileimg img{
-  position: initial;
-}
+  #profileimg img{
+    position: initial;
+      margin-right:0;
+  }
 
+  #changepassconfirm{
+    width:100%;
+  }
 }
 
 @media screen and (min-width: 415px){
@@ -578,3 +595,4 @@ input[type=file] {
   border-left: 4px solid #CCCCCC;
   }
 }
+
