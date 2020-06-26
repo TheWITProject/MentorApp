@@ -18,13 +18,13 @@ class MatchesAdmin(admin.ModelAdmin):
     change_list_template = "admin/matches/buttons.html"
     # autocomplete_fields = ['profile_search']
     list_display = ("user_id", "name", "last_name","match_first_name", "match_last_name", "manual_match","match_profile","user_profile" )
-    readonly_fields = ( "name", "last_name","match_first_name", "match_last_name")
+    #readonly_fields = ( "name", "last_name","match_first_name", "match_last_name")
     fieldsets = (
         (None, {
             'fields': ('user_profile', 'match_profile', 'manual_match', )
         }),
     )
-    actions = ['export_matches']
+    actions = ['export_matches', 'make_matches']
 
     search_fields = ['profile_search__first_name']
 
@@ -36,7 +36,7 @@ class MatchesAdmin(admin.ModelAdmin):
         return my_urls + urls
 
     def make_matches(self, request):
-        r = requests.get('http://127.0.0.1:8000/survey/json/1')
+        r = requests.get('http://127.0.0.1:8000/survey/json/4')
         r.json()
         print (r.json())
         x = requests.post('http://127.0.0.1:8000/api/v1/mentor_match_classifier/predict', json = r.json())

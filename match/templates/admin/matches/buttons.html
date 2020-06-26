@@ -1,12 +1,38 @@
-{% extends 'admin/change_list.html' %}
+{% extends 'admin/change_list.html' %} 
 
 {% block object-tools %}
+
 <div><br>
         <form action="makematches/" method="POST">
             {% csrf_token %}
-                <button type="submit">Make Matches</button>
+                <button class="submit" type="submit" 
+                style= "display: block;
+    			float: left;
+    padding: 0px;
+    background: #999;
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.5px;
+    color: #fff;
+  	padding-top: 3px;
+    padding-right: 12px;
+    padding-bottom: 3px;
+    padding-left: 12px;
+    border: none;
+    
+    border-radius: 15px; 
+        line-height: 20px;
+        font-family: 'Roboto','Lucida Grande','DejaVu Sans','Bitstream Vera Sans','Verdana','Arial','sans-serif';">Make Matches</button>
         </form>
         <br><br>
     </div>
+
+
     {{ block.super }}
+
 {% endblock %}
+
+
+
