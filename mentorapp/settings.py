@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'ml',
     'match',
     'import_export'
-    
+
 ]
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True

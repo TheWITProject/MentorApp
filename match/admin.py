@@ -26,7 +26,7 @@ class MatchesAdmin(admin.ModelAdmin):
     )
     actions = ['export_matches', 'make_matches']
 
-    search_fields = ['profile_search__first_name']
+    # search_fields = ['profile_search__first_name']
 
     def get_urls(self):
         urls = super().get_urls()
@@ -56,7 +56,7 @@ class MatchesAdmin(admin.ModelAdmin):
             self.message_user(request, "Matches have NOT been made")
             print(serializer.errors)
         return HttpResponseRedirect("../")
-
+    
     def export_matches(self, request, queryset):
 
         f = open('some.csv', 'w')
@@ -89,5 +89,6 @@ class MatchesAdmin(admin.ModelAdmin):
 
 
 
+    
 
 admin.site.register(Matches, MatchesAdmin)
