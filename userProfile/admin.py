@@ -104,10 +104,35 @@ class EmailAdmin(admin.ModelAdmin):
       email.send()
       obj.save()
 
+class CustomNotificationsAdmin(admin.ModelAdmin):
+   list_display =("message", "title", "notify_mentors", "notify_mentees")
+   def save_model(self, request, obj, form, change): 
+      data = request.POST
+
+      to_notify = []
+
+      notify_mentors = data.get("notify_mentors")
+      notify_mentees = data.get("notify_mentees")
+
+      message = data.get("message")
+      title = data.get("title")
+
+      if notify_mentees:
+         mentees = list(Profile.objects.filter(user_type = "IS_MENTEE"))
+         for each in mentees:
+            to_notify.append(User.objects.get(pk=each.user.pk).username)
+      if notify_mentors:
+         mentors = list(Profile.objects.filter(user_type = "IS_MENTOR"))
+         for each in mentors:
+            to_notify.append(User.objects.get(pk=each.user.pk).username) 
+
+
+
 admin.site.register(AdditionalQuestions, AdditionalQuestionsAdmin) 
 admin.site.register(Response, ResponseAdmin)
 admin.site.register(Profile, UserResponderAdmin)
 admin.site.register(FrequentlyAsked)
 admin.site.register(FrequentlyAskedMentor)
 admin.site.register(Email, EmailAdmin)
+admin.site.register(CustomNotifications, CustomNotificationsAdmin)
 

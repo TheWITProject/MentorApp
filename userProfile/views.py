@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from userProfile.forms import *
 from userProfile.tokens import account_activation_token
 from survey.models import Response, Survey
-from userProfile.models import FrequentlyAsked, FrequentlyAskedMentor, Profile
+from userProfile.models import FrequentlyAsked, FrequentlyAskedMentor, Profile, CustomNotifications
 from django.views.generic.edit import FormView
 from match.models import Matches
 from userProfile.models import Profile
@@ -30,15 +30,19 @@ def home(request):
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
 
+
+    active_notifications = [len(CustomNotifications.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('notifications.id')).filter(is_published = True))]
+    notifications_not_completed = tuple(CustomNotifications.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('notifications.id')).filter(is_published = True))
+
     try:
         match_model_user = Matches.objects.get(user_id=user_id)
         match_model_match = Profile.objects.get(user_id=match_model_user.match_id)
     
-        args = {'surveys': not_completed, 'active': active_survey,'match':match_model_match}
+        args = {'surveys': not_completed, 'active': active_survey,'match':match_model_match, 'notifications': notifications_not_completed, 'active_notification': active_notification}
         return render(request, 'pages/home.html',args)
     
     except:
-        args = {'surveys': not_completed, 'active': active_survey,'match':0}
+        args = {'surveys': not_completed, 'active': active_survey,'match':0, 'notifications': notifications_not_completed, 'active_notification': active_notification}
         return render(request, 'pages/home.html',args)
 
 def logout_view(request):
