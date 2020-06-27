@@ -36,7 +36,7 @@ class MatchesAdmin(admin.ModelAdmin):
         return my_urls + urls
 
     def make_matches(self, request):
-        r = requests.get('http://127.0.0.1:8000/survey/json/1')
+        r = requests.get('http://127.0.0.1:8000/survey/json/2') 
         r.json()
         print (r.json())
         x = requests.post('http://127.0.0.1:8000/api/v1/mentor_match_classifier/predict', json = r.json())

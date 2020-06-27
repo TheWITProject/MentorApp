@@ -58,7 +58,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'ml',
     'match',
-    'import_export'
+    'import_export',
+    'dal',
+    'dal_select2',
+
 
 ]
 
@@ -119,7 +122,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'mentorapp',
-            'USER': 'shafali',
+            'USER': 'yasiris',
             'PASSWORD': '',
             'HOST': 'localhost',
             'PORT': '5432',
