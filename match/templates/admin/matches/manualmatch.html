@@ -1,6 +1,33 @@
 {% extends 'admin/base.html' %}
 {% block content %}
 BROOOOO
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<form>
+	<label for "mentor-search"> Mentor Lookup </label>
+	<input type="text" name="mentor-search" id="mentor-search" required>
+
+	<label for "student-search"> Student Lookup </label>
+	<input type="text" name="student-search" id="student-search" required>
+
+	<button type="submit">Make Manual Match </button>
+</form>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+  $( function() {
+    $( "#mentor-search" ).autocomplete({
+      source: '{% url 'match-autocomplete' %}'
+    });
+
+    $( "#student-search" ).autocomplete({
+      source: '{% url 'match-autocomplete' %}'
+    });
+  } );
+  </script>
+
 {% endblock %}
 
 {{block.super}}
