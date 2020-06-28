@@ -132,12 +132,10 @@ def set_notifications(request):
     if request.user.is_authenticated:
         user_id = User.objects.get(username=request.user).pk
         context = {}
-        # context["notifications"] = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
         context["notifications"] = list(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
         context["current_page"] = request.path
         
         usertype = Profile.objects.get(user_id=user_id).user_type
-        # notif = list()
         if usertype == "IS_MENTOR":
             qs = CustomNotifications.objects.filter(notify_mentors = True)
             for x in qs:
@@ -147,9 +145,6 @@ def set_notifications(request):
             qs = CustomNotifications.objects.filter(notify_mentees = True)
             for x in qs:
                 context["notifications"].append(x)
-
-        # size = len(notif) + len(context["notifications"])
-        # context["length"] = size
 
         return context
 
