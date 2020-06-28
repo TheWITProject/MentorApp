@@ -26,23 +26,33 @@ from userProfile.resources import ProfileExport
 def home(request):
     user_id = User.objects.get(username=request.user).pk
     completed = len(Survey.objects.filter(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
-    active_survey = [len(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))]
+    survey_length = len(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
+    active_survey = [survey_length]
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
-    not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
+    
+    usertype = Profile.objects.get(user_id=user_id).user_type
+    notif = list()
+    if usertype == "IS_MENTOR":
+        qs = CustomNotifications.objects.filter(notify_mentors = True)
+        for x in qs:
+            notif.append(x)
 
+    if usertype == "IS_MENTEE":
+        qs = CustomNotifications.objects.filter(notify_mentees = True)
+        for x in qs:
+            notif.append(x)
 
-    active_notifications = [len(CustomNotifications.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('notifications.id')).filter(is_published = True))]
-    notifications_not_completed = tuple(CustomNotifications.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('notifications.id')).filter(is_published = True))
+    length = len(notif) + survey_length
 
     try:
         match_model_user = Matches.objects.get(user_id=user_id)
         match_model_match = Profile.objects.get(user_id=match_model_user.match_id)
     
-        args = {'surveys': not_completed, 'active': active_survey,'match':match_model_match, 'notifications': notifications_not_completed, 'active_notification': active_notification}
+        args = {'surveys': not_completed, 'active': active_survey,'match':match_model_match, 'notify':notif, 'length':length}
         return render(request, 'pages/home.html',args)
     
     except:
-        args = {'surveys': not_completed, 'active': active_survey,'match':0, 'notifications': notifications_not_completed, 'active_notification': active_notification}
+        args = {'surveys': not_completed, 'active': active_survey,'match':0, 'notify':notif, 'length':length}
         return render(request, 'pages/home.html',args)
 
 def logout_view(request):
@@ -122,9 +132,27 @@ def set_notifications(request):
     if request.user.is_authenticated:
         user_id = User.objects.get(username=request.user).pk
         context = {}
-        context["notifications"] = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
+        # context["notifications"] = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
+        context["notifications"] = list(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
         context["current_page"] = request.path
+        
+        usertype = Profile.objects.get(user_id=user_id).user_type
+        # notif = list()
+        if usertype == "IS_MENTOR":
+            qs = CustomNotifications.objects.filter(notify_mentors = True)
+            for x in qs:
+                context["notifications"].append(x)
+
+        if usertype == "IS_MENTEE":
+            qs = CustomNotifications.objects.filter(notify_mentees = True)
+            for x in qs:
+                context["notifications"].append(x)
+
+        # size = len(notif) + len(context["notifications"])
+        # context["length"] = size
+
         return context
+
     context = {}
     return context
 
