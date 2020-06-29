@@ -59,8 +59,8 @@ INSTALLED_APPS = [
     'ml',
     'match',
     'import_export',
-    'dal',
-    'dal_select2',
+    # 'dal',
+    # 'dal_select2',
 
 
 ]
@@ -122,7 +122,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'mentorapp',
-            'USER': 'angelazhang',
+            'USER': 'shafali',
             'PASSWORD': '',
             'HOST': 'localhost',
             'PORT': '5432',

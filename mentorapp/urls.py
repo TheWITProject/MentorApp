@@ -66,6 +66,8 @@ urlpatterns = [
     path('', include('ml_endpoints.urls')),
     path('admin/match/manualmatch', matches_views.manual_match, name='manual_match'),
     url('match-autocomplete/', matches_views.match_autocomplete, name='match-autocomplete'),
+    url('handle_manual/', matches_views.handle_manual, name='handle_manual'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -16,19 +16,17 @@ class Matches(models.Model):
     user_id = models.CharField(max_length=1000, blank=True)
     match_id = models.CharField(max_length=1000, blank=True)
     manual_match = models.BooleanField(default=False)
-    
+
     def save(self, *args, **kwargs):
         if self.manual_match:
             self.user_id = str(self.user_profile.user_id)
             self.match_id = str(self.match_profile.user_id)
+            self.manual_match = True
             print(self.user_id)
         super(Matches, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.user_id
-   
+
     class Meta:
         verbose_name_plural ="Matches"
-    
-
-   
