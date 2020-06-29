@@ -18,8 +18,8 @@ class MatchesSerializer(serializers.ModelSerializer):
 class MatchesSerializer_manual(serializers.ModelSerializer):
     def create(self, validated_data):
         print("CRETAINGNNGNGNNG")
-        manual_match = serializers.BooleanField(default=True)
-        return Matches.objects.create(**validated_data)
+        self.manual_match = serializers.BooleanField(default=True)
+        return Matches.objects.create(**validated_data, manual_match = True)
 
     def update(self, instance, validated_data):
         print("UDPATTTTTINGNGG")

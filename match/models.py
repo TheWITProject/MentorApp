@@ -18,11 +18,15 @@ class Matches(models.Model):
     manual_match = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
-        if self.manual_match:
-            self.user_id = str(self.user_profile.user_id)
-            self.match_id = str(self.match_profile.user_id)
-            self.manual_match = True
-            print(self.user_id)
+        # if self.manual_match:
+        #     print("HELLLOOO")
+        #     # self.user_id = self.user_id
+        #     # self.match_id = self.match_id
+        #     # self.user_id = str(self.user_profile.user_id)
+        #     # self.match_id = str(self.match_profile.user_id)
+        #     print("HELLLOOO")
+        #     self.manual_match = True
+        #     print(self.user_id)
         super(Matches, self).save(*args, **kwargs)
 
     def __str__(self):

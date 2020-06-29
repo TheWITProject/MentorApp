@@ -18,11 +18,11 @@
 <script>
   $( function() {
     $( "#mentor-search" ).autocomplete({
-      source: '{% url 'match-autocomplete' %}'
+      source: '{% url 'match-autocomplete_mentor' %}'
     });
 
     $( "#student-search" ).autocomplete({
-      source: '{% url 'match-autocomplete' %}'
+      source: '{% url 'match-autocomplete_student' %}'
     });
   } );
   </script>

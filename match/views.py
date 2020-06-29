@@ -13,7 +13,7 @@ def manual_match(request):
     return render(request, 'admin/matches/manualmatch.html', {})
 
 
-def match_autocomplete(request):
+def match_autocomplete_mentor(request):
 	print("uh oh")
 	if not request.user.is_authenticated:
 		return Profile.objects.none()
@@ -21,7 +21,27 @@ def match_autocomplete(request):
 
 	if request.method == 'GET' and 'term' in request.GET:
 		print("reached here after if")
-		qs = Profile.objects.filter(first_name__istartswith=request.GET.get('term')) | Profile.objects.filter(last_name__istartswith=request.GET.get('term'))
+		qs = (Profile.objects.filter(first_name__istartswith=request.GET.get('term')) | Profile.objects.filter(last_name__istartswith=request.GET.get('term'))).filter(user_type="IS_MENTOR")
+		titles = list()
+
+		for var in qs:
+            # titles.append(var.first_name + var.last_name)
+			titles.append(var.user.username + " | " + var.first_name + " "+var.last_name)
+
+		return JsonResponse(titles, safe=False)
+	else:
+		print(request.GET)
+
+	return render(request, 'admin/matches/manualmatch.html')
+
+def match_autocomplete_student(request):
+	print("uh oh")
+	if not request.user.is_authenticated:
+		return Profile.objects.none()
+
+	if request.method == 'GET' and 'term' in request.GET:
+		print("reached here after if")
+		qs = (Profile.objects.filter(first_name__istartswith=request.GET.get('term')) | Profile.objects.filter(last_name__istartswith=request.GET.get('term'))).filter(user_type="IS_MENTEE")
 		titles = list()
 
 		for var in qs:

@@ -65,7 +65,9 @@ urlpatterns = [
     # path(r"^api/v1/", include('ml_endpoints.urls'))
     path('', include('ml_endpoints.urls')),
     path('admin/match/manualmatch', matches_views.manual_match, name='manual_match'),
-    url('match-autocomplete/', matches_views.match_autocomplete, name='match-autocomplete'),
+    url('match-autocomplete_mentor/', matches_views.match_autocomplete_mentor, name='match-autocomplete_mentor'),
+    url('match-autocomplete_student/', matches_views.match_autocomplete_student, name='match-autocomplete_student'),
+
     url('handle_manual/', matches_views.handle_manual, name='handle_manual'),
 
 ]
