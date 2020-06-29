@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
 # from dal import autocomplete
+from django.http import HttpResponse
+
+from urllib import request
 from django.contrib.auth.models import User
 from django.http import JsonResponse
+from django.contrib import messages
 #from dal_select2 import Select2QuerySetView
+# from django.core.exceptions import ValidationError
 from userProfile.models import Profile
 from .models import Matches
 from .serializers import *
-
+from django.utils.translation import ugettext_lazy as _
 
 
 def manual_match(request):
@@ -61,7 +66,7 @@ def handle_manual(request):
     print(request.POST["student-search"])
     print(request.POST["student-search"].find("|"))
     if((request.POST["mentor-search"].find("|") ==-1) | (request.POST["student-search"].find("|") == -1)):
-        print("oopsie daisey")
+        messages.error(request, _('INVALID USER(S) INPUTED'))
     else:
         mentor_name = request.POST["mentor-search"].split()[0]
         student_name = request.POST["student-search"].split()[0]
