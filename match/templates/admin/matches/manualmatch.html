@@ -2,6 +2,47 @@
 {% block content %}
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+<body>
+  <style>
+    h1{
+      font-size: 35px;
+    }
+    h5{
+      font-size: 15px;
+    }
+    #mentor-search{
+      margin-right: 20px;
+      text-align: center
+    }
+    #student-search{
+      margin-right: 20px;
+      text-align: center
+    }
+    #lookup{
+      padding-top: 10px;
+      margin-left: 15%;
+     margin-right:15%;
+     width: 70%;
+     font-size: 20px;
+    }
+    #sub_button{
+      border: none;
+    font-weight: 400;
+    background: #417690;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    font-size: 15px;
+    padding: 10px 15px;
+    }
+    </style>
+  <h1>Manual Matching</h1>
+  <h5>This is where you can manually match mentors with students. In the Mentor Lookup, you can start typing
+  the mentor's first name or last name and a drop down menu will show up corresponding mentors. You must click
+on one of these options. The same goes for the students.</h5>
+<br>
+<div id ="lookup">
 <form action="{% url 'handle_manual' %}" method="POST">
   {% csrf_token %}
 	<label for "mentor-search"> Mentor Lookup </label>
@@ -9,9 +50,9 @@
 
 	<label for "student-search"> Student Lookup </label>
 	<input type="text" name="student-search" id="student-search" required>
-	<button type="submit">Make Manual Match </button>
+	<button id = "sub_button" type="submit">Make Manual Match </button>
 </form>
-
+</div>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -26,7 +67,7 @@
     });
   } );
   </script>
-
+</body>
 {% endblock %}
 
 {{block.super}}
