@@ -24,17 +24,16 @@ def serve_unprotected_result_csv(survey):
 def serve_unprotected_result_json(survey):
     """ Return the csv corresponding to a survey. """
     survey_to_csv = Survey2Csv(survey)
-    if survey_to_csv.need_update():
-        survey_to_csv.generate_file()
-        pf = pd.read_csv(survey_to_csv.filename)
-        df = pf
-        a = []
-        for i in range(len(Matches.objects.all().values_list('user_id'))):
-            a.append(int(Matches.objects.all().values_list('user_id')[i][0]))
-        # print(df['user_id'].isin(a))
-        df = df[~df['user_id'].isin(a)]
-        print(df)
-        df.to_json(survey_to_csv.filename, orient='records')
+    # if survey_to_csv.need_update():
+    survey_to_csv.generate_file()
+    df = pd.read_csv(survey_to_csv.filename)
+    a = []
+    for i in range(len(Matches.objects.all().values_list('user_id'))):
+        a.append(int(Matches.objects.all().values_list('user_id')[i][0]))
+    # print(df['user_id'].isin(a))
+    df = df[~df['user_id'].isin(a)]
+    print(df)
+    df.to_json(survey_to_csv.filename, orient='records')
 
     with open(survey_to_csv.filename, "r") as json_file:
         response = HttpResponse(json_file.read(), content_type="application/json")
