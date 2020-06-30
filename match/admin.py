@@ -17,8 +17,9 @@ import csv
 class MatchesAdmin(admin.ModelAdmin):
     change_list_template = "admin/matches/buttons.html"
     # autocomplete_fields = ['profile_search']
-    list_display = ("user_id", "name", "last_name","match_first_name", "match_last_name", "manual_match" )
-    #readonly_fields = ( "name", "last_name","match_first_name", "match_last_name")
+    # list_display = ("user_id", "name", "last_name","match_first_name", "match_last_name", "manual_match" )
+    list_display = ("user_id", "name","match_name", "manual_match" )
+    # readonly_fields = ( "name", "last_name","match_first_name", "match_last_name")
     # fieldsets = (
     #     (None, {
     #         'fields': ('user_profile', 'match_profile', 'manual_match', )
@@ -91,16 +92,16 @@ class MatchesAdmin(admin.ModelAdmin):
 
 
     def name(self, obj):
-        return Profile.objects.get(user_id=obj.user_id).first_name
+        return Profile.objects.get(user_id=obj.user_id).first_name + " " + Profile.objects.get(user_id=obj.user_id).last_name
 
-    def last_name(self, obj):
-        return Profile.objects.get(user_id=obj.user_id).last_name
+    # def last_name(self, obj):
+    #     return Profile.objects.get(user_id=obj.user_id).last_name
 
-    def match_first_name(self, obj):
-        return Profile.objects.get(user_id=obj.match_id).first_name
+    def match_name(self, obj):
+        return Profile.objects.get(user_id=obj.match_id).first_name + " " + Profile.objects.get(user_id=obj.match_id).last_name
 
-    def match_last_name(self, obj):
-        return Profile.objects.get(user_id=obj.match_id).last_name
+    # def match_last_name(self, obj):
+    #     return Profile.objects.get(user_id=obj.match_id).last_name
 
 
 
