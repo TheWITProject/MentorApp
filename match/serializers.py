@@ -4,9 +4,11 @@ from .models import Matches
 
 class MatchesSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
+        print("HELLO")
         return Matches.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
+        print("HELLOP")
         instance.match_id = validated_data.get('match_id', instance.match_id)
         instance.user_id = validated_data.get('user_id', instance.user_id)
         instance.save()

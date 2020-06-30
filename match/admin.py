@@ -37,24 +37,39 @@ class MatchesAdmin(admin.ModelAdmin):
 
     def make_matches(self, request):
         r = requests.get('http://127.0.0.1:8000/survey/json/1')
-        r.json()
-        print (r.json())
+        # print(type(r))
+        # r = ""
+        # r.json()
+        # print (r.json())
         x = requests.post('http://127.0.0.1:8000/api/v1/mentor_match_classifier/predict', json = r.json())
         print(x)
+        # print(x.text)
+        print("BEFORE X.JSON")
         match_json = x.json()
+        print("MATCH JSON: ")
         print(match_json)
-        mid_json = match_json['matches']
+        print(type(match_json))
+        if('matches' in match_json.keys()):
+            mid_json = match_json['matches']
+        else:
+            mid_json = "[{}]"
         # cur_dir = os.getcwd()
-        print(mid_json)
+        # print(mid_json)
         mock_json = pd.read_json(mid_json, orient = 'records')
         dict_json = mock_json.to_dict('records')
         serializer = MatchesSerializer(data=dict_json, many=True)
-        if serializer.is_valid():
-            matches_save = serializer.save()
-            self.message_user(request, "Matches have been made")
-        else:
-            self.message_user(request, "Matches have NOT been made")
-            print(serializer.errors)
+        try:
+            if serializer.is_valid():
+                print("SERIALIZER IS VALID")
+                matches_save = serializer.save()
+                self.message_user(request, "Matches have been made")
+            else:
+                self.message_user(request, "Matches have NOT been made")
+                print(serializer.errors)
+            return HttpResponseRedirect("../")
+
+        except:
+            return HttpResponseRedirect("../")
         return HttpResponseRedirect("../")
 
     def export_matches(self, request, queryset):
