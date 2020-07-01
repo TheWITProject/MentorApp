@@ -14,15 +14,26 @@
 
 		<div class="notification-center">
 			<h4>Notification Center
+
 				{% for survey in active %}
-				<span class="badge">{{survey}}</span> 
-				{% if survey == 0 %}
+				<span class="badge">{{length}}</span> 
+				{% if length == 0 %}
 				<br> <br>
 				<h5 class="surveys-complete">You have completed all surveys!</h5>
 				{% endif %}
 				{% endfor %}  
+				
 			</h4>
 			<div class="row">
+
+				{% for not in notify %}
+				<div class="col-sm-4">
+						<div class="notification">
+							<p class="survey-text">{{not.title}} <br> {{not.message}}</p>
+						</div>
+				</div>
+				{% endfor %}
+
 				{% for survey in surveys %}
 				<div class="col-sm-4">
 					<a href="/survey/{{survey.id}}">

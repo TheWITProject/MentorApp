@@ -104,10 +104,14 @@ class EmailAdmin(admin.ModelAdmin):
       email.send()
       obj.save()
 
+class CustomNotificationsAdmin(admin.ModelAdmin):
+   list_display =("message", "title", "notify_mentors", "notify_mentees")
+
 admin.site.register(AdditionalQuestions, AdditionalQuestionsAdmin) 
 admin.site.register(Response, ResponseAdmin)
 admin.site.register(Profile, UserResponderAdmin)
 admin.site.register(FrequentlyAsked)
 admin.site.register(FrequentlyAskedMentor)
 admin.site.register(Email, EmailAdmin)
+admin.site.register(CustomNotifications, CustomNotificationsAdmin)
 
