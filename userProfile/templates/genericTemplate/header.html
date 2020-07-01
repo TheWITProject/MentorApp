@@ -3,7 +3,8 @@
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
 <!-- Header -->
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+<div id="header"
+	class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
 	<img src="{% static 'images/download.png' %}" alt="Logo" height="90" />
 	<h5 class="my-0 mr-md-auto font-weight-normal">
 		{% if request.user.is_authenticated %}
@@ -44,6 +45,14 @@
 
 	</nav>
 </div>
+
+{% if current_page == "/password_change/" or current_page == "/password_change/done/" %}
+<style>
+	#header {
+		visibility: hidden;
+	}
+</style>
+{% endif %}
 
 <!-- End Header -->
 

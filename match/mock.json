@@ -1,18 +1,10 @@
 [
     {
-        "user_id": 139,
-        "match_id": 132
+        "user_id": 148,
+        "match_id": 149
     },
     {
-        "user_id": 140,
-        "match_id": 134
-    },
-    {
-        "user_id": 132,
-        "match_id": 139
-    },
-    {
-        "user_id": 134,
-        "match_id": 140
+        "user_id": 149,
+        "match_id": 148
     }
 ]

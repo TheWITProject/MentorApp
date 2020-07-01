@@ -208,6 +208,8 @@ form{
 
 .dropdown:hover .dropdown-content {
   display: block;
+      max-height: 400px;
+    overflow: scroll;
 }
 
 .dropdown:hover .dropbtn {
@@ -485,6 +487,7 @@ li.active{
     text-align: left;
 }
 
+/* Mobile Friendly */
 @media screen and (max-width: 375px), only screen and (max-width: 414px){
   .viewbox{
     flex-direction: column;
@@ -554,22 +557,26 @@ li.active{
     width: 100%;
   }
 
-.matchprofile{
-  font-size: 20px;
+  .matchprofile{
+    font-size: 20px;
   }
 
-.modal-content{
-  width:80%;
+  .modal-content{
+    width:80%;
 }
 
-input[type=file] {
-  display: block;
-  padding:0px;
+  input[type=file] {
+    display: block;
+    padding:0px;
 }
 
-#profileimg img{
-  position: initial;
+  #profileimg img{
+    position: initial;
 }
+
+  #changepassconfirm{
+    width:100%;
+  }
 
 }
 
@@ -577,4 +584,16 @@ input[type=file] {
 .col-4{
   border-left: 4px solid #CCCCCC;
   }
+}
+
+.iframe{
+  width:100%; 
+  min-height:70vh; 
+  border:none; 
+}
+
+#changepassconfirm{
+  position: absolute;
+  top: 10%;
+  left: 0;
 }
