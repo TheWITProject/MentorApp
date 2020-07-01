@@ -39,7 +39,7 @@
         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
           <div class="profileHeader">
             <div id="profileimg"><img src='{{request.user.profile.profile_pic.url}}' width="240" style="right:35%">
-              <div class="profileUserName">{{user.profile.first_name}}
+              <div class=" profileUserName">{{user.profile.first_name}}
                 {{user.profile.last_name}} ({{user.username}})
               </div>
             </div>
@@ -183,29 +183,155 @@
 
         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
           <h3>Settings</h3>
-          <p>
-            <button type="button" class="editbutton" onclick="parent.location= '/password_change/'" id="enter">Change
-              Password</button>
-          </p>
-        </div>
-
-        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-          {% if user.profile.user_type == "IS_MENTOR" %}
-          <h3>Mentor Details</h3>
-          {% elif user.profile.user_type == "IS_MENTEE"%}
-          <h3>Mentee Details</h3>
-          {% endif %}
-
-          <p style='font-style:italic; text-align:left'>
-            Coming Soon
-          </p>
+          <iframe src="/password_change/" class="iframe"></iframe>
         </div>
 
         <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-          <h3>Matches</h3>
-          <p style='font-style:italic; text-align:left'>
-            Coming Soon
-          </p>
+          {% if match != 0 %}
+          <h3>Congratulations! You've got a match!</h3>
+          <div class="profileHeader">
+            <div id="profileimg"><img src='{{match.profile_pic.url}}' width="240" style="right:35%">
+              <div class=" profileUserName">{{match.first_name}}
+                {{match.last_name}} ({{match.user.username}})
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <h5>
+                Username
+              </h5>
+              <p>
+                {{ match.user.username }}</p>
+            </div>
+            <div class="col-sm-6">
+              <h5>
+                Name
+              </h5>
+              <p>
+                {{ match.first_name }} {{ match.last_name }}</p>
+            </div>
+            <div class="col-sm-6">
+              <h5>
+                Preferred Pronouns
+              </h5>
+              <p>
+                {{ match.get_gender_pronouns_display}}</p>
+            </div>
+            <div class="col-sm-6">
+              <h5>
+                Ethnicity
+              </h5>
+              <p>
+                {{ match.get_ethnicity_display }}</p>
+            </div>
+            <div class="col-sm-6">
+              <h5>
+                City
+              </h5>
+              <p>
+                {{ match.get_county_display}}</p>
+            </div>
+            <div class="col-sm-6">
+              <h5>
+                County
+              </h5>
+              <p>
+                {{ match.get_county_display }}</p>
+            </div>
+          </div>
+          <hr>
+          <h3>Contact Info</h3>
+          <div class="row">
+            <div class="col-sm-6">
+              <h5>
+                Phone
+              </h5>
+              <p><a href="tel:{{ match.phone }}">+{{ match.phone }}</a>
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <h5>
+                Email
+              </h5>
+              <p>
+                <a href="mailto:{{ match.user.email}}">{{ match.user.email}}</a></p>
+            </div>
+          </div>
+          <hr>
+          <h3>Professional Info</h3>
+          <div class="row">
+            <div class="col-sm-6">
+              <h5>
+                Company
+              </h5>
+              <p>
+                {{ match.company }}</p>
+            </div>
+
+            <div class="col-sm-6">
+              <h5>
+                Job Title
+              </h5>
+              <p>
+                {{ match.job_title }} </p>
+            </div>
+
+            <div class="col-sm-6">
+              <h5>
+                Industry
+              </h5>
+              <p>
+                {{ match.get_industry_display}}</p>
+            </div>
+            <div class="col-sm-6">
+              <h5>
+                Education
+              </h5>
+              <p>
+                {{ match.get_education_display }}</p>
+            </div>
+            <div class="col-sm-6">
+              <h5>
+                Learning Track
+              </h5>
+              <p>
+                {{ match.get_learningtrack_display}}</p>
+            </div>
+            <div class="col-sm-6">
+              <h5>
+                LinkedIn
+              </h5>
+              <p>
+                <a href={{ match.linkedin }} target="_blank">{{ match.linkedin }}</a></p>
+            </div>
+            <div class="col-sm-6">
+              <h5>
+                Fun Fact
+              </h5>
+              <p>
+                {{ match.funfact}}</p>
+            </div>
+            <div class="col-sm-6">
+              <h5>
+                Cohort
+              </h5>
+              <p>
+                {{ match.cohort}}</p>
+            </div>
+            <div class="col-sm-6">
+              <h5>
+                Site Location
+              </h5>
+              <p>
+                {{ match.site_location}}</p>
+            </div>
+          </div>
+          {% else %}
+          <br> <br>
+          <h5 id="profileimghome">You don't have a match... yet!</h5>
+          {% endif %}
         </div>
 
         <div class="tab-pane fade" id="v-pills-survey" role="tabpanel" aria-labelledby="v-pills-survey-tab">

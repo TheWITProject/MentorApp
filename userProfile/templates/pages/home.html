@@ -53,7 +53,7 @@
 		{% if match != 0 %}
 		<h3 style="text-align: center;">Congratulations! You've got a match!</h3> <br>
 		<div class='matchprofile'>
-			<div id="profileimghome"><img src="/images/profileimage.png" width="240"></div>
+			<div id="profileimghome"><img src='{{match.profile_pic.url}}' width="240"></div>
 			<small>
 				<h4>{{ match.first_name }} {{ match.last_name }}</h4>
 				{{ match.user.email }}<br>

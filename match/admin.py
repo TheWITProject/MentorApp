@@ -29,8 +29,8 @@ class MatchesAdmin(admin.ModelAdmin):
         return my_urls + urls
 
     def make_matches(self, request):
-        r = requests.get('http://127.0.0.1:8000/survey/json/4')
-        r.json()
+        # r = requests.get('http://127.0.0.1:8000/survey/json/4')
+        # r.json()
         # x = requests.post('http://127.0.0.1:8000/api/v1/mlalgorithmstatuses', json = r.json())
        
         cur_dir = os.getcwd()

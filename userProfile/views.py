@@ -126,7 +126,16 @@ def profile(request):
     # return render(request, 'pages/profile.html', args)
     form = ProfileForm(instance=request.user.profile)
     all_surveys = tuple(Survey.objects.all().filter(is_published = True))
-    return render(request, 'pages/profile.html', {'form':form, 'allsurveys':all_surveys})
+    user_id = User.objects.get(username=request.user).pk
+    try:
+        match_model_user = Matches.objects.get(user_id=user_id)
+        match_model_match = Profile.objects.get(user_id=match_model_user.match_id)
+        print(match_model_match.first_name)
+        return render(request, 'pages/profile.html', {'form':form, 'allsurveys':all_surveys, 'match':match_model_match})
+
+    except:
+        print("except")
+        return render(request, 'pages/profile.html', {'form':form, 'allsurveys':all_surveys, 'match':0})
 
 def set_notifications(request):
     if request.user.is_authenticated:
