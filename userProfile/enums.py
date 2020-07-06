@@ -48,7 +48,6 @@ class AlamedaChoice(Enum):
 
     @classmethod
     def choices(cls):
-
         return tuple((i.name, i.value) for i in cls)
 
 class ContraCostaChoice(Enum):
@@ -74,7 +73,6 @@ class ContraCostaChoice(Enum):
 
     @classmethod
     def choices(cls):
-
         return tuple((i.name, i.value) for i in cls)
 
 class MarinChoice(Enum):
@@ -92,7 +90,6 @@ class MarinChoice(Enum):
 
     @classmethod
     def choices(cls):
-
         return tuple((i.name, i.value) for i in cls)
 
 class NapaChoice(Enum):
@@ -104,7 +101,6 @@ class NapaChoice(Enum):
 
     @classmethod
     def choices(cls):
-
         return tuple((i.name, i.value) for i in cls)
 
 class SanMateoChoice(Enum):
@@ -131,7 +127,6 @@ class SanMateoChoice(Enum):
 
     @classmethod
     def choices(cls):
-
         return tuple((i.name, i.value) for i in cls)
 
 class SantaClaraChoice(Enum):
@@ -153,7 +148,6 @@ class SantaClaraChoice(Enum):
     
     @classmethod
     def choices(cls):
-
         return tuple((i.name, i.value) for i in cls)
 
 class SolanoChoice(Enum):
@@ -167,7 +161,6 @@ class SolanoChoice(Enum):
 
     @classmethod
     def choices(cls):
-
         return tuple((i.name, i.value) for i in cls)
 
 class SonomaChoice(Enum):
@@ -183,7 +176,6 @@ class SonomaChoice(Enum):
 
     @classmethod
     def choices(cls):
-
         return tuple((i.name, i.value) for i in cls)
 
 
@@ -197,7 +189,6 @@ class GenderChoice(Enum):
 
     @classmethod
     def choices(cls):
-
         return tuple((i.name, i.value) for i in cls)
 
 class EducationChoice(Enum):
@@ -211,7 +202,6 @@ class EducationChoice(Enum):
 
     @classmethod
     def choices(cls):
-
         return tuple((i.name, i.value) for i in cls)
 
 
@@ -249,29 +239,22 @@ class IndustryChoice(Enum):
 
     @classmethod
     def choices(cls):
-
         return tuple((i.name, i.value) for i in cls)
 
 
 
 
 class TrackChoice(Enum):
-    PROFDEV= "Professional Development"
-    INTERVIEWSKILL = "Interviewing Skills" 
-    NETWORKING = "Networking" 
-    LEADERSHIP = "Leadership"
-    PUBLICSPEAK = "Public Speaking" 
-    TECHSKILL = "Technical Skills" 
-    TIMEMANAGE = "Time Management" 
-    RESEARCH = "Research" 
-    TECHNOLOGY ="Technology" 
-    COMMUNICATION = "Communication"
     PM = "Project Management"
-    UPDATES = "Industry Updates" 
+    IT = "IT Helpdesk"
+    NS = "Network/Desktop Support"
+    QA = "Quality Assurance"
+    CYBER = "Cyber Security" 
+    DA = "Data Analytics"
+
 
     @classmethod
     def choices(cls):
-
         return tuple((i.name, i.value) for i in cls)
 
 
@@ -283,6 +266,26 @@ class EthnicityChoice(Enum):
     BLACK = "Black or African American" 
     NATIVE = "Native American or American Indian"
     OTHER = "Other"
+
+    @classmethod
+    def choices(cls):
+        return tuple((i.name, i.value) for i in cls)
+
+
+class CohortChoice(Enum):
+    SPRING20 = "Spring 2020"
+    FALL20 = "Fall 2020"
+    SPRING21 = "Spring 2021"
+    FALL21 = "Fall 2021"
+
+    @classmethod
+    def choices(cls):
+
+        return tuple((i.name, i.value) for i in cls)
+
+
+class SiteChoice(Enum):
+    YUBA = "Bay Area"
 
     @classmethod
     def choices(cls):

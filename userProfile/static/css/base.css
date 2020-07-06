@@ -23,7 +23,6 @@ h3 {
 }
 
 p {
-
   font-weight: 100;
 }
 
@@ -31,7 +30,7 @@ h5 {
   font-size:1.00rem
 }
 
-#profileimg img{
+#profileimg img,  #profileimghome img{
   width: 100px;
   height: 100px;
   position: relative;
@@ -40,7 +39,12 @@ h5 {
 }
 
 #profileimg {
+  position: relative;
+  display: inline;
+}
 
+
+#profileimghome {
   position: relative;
   display: inline-block;
 }
@@ -51,21 +55,42 @@ h5 {
   padding-top: inherit;
 }
 
-.profileHeader{
+.matchprofile{
 display: flex;
+flex-direction: column;
 font-size: x-large;
-padding-bottom:15px
+padding-bottom:15px;
+background-color: white;
+overflow: auto;
+
+  border-radius: 25px;
+  padding: 10px;
+  margin: 0em 1em 1em 1em;
+  border: 1px solid #213b74;
+  box-shadow:  -1px 1px #213b74,
+       -2px 2px #213b74,
+       -3px 3px #213b74,
+       -4px 4px #213b74,
+       -5px 5px #213b74;
+
+}
+
+.profileHeader{
+  display: flex;
+  font-size: x-large;
+  padding-bottom:15px
 }
 
 
 .footer{
   min-height: 100px;
+  position: relative;
 }
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
-    }
+  }
 }
 
 .search-bar{
@@ -82,18 +107,24 @@ form{
   border-color: #213b74;
 }
 
-  .btn-outline-primary:hover {
-    background-color:  #213b74;
-    border-color: #213b74;
-
+.btn-outline-primary:hover {
+  background-color:  #213b74;
+  border-color: #213b74;
   }
 
+
+  /* Notifications and Notification Center */
 .badge{
   position: absolute;
-  padding: 5px 10px;
+  padding: 5px 7px;
   border-radius: 50%;
   background-color: red;
   color: white;
+  font-size:13px;
+}
+
+.notification-number{
+  color:red;
 }
 
 .notification-center .notification h1{
@@ -103,30 +134,40 @@ form{
 .notification-center .notification{
   border: 2px solid #CCCCCC;
   margin: 1em 1em 1em 0em;
-  padding: 1em;
+  padding: 0.25em;
   border-radius: 1em;
   transition: 500ms;
-  height: 50%;
-  width: 90%;
-  font-size:small;
-
+  height: auto;
+  width: 100%;
+  font-size:0.9em;
+  color:#213b74;
 }
+
+
 .notification-center .notification:hover{
   filter: brightness(.25);
 }
 
 .notification-center{
-  border-left: 2px solid #CCCCCC;
+  height:auto;
+  text-align:center;
 }
 
 .notification-center a{
   text-decoration: none;
   color:#213b74;
+  text-align:center;
+  justify-content: center;
+  display:flex;
+  align-items:center;
 }
 
 .notification-center h4{
   color:#cf9212;;
+  text-align:center;
 }
+
+
 .dropbtn {
   background-color: transparent;
   color: black;
@@ -151,7 +192,7 @@ form{
   right: -20px;
   border-radius: 1em;
   border: 2px solid #CCCCCC;
-
+  font-size:13px;
 }
 
 .dropdown-content a {
@@ -168,11 +209,12 @@ form{
 
 .dropdown:hover .dropdown-content {
   display: block;
+      max-height: 400px;
+    overflow: scroll;
 }
 
 .dropdown:hover .dropbtn {
   background-color:transparent;
- 
 }
 
 .dropdown-content h1{
@@ -184,29 +226,26 @@ form{
 .dropdown-content a:last-of-type{
   border-bottom: none;
 }
+
 .dropdown-content a:hover{
   background-color:beige;
   border-radius: 1em;
-
 }
-.notification-number{
-  color:red;
-  }
 
+.surveys-complete{
+  color:#213b74;
+  font-style: italic;
+}
 
   /* profile */
 
 .viewbox {
-  
   display: flex;
-    
   align-items: stretch;
   text-align: center;
   flex-direction: row;
-  
   max-width: 60%;
   height: 70%;
-  padding: 10px;
   margin: auto;
   border: 1px solid #213b74;
   box-shadow:  -1px 1px #213b74,
@@ -214,9 +253,9 @@ form{
        -3px 3px #213b74,
        -4px 4px #213b74,
        -5px 5px #213b74;
-
-
+font-size: 16px;
 }
+
 
 .nav-pills .nav-link.active{
   background-color: #213b74;
@@ -230,14 +269,17 @@ form{
   background:lightgrey;
   border:transparent;
   position: absolute;
-  left: 80%;
-  top: 90%;
   transform: translate(-50%, -50%);
-  border-radius: 50%
+  border-radius: 50%;
+  left:35%;
+  top:95%;
 }
 
 .fa-pen{
   color:grey;
+  position: relative;
+  display: inline-block;
+
 }
 
 .fas ::after{
@@ -264,6 +306,7 @@ form{
 
 .tabs{
   padding: 10px 10px;
+  font-size: 16px;
 }
 
 .profileinfo{
@@ -271,31 +314,45 @@ form{
   flex: 7;
   background-color:#eaf1ffec;
   padding: 25px;
+  word-wrap: break-word;
+  overflow-x: scroll;
 }
 
 .editbutton, .savebutton{
-  
+
   background-color: #cf9212;
   border-color: #667ea8ec;
-
+  color: black;
   padding: .5rem 1rem;
-  font-size: 1.1rem;
+  font-size: 17.6px;
   line-height: 1;
-  border-radius: .3rem;
+  border-radius: .5rem;
   margin-top:5px;
-  /* margin-left: 7px; */
-  display: flex; 
-
-
+  display: flex;
 }
 
 .col-sm-6 {
   text-align: left;
   display:flow-root;
-
-
 }
 
+.col-4{
+  text-align:center;
+}
+
+h2{
+  text-align:center;
+  color:black;
+}
+
+h4{
+  color:#cf9212;
+}
+
+h6{
+  color:#cf9212;
+  text-align:center;
+}
 /* modal */
 
 /* The Modal (background) */
@@ -320,6 +377,8 @@ form{
   padding: 20px;
   border: 1px solid #888;
   width: 50%;
+  align-content: center;
+
 }
 
 /* The Close Button */
@@ -329,6 +388,7 @@ form{
   font-size: 28px;
   font-weight: bold;
   text-align: end;
+  padding-left:80%;
 }
 
 .close:hover,
@@ -336,4 +396,205 @@ form{
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+input[type=file] {
+    display: block;
+    padding-left: 40%;
+}
+
+li.active{
+  background-color:orange;
+}
+
+.col-8{
+  padding:20px;
+}
+
+.welcome, .notification-center{
+  background-color: white;
+  border-radius: 30px;
+  padding: 25px;
+  margin: 20px;
+  border: 1px solid #213b74;
+}
+
+
+ ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+.modal-backdrop {
+  z-index: -1;
+}
+
+.modal-lg{
+  width: auto;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .container{
+    width: 100%;
+  }
+}
+
+.faq_questions{
+  color:#cf9212;
+  font-size:22px;
+  text-align:start;
+  font-style: italic;
+}
+
+.faq_answers{
+  color:#213b74;
+  font-size:20px;
+  text-align:left;
+}
+
+.faqlink{
+  font-size:1.25em;
+  color:#cf9212;
+}
+
+.faq_box{
+  border-radius: 25px;
+  overflow:scroll;
+  align-items: stretch;
+  text-align: center;
+  max-width: 60%;
+  height: 70%;
+  padding: 10px;
+  margin: auto;
+  background-color: white;
+  border: 1px solid #213b74;
+  box-shadow:  -1px 1px #213b74,
+       -2px 2px #213b74,
+       -3px 3px #213b74,
+       -4px 4px #213b74,
+       -5px 5px #213b74;
+}
+
+/* Past Survey CSS */
+
+#links{
+    color:#213b74;
+    font-size: 15px;
+}
+
+#pastsurveys{
+    text-align: left;
+}
+
+/* Mobile Friendly */
+@media screen and (max-width: 375px), only screen and (max-width: 414px){
+  .viewbox{
+    flex-direction: column;
+    width:100%;
+    max-width: 80%;
+  }
+
+  body .col-sm-6{
+    text-align: center;
+    display: flow-root;
+  }
+
+  body .profileHeader{
+    flex-direction: row;
+    white-space: inherit;
+    text-align: center;
+    display: inline-block;
+    padding-right:10px;
+  }
+  
+  #profileimg{
+    text-align: center;
+    margin-left:10%;
+  }
+
+  .profileinfo{
+    padding:10px;
+    margin:0px;
+  }
+
+  .editbutton, .savebutton{
+    align-items: center;
+    display: inline;
+  }
+
+  h3{
+    text-align: center;
+  }
+
+  .faq_box{
+    max-width: 80%;
+  }
+
+  #homeMediaCSS{
+    flex-direction: row;
+    display: initial;
+  }
+
+  .col-8{
+    max-width: 100%;
+    padding:0;
+  }
+  
+  .col-4{
+    text-align: center;
+    max-width: 100%;
+    border-top: 4px solid #CCCCCC;
+  }
+
+  .icon-buton{
+    position: absolute;
+    left: 30%;
+    top: 200%;
+  }
+
+  .notification{
+    width: 100%;
+  }
+
+  .matchprofile{
+    font-size: 20px;
+  }
+
+  .modal-content{
+    width:80%;
+}
+
+  input[type=file] {
+    display: block;
+    padding:0px;
+}
+
+  #profileimg img{
+    position: initial;
+}
+
+  #changepassconfirm{
+    width:100%;
+  }
+
+}
+
+@media screen and (min-width: 415px){
+.col-4{
+  border-left: 4px solid #CCCCCC;
+  }
+}
+
+.iframe{
+  width:100%; 
+  min-height:70vh; 
+  border:none; 
+}
+
+#changepassconfirm{
+  position: absolute;
+  top: 10%;
+  left: 0;
 }

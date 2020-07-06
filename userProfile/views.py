@@ -9,33 +9,57 @@ from django.template.loader import render_to_string
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
-
 from userProfile.forms import *
 from userProfile.tokens import account_activation_token
 from survey.models import Response, Survey
+from userProfile.models import FrequentlyAsked, FrequentlyAskedMentor, Profile, CustomNotifications
+from django.views.generic.edit import FormView
+from match.models import Matches
+from userProfile.models import Profile
+
+from django.http import HttpResponse
+from tablib import Dataset
+from userProfile.resources import ProfileExport
+
 
 @login_required
-def home(request): 
-    user_id = User.objects.get(username=request.user).pk #getting user where username = the user and the id through pk
-    #getting the number of active surveys completed by the user 
+def home(request):
+    user_id = User.objects.get(username=request.user).pk
     completed = len(Survey.objects.filter(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
-    #compare number of active completed surveys == active surveys (surveys are completed) 
-    # if completed == len(Survey.objects.filter(is_published = True)):
-    #     #redirect to profile page 
-    #     return redirect('home')
-    #if not then get the surveys that were not completed by the user
-    active_survey = [len(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))]
+    survey_length = len(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
+    active_survey = [survey_length]
     not_completed = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
-    #allow us to pass this to template 
-    args = {'surveys': not_completed, 'active': active_survey}
-    #render home
-    return render(request, 'pages/home.html',args) 
+    
+    usertype = Profile.objects.get(user_id=user_id).user_type
+    notif = list()
+    if usertype == "IS_MENTOR":
+        qs = CustomNotifications.objects.filter(notify_mentors = True)
+        for x in qs:
+            notif.append(x)
+
+    if usertype == "IS_MENTEE":
+        qs = CustomNotifications.objects.filter(notify_mentees = True)
+        for x in qs:
+            notif.append(x)
+
+    length = len(notif) + survey_length
+
+    try:
+        match_model_user = Matches.objects.get(user_id=user_id)
+        match_model_match = Profile.objects.get(user_id=match_model_user.match_id)
+    
+        args = {'surveys': not_completed, 'active': active_survey,'match':match_model_match, 'notify':notif, 'length':length}
+        return render(request, 'pages/home.html',args)
+    
+    except:
+        args = {'surveys': not_completed, 'active': active_survey,'match':0, 'notify':notif, 'length':length}
+        return render(request, 'pages/home.html',args)
 
 def logout_view(request):
 	logout(request)
 	return redirect('/')
 
-def signup(request): 
+def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -43,10 +67,9 @@ def signup(request):
             user.is_active = False
             user.save()
 
-
             current_site = get_current_site(request)
             subject = 'Activate Your MySite Account'
-            message = render_to_string('registration/account_activation_email.html', {
+            message = render_to_string('registration/account_activation_email.html',{
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -80,8 +103,6 @@ def activate(request, uidb64, token):
     else:
         return render(request, 'registration/account_activation_invalid.html')
 
-
-
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
@@ -94,11 +115,8 @@ def edit_profile(request):
             messages.error(request, _('Please correct the error below.'))
     else:
         profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'pages/edit_profile.html', {
-
-        'profile_form': profile_form
-    })
-
+    return render(request, 'pages/edit_profile.html', {'profile_form': profile_form,})
+    
 @login_required
 def profile(request):
     # form = ProfileForm(request.POST)
@@ -107,17 +125,69 @@ def profile(request):
     #     user = ProfileForm(instance = request.user)
     # return render(request, 'pages/profile.html', args)
     form = ProfileForm(instance=request.user.profile)
-    return render(request, 'pages/profile.html', {'form':form})
+    all_surveys = tuple(Survey.objects.all().filter(is_published = True))
+    user_id = User.objects.get(username=request.user).pk
+    try:
+        match_model_user = Matches.objects.get(user_id=user_id)
+        match_model_match = Profile.objects.get(user_id=match_model_user.match_id)
+        print(match_model_match.first_name)
+        return render(request, 'pages/profile.html', {'form':form, 'allsurveys':all_surveys, 'match':match_model_match})
+
+    except:
+        print("except")
+        return render(request, 'pages/profile.html', {'form':form, 'allsurveys':all_surveys, 'match':0})
 
 def set_notifications(request):
     if request.user.is_authenticated:
-        user_id = User.objects.get(username=request.user).pk 
+        user_id = User.objects.get(username=request.user).pk
         context = {}
-        context["notifications"] = tuple(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True)) 
+        context["notifications"] = list(Survey.objects.exclude(id__in=Response.objects.filter(user_id=user_id).values_list('survey_id')).filter(is_published = True))
         context["current_page"] = request.path
+        
+        usertype = Profile.objects.get(user_id=user_id).user_type
+        if usertype == "IS_MENTOR":
+            qs = CustomNotifications.objects.filter(notify_mentors = True)
+            for x in qs:
+                context["notifications"].append(x)
+
+        if usertype == "IS_MENTEE":
+            qs = CustomNotifications.objects.filter(notify_mentees = True)
+            for x in qs:
+                context["notifications"].append(x)
+
         return context
+
     context = {}
     return context
 
-    
+def faq_page(request):
+    faq_objects = FrequentlyAsked.objects.all()
+    faq_mentor_objects = FrequentlyAskedMentor.objects.all()
+    args = {}
+    if faq_objects:
+        args["faq_objects"] = faq_objects
+    if faq_mentor_objects:
+        args["faq_mentor_objects"] = faq_mentor_objects
+    return render(request, 'pages/faq.html', args)
 
+
+def export_data(request):
+    if request.method == 'POST':
+        # Get selected option from form
+        file_format = request.POST['file-format']
+        profile_export = ProfileExport()
+        dataset = profile_export.export()
+        if file_format == 'CSV':
+            response = HttpResponse(dataset.csv, content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="exported_data.csv"'
+            return response        
+        elif file_format == 'JSON':
+            response = HttpResponse(dataset.json, content_type='application/json')
+            response['Content-Disposition'] = 'attachment; filename="exported_data.json"'
+            return response
+        elif file_format == 'XLS (Excel)':
+            response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+            response['Content-Disposition'] = 'attachment; filename="exported_data.xls"'
+            return response   
+
+    return render(request, 'export.html')
