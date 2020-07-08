@@ -17,20 +17,15 @@ from django.utils.translation import ugettext_lazy as _
 def manual_match(request):
     return render(request, 'admin/matches/manualmatch.html', {})
 
-
 def match_autocomplete_mentor(request):
-	print("uh oh")
 	if not request.user.is_authenticated:
 		return Profile.objects.none()
 
-
 	if request.method == 'GET' and 'term' in request.GET:
-		print("reached here after if")
 		qs = (Profile.objects.filter(first_name__istartswith=request.GET.get('term')) | Profile.objects.filter(last_name__istartswith=request.GET.get('term'))).filter(user_type="IS_MENTOR")
 		titles = list()
 
 		for var in qs:
-            # titles.append(var.first_name + var.last_name)
 			titles.append(var.user.username + " | " + var.first_name + " "+var.last_name)
 
 		return JsonResponse(titles, safe=False)
@@ -40,17 +35,14 @@ def match_autocomplete_mentor(request):
 	return render(request, 'admin/matches/manualmatch.html')
 
 def match_autocomplete_student(request):
-	print("uh oh")
 	if not request.user.is_authenticated:
 		return Profile.objects.none()
 
 	if request.method == 'GET' and 'term' in request.GET:
-		print("reached here after if")
 		qs = (Profile.objects.filter(first_name__istartswith=request.GET.get('term')) | Profile.objects.filter(last_name__istartswith=request.GET.get('term'))).filter(user_type="IS_MENTEE")
 		titles = list()
 
 		for var in qs:
-            # titles.append(var.first_name + var.last_name)
 			titles.append(var.user.username + " | " + var.first_name + " "+var.last_name)
 
 		return JsonResponse(titles, safe=False)
@@ -60,11 +52,6 @@ def match_autocomplete_student(request):
 	return render(request, 'admin/matches/manualmatch.html')
 
 def handle_manual(request):
-    print(request)
-    print(request.POST["mentor-search"].find("|"))
-    print(request.POST["mentor-search"].split()[0])
-    print(request.POST["student-search"])
-    print(request.POST["student-search"].find("|"))
     if((request.POST["mentor-search"].find("|") ==-1) | (request.POST["student-search"].find("|") == -1)):
         messages.error(request, _('INVALID USER(S) INPUTED'))
     else:
@@ -72,40 +59,12 @@ def handle_manual(request):
         student_name = request.POST["student-search"].split()[0]
         id_mentor = User.objects.get(username = mentor_name).pk
         id_student = User.objects.get(username = student_name).pk
-        print(id_mentor)
-        print(id_student)
         dict = [{'user_id': id_mentor, 'match_id': id_student}, {'user_id': id_student, 'match_id': id_mentor}]
-        # b = {}
-        # b['user_id'] = id_mentor
-        # b['match_id'] = id_student
-        # other = []
-        # other.append(b)
-        # print(other)
-        print(dict)
         serializer = MatchesSerializer_manual(data=dict, many=True)
-        print("SERIALIECE")
         if serializer.is_valid():
-            print("HELOOOOOOO")
             matches_save = serializer.save()
             print("MATCHES MADE")
-            # self.message_user(request, "Matches have been made")
         else:
-            # self.message_user(request, "Matches have NOT been made")
             print("MATCHES NOT MADE")
             print(serializer.errors)
     return redirect('../admin/match/matches')
-
-
-
-#class MatchAutocomplete(autocomplete.Select2QuerySetView):
-#    def get_queryset(self):
-        # Don't forget to filter out results depending on the visitor !
-#        if not self.request.user.is_authenticated:
-#            return Profile.objects.none()
-
-#        qs = Profile.objects.all()
-
-#        if self.q:
-#            qs = qs.filter(first_name__istartswith=self.q)
-
-#        return qs
