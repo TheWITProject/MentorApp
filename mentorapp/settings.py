@@ -59,10 +59,6 @@ INSTALLED_APPS = [
     'ml',
     'match',
     'import_export',
-    # 'dal',
-    # 'dal_select2',
-
-
 ]
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
