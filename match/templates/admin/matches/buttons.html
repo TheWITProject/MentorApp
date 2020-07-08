@@ -25,8 +25,7 @@
         });'
     > Make Matches</button>  -->
 <!--  -->
-    <div><br>
-
+    <div>
         <form action="makematches/" id = "match_form" method="POST">
             {% csrf_token %}
                 <button type="button" class= "changed_buttons" onclick =
@@ -43,14 +42,7 @@
 
         </form>
         <a href = "{% url 'manual_match' %}"><button class = "changed_buttons"> Manual Matches </button> </a>
-        <br><br>
-        <!-- <form action="download/" method="POST">
-            {% csrf_token %}
-                <button type="submit">Download Matches! :) </button>
-        </form> -->
-        <br><br><br><br>
-        <br><br>
-
+        <br><br><br><br><br><br>
     </div>
 
 

@@ -25,15 +25,15 @@ class MentorMatchingMethods:
         return surveys
 
     def create_score_matrix(self, surveys):
-        student_subset_df = surveys[surveys['Are you a mentor or student?'] == 'student']
-        mentor_subset_df = surveys[surveys['Are you a mentor or student?']== 'mentor']
+        student_subset_df = surveys[surveys['Are you a Mentor or Student?'] == 'student']
+        mentor_subset_df = surveys[surveys['Are you a Mentor or Student?']== 'mentor']
 
         score_matrix = pd.DataFrame(np.zeros(shape = (student_subset_df.shape[0],mentor_subset_df.shape[0])))
         score_matrix.columns = student_subset_df['ID']
         return score_matrix
 
     def assign_id(self, surveys, score_matrix):
-        mentor_subset_df = surveys[surveys['Are you a mentor or student?']== 'mentor']
+        mentor_subset_df = surveys[surveys['Are you a Mentor or Student?']== 'mentor']
         mentor_subset_df.reset_index(drop=True, inplace=True)  #only thing is how to gain access to the df here
         score_matrix['mentor_id'] = mentor_subset_df['ID']
         score_matrix.set_index('mentor_id', inplace = True)
