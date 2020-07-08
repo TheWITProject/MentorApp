@@ -137,9 +137,10 @@ form{
   padding: 0.25em;
   border-radius: 1em;
   transition: 500ms;
-  height: 50%;
+  height: auto;
   width: 100%;
   font-size:0.9em;
+  color:#213b74;
 }
 
 

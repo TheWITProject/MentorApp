@@ -20,14 +20,19 @@
 		<div class="dropdown">
 			<button class="dropbtn">
 				<i class="fa fa-bell" aria-hidden="true"></i>
-				<small class="notification-number">({{notifications | length}})</small>
+				<small class="notification-number">({{notifications | length }})</small>
 			</button>
 			<div class="dropdown-content">
 				{% for survey in notifications %}
 				<a href="/survey/{{survey.id}}">
 					<div class="notification">
 						<h1>{{survey.name}}</h1>
-						Click here to take the survey
+						{% if survey.name %}
+							Click here to take the survey
+						{% endif %}
+						
+						<h1>{{survey.title}}</h1>
+						{{survey.message}}
 					</div>
 				</a>
 				{% endfor %}
