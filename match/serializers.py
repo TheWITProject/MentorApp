@@ -4,11 +4,9 @@ from .models import Matches
 
 class MatchesSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
-        print("HELLO")
         return Matches.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        print("HELLOP")
         instance.match_id = validated_data.get('match_id', instance.match_id)
         instance.user_id = validated_data.get('user_id', instance.user_id)
         instance.save()
@@ -19,15 +17,12 @@ class MatchesSerializer(serializers.ModelSerializer):
 
 class MatchesSerializer_manual(serializers.ModelSerializer):
     def create(self, validated_data):
-        print("CRETAINGNNGNGNNG")
         self.manual_match = serializers.BooleanField(default=True)
         return Matches.objects.create(**validated_data, manual_match = True)
 
     def update(self, instance, validated_data):
-        print("UDPATTTTTINGNGG")
         instance.match_id = validated_data.get('match_id', instance.match_id)
         instance.user_id = validated_data.get('user_id', instance.user_id)
-        # instance.manual_match = validated_data.get('manual_match', instance.manual_match)
         instance.save()
         return instance
     class Meta:
