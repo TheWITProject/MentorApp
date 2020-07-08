@@ -16,18 +16,8 @@ import csv
 
 class MatchesAdmin(admin.ModelAdmin):
     change_list_template = "admin/matches/buttons.html"
-    # autocomplete_fields = ['profile_search']
-    # list_display = ("user_id", "name", "last_name","match_first_name", "match_last_name", "manual_match" )
     list_display = ("user_id", "name","match_name", "manual_match" )
-    # readonly_fields = ( "name", "last_name","match_first_name", "match_last_name")
-    # fieldsets = (
-    #     (None, {
-    #         'fields': ('user_profile', 'match_profile', 'manual_match', )
-    #     }),
-    # )
     actions = ['export_matches']
-
-    # search_fields = ['profile_search__first_name']
 
     def get_urls(self):
         urls = super().get_urls()
@@ -38,30 +28,17 @@ class MatchesAdmin(admin.ModelAdmin):
 
     def make_matches(self, request):
         r = requests.get('http://127.0.0.1:8000/survey/json/1')
-        # print(type(r))
-        # r = ""
-        # r.json()
-        # print (r.json())
         x = requests.post('http://127.0.0.1:8000/api/v1/mentor_match_classifier/predict', json = r.json())
-        print(x)
-        # print(x.text)
-        print("BEFORE X.JSON")
         match_json = x.json()
-        print("MATCH JSON: ")
-        print(match_json)
-        print(type(match_json))
         if('matches' in match_json.keys()):
             mid_json = match_json['matches']
         else:
             mid_json = "[{}]"
-        # cur_dir = os.getcwd()
-        # print(mid_json)
         mock_json = pd.read_json(mid_json, orient = 'records')
         dict_json = mock_json.to_dict('records')
         serializer = MatchesSerializer(data=dict_json, many=True)
         try:
             if serializer.is_valid():
-                print("SERIALIZER IS VALID")
                 matches_save = serializer.save()
                 self.message_user(request, "Matches have been made")
             else:
@@ -90,21 +67,10 @@ class MatchesAdmin(admin.ModelAdmin):
 
         return response
 
-
     def name(self, obj):
         return Profile.objects.get(user_id=obj.user_id).first_name + " " + Profile.objects.get(user_id=obj.user_id).last_name
 
-    # def last_name(self, obj):
-    #     return Profile.objects.get(user_id=obj.user_id).last_name
-
     def match_name(self, obj):
         return Profile.objects.get(user_id=obj.match_id).first_name + " " + Profile.objects.get(user_id=obj.match_id).last_name
-
-    # def match_last_name(self, obj):
-    #     return Profile.objects.get(user_id=obj.match_id).last_name
-
-
-
-
 
 admin.site.register(Matches, MatchesAdmin)
