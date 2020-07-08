@@ -110,10 +110,13 @@ class Email(models.Model):
     subject = models.CharField(max_length=5000, default='')
     message_email = models.TextField(max_length=30000, default='')
 
+class MatchProfile(models.Model):
+    match_user = models.OneToOneField(Profile, on_delete=models.CASCADE, null = True)
+    def __str__(self):
+        return str(self.match_user.user_id)
 
 class CustomNotifications(models.Model):
     title = models.CharField(max_length=1000, default='')
     notify_mentors = models.BooleanField(default=False, verbose_name=_('Notify All Mentors'))
     notify_mentees = models.BooleanField(default=False, verbose_name=_('Notify All Mentees'))
     message = models.TextField(max_length=5000, default='')    
-

@@ -50,7 +50,7 @@ from mentorapp.wsgi import registry
 #GENERICVIEWSET: The GenericViewSet class inherits from GenericAPIView, and provides the default set of get_object, get_queryset methods and other generic view base behavior,
 #but does not include any actions by default.
 
-# ViewSets use a Serializer or Serializers to correctly represent API-related objects, and are exposed in urls.py by being 
+# ViewSets use a Serializer or Serializers to correctly represent API-related objects, and are exposed in urls.py by being
 # registered with a Router. API actions provided by a ViewSet include “list”, “create”, “retreive”, “update”, “partial_update”,
 #  and “destroy”.
 class EndpointViewSet(
@@ -107,7 +107,7 @@ class PredictView(views.APIView):
         algorithm_version = self.request.query_params.get("version")
 
         algs = MLAlgorithm.objects.filter(parent_endpoint__name = endpoint_name, status__status = algorithm_status, status__active=True)
-        
+
         if algorithm_version is not None:
             algs = algs.filter(version = algorithm_version)
 

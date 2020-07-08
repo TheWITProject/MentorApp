@@ -1,12 +1,120 @@
-{% extends 'admin/change_list.html' %}
+{% extends 'admin/change_list.html' %} 
 
 {% block object-tools %}
-<div><br>
-        <form action="makematches/" method="POST">
-            {% csrf_token %}
-                <button type="submit">Make Matches</button>
-        </form>
-        <br><br>
+
+     <div id="confirm">
+        <div class="message"></div>
+        <div>
+            <button class="yes" id= "yes_button">Yes</button>
+            <button class="no" id = "no_button">No</button>
+        </div>
+
     </div>
-    {{ block.super }}
+    
+    <div>
+        <form action="makematches/" id = "match_form" method="POST">
+            {% csrf_token %}
+                <button type="button" class= "changed_buttons" onclick =
+				'functionConfirm("Would you like to make any manual match?",
+				function yes()
+				{
+					confirm("Then go to MANUAL MATCHES")
+				},
+				function no()
+				{
+					confirm("Are you sure?")
+          document.getElementById("match_form").submit();
+				});'>Make Matches</button>
+
+        </form>
+        <a href = "{% url 'manual_match' %}"><button class = "changed_buttons"> Manual Matches </button> </a>
+        <br><br><br><br><br><br>
+    </div>
+
+
+<!-- style for alter -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        let confirmBox = $("#confirm");
+        confirmBox.hide();
+        function functionConfirm(msg, myYes, myNo) {
+            confirmBox.find(".message").text(msg);
+            confirmBox.find(".yes,.no").unbind().click(function() {
+                confirmBox.hide();
+            })
+            confirmBox.find(".yes").click(myYes);
+            confirmBox.find(".no").click(myNo);
+            confirmBox.show();
+        }
+        if(yes.clicked==false){
+
+        }
+    </script>
+    <style>
+        .changed_buttons {
+            background: #999;
+            display: block;
+            float: right;
+            padding: 0px;
+            font-weight: 400;
+            font-size: 12px;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 0.5px;
+            color: #fff;
+            padding-top: 3px;
+            padding-right: 12px;
+            padding-bottom: 3px;
+            padding-left: 12px;
+            border: none;
+            margin:5px;
+            border-radius: 15px;
+                line-height: 20px;
+                font-family: 'Roboto','Lucida Grande','DejaVu Sans','Bitstream Vera Sans','Verdana','Arial','sans-serif';
+
+        }
+        #confirm {
+           display: none;
+           background-color: #79aec8;
+           border: 1px solid #aaa;
+           position: fixed;
+           width: 400px;
+           height: 20px;
+           left: 50%;
+           margin-left: -200px;
+           padding: 50px;
+           box-sizing: border-box;
+           text-align: center;
+
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           align-items: center;
+
+        }
+
+        #confirm button {
+           background-color: #fff;
+           display: inline-block;
+           border-radius: 5px;
+           border: 1px solid #aaa;
+           padding: 5px;
+           text-align: center;
+           width: 80px;
+           cursor: pointer;
+           margin-top: 15px;
+        }
+        #confirm .message {
+           text-align: left;
+           font-weight: bold;
+
+        }
+
+     </style>
+
+
+
+    <!-- {{ block.super }} -->
+
 {% endblock %}
+

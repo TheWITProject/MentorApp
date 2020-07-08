@@ -109,9 +109,9 @@ class CustomNotificationsAdmin(admin.ModelAdmin):
 
 admin.site.register(AdditionalQuestions, AdditionalQuestionsAdmin) 
 admin.site.register(Response, ResponseAdmin)
-admin.site.register(Profile, UserResponderAdmin)
 admin.site.register(FrequentlyAsked)
 admin.site.register(FrequentlyAskedMentor)
 admin.site.register(Email, EmailAdmin)
+admin.site.register(MatchProfile)
+admin.site.register(Profile)
 admin.site.register(CustomNotifications, CustomNotificationsAdmin)
-

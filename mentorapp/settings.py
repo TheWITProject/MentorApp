@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'ml',
     'match',
-    'import_export'
+    'import_export',
 ]
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True

@@ -22,3 +22,4 @@ requests
 django-import-export
 joblib
 matching
+django-extensions==2.2.9
