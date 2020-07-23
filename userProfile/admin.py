@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import *
 import nested_admin
-from django.core.mail import EmailMessage
+from django.core.mail import send_mail, EmailMessage
 from import_export.admin import ExportMixin
 
 class AnswerInline(nested_admin.NestedTabularInline):
@@ -101,6 +101,7 @@ class EmailAdmin(admin.ModelAdmin):
       bcc_recipients = list(set(bcc_recipients))
 
       email = EmailMessage(subject, message_email, from_email, to_recipients, bcc_recipients, cc=cc_recipients)
+      send_mail(subject, message_email, from_email, to_recipients)
       email.send()
       obj.save()
 

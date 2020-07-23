@@ -31,16 +31,13 @@ SECRET_KEY = 'v77!w980vxmft4ege5quusj%5+)p3p!xu8914wxef$!5bq7%r@'
 if 'RDS_DB_NAME' in os.environ:
     EMAIL_HOST_USER = os.environ['email_user']
     EMAIL_HOST_PASSWORD = os.environ['email_pass']
+    EMAIL_BACKEND = 'django_ses.SESBackend'
     DEBUG = True
     ALLOWED_HOSTS = ['yearup-mentorapp.us-east-1.elasticbeanstalk.com']
 else:
     print("Debug is enabled.")
     DEBUG = True
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
