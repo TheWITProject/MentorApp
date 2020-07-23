@@ -101,7 +101,6 @@ class EmailAdmin(admin.ModelAdmin):
       bcc_recipients = list(set(bcc_recipients))
 
       email = EmailMessage(subject, message_email, from_email, to_recipients, bcc_recipients, cc=cc_recipients)
-      send_mail(subject, message_email, from_email, to_recipients)
       email.send()
       obj.save()
 
