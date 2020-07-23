@@ -32,7 +32,7 @@ if 'RDS_DB_NAME' in os.environ:
     EMAIL_HOST_USER = os.environ['email_user']
     EMAIL_HOST_PASSWORD = os.environ['email_pass']
     EMAIL_BACKEND = 'django_ses.SESBackend'
-    DEBUG = True
+    DEBUG = False
     ALLOWED_HOSTS = ['yearup-mentorapp.us-east-1.elasticbeanstalk.com']
 else:
     print("Debug is enabled.")
